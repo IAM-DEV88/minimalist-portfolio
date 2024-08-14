@@ -1,0 +1,126 @@
+{
+  "basics": {
+    "name": "Ioan Andrés Muñoz",
+    "label": "Desarrollador fullstack con experiencia en brindar soluciones personalizadas",
+    "image": "https://avatars.githubusercontent.com/u/141512518?v=4",
+    "email": "jaguerx88@gmail.com",
+    "phone": "(+57) 317-868-4451",
+    "summary": "Desarrollador fullstack certificado con experiencia resolviendo necesidades de clientes como Instituciones Educativas, negocios pequeños y medianos.",
+    "location": {
+      "city": "Pitalito",
+      "countryCode": "CO",
+      "region": "Huila"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "IAM-DEV88",
+        "url": "https://github.com/IAM-DEV88/"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "IAM-DEV88",
+        "url": "https://www.linkedin.com/in/iam-dev88"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Desarrollo Web",
+      "position": "Freelance fullstack developer",
+      "startDate": "2023-10-18",
+      "endDate": null,
+      "highlights": [
+        "Desarrollo de páginas y aplicaciones web personalizadas."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Administrador de tienda",
+      "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
+      "description": "Administrador de tienda en el navegador con control de usuarios, registro contable, de facturación e inventarios",
+      "highlights": [
+        "CRUD",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "MySQL"
+      ]
+    },
+    {
+      "name": "Agenda Contable",
+      "url": "https://github.com/IAM-DEV88/agendareact",
+      "description": "Agenda de turnos con registros en libro mayor contable",
+      "highlights": [
+        "CRUD",
+        "Node",
+        "React",
+        "Axios",
+        "Express",
+        "MongoDB",
+        "G Cloud"
+      ]
+    },
+    {
+      "name": "Comunidad RaidDominion Tools",
+      "url": "https://raid-dominion.netlify.app/",
+      "description": "Addon para World of Warcraft 3.3.5a",
+      "highlights": [
+        "LUA"
+      ]
+    }
+  ],
+  "skills": [
+    
+    {
+      "name": "HTML"
+    },
+    {
+      "name": "CSS"
+    },
+    {
+      "name": "JavaScript"
+    },
+    {
+      "name": "PHP"
+    },
+    {
+      "name": "MySQL"
+    },
+    {
+      "name": "Node"
+    },
+    {
+      "name": "Git"
+    },
+    {
+      "name": "GitHub"
+    },
+    {
+      "name": "React"
+    },
+    {
+      "name": "Axios"
+    },
+    {
+      "name": "Express"
+    },
+    {
+      "name": "MongoDB"
+    },
+    {
+      "name": "G Cloud"
+    },
+    {
+      "name": "Vercel"
+    },
+    {
+      "name": "Netlify"
+    },
+    {
+      "name": "Astro"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+---
+import Section from "../Section.astro";
+import { work } from "@cv";
+---
+
+<Section title="Experiencia">
+  <ul>
+    {
+      work.map(({ name, position, startDate, endDate, highlights }) => {
+        const start = new Date(startDate);
+        const end = endDate !=null ? new Date(endDate) : new Date(); // Usa la fecha actual si no hay fecha de finalización
+        const monthsDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+        const years = Math.floor(monthsDiff / 12);
+        const months = monthsDiff % 12;
+        let durationString = "";
+
+        if (years > 0) {
+          durationString += years === 1 ? "1 año" : `${years} años`;
+        }
+
+        if (months > 0) {
+          durationString += durationString ? " y " : "";
+          durationString += months === 1 ? "1 mes" : `${months} meses`;
+        }
+        return (
+          <li>
+            <article>
+              <header>
+                <div>
+                  <h3>{name}</h3>
+                  <h4>{position}</h4>
+                </div>
+                <p>
+                  <time>{durationString}</time>
+                  <span>
+                    {startDate} <br /> {endDate ? endDate : "Actual"}
+                    </span>
+                </p>
+              </header>
+              <footer>
+              <ul>
+                {highlights.map((highlight) => {
+                  return <li>{highlight}</li>;
+                })}
+              </ul>
+            </footer>
+            </article>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Section>
+
+
+<style>
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+    article h3{
+        font-weight: 500;
+        color: #111;
+    }
+    article h4{
+        font-weight: 400;
+        color: #222;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+    }
+    header p{
+      display: flex;
+      flex-direction: column;
+    }
+    time, p span{
+      color: #222;
+      text-align: right;
+    }
+    p span{
+      font-size: .5rem;
+    }
+    footer{
+      font-size: .8rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    footer ul{
+      gap:2px;
+      list-style:disc;
+      padding-left: 1rem;
+    }
+  @media screen and (max-width: 410px) {
+  /* Estilos específicos para pantallas pequeñas */
+  p span, time {
+    text-align: right;
+    font-size: .5rem;
+  }
+  /* Otros estilos... */
+}
+</style>
