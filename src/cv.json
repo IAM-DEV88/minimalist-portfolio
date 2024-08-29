@@ -50,6 +50,29 @@
       ]
     },
     {
+      "name": "Gestor de estudiantes",
+      "url": "https://iam-dev88.github.io/student-manager/",
+      "description": "Gestor de estudiantes para profesores",
+      "highlights": [
+        "CRUD",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "JSON"
+      ]
+    },
+    {
+      "name": "Space Invaders",
+      "url": "https://iamdev-space-invaders.netlify.app",
+      "description": "Juego Space Invaders",
+      "highlights": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    },
+    {
       "name": "Agenda Contable",
       "url": "https://github.com/IAM-DEV88/agendareact",
       "description": "Agenda de turnos con registros en libro mayor contable",
@@ -64,8 +87,19 @@
       ]
     },
     {
-      "name": "Comunidad RaidDominion Tools",
+      "name": "Comunidad Raid Dominion Tools",
       "url": "https://raid-dominion.netlify.app/",
+      "description": "Comunidad World of Warcraft 3.3.5a",
+      "highlights": [
+        "Portal web",
+        "Discord",
+        "Twitch",
+        "Youtube"
+      ]
+    },
+    {
+      "name": "Addon Raid Dominion Tools",
+      "url": "https://github.com/IAM-DEV88/RaidDominion",
       "description": "Addon para World of Warcraft 3.3.5a",
       "highlights": [
         "LUA"
@@ -73,7 +107,6 @@
     }
   ],
   "skills": [
-    
     {
       "name": "HTML"
     },
@@ -82,6 +115,9 @@
     },
     {
       "name": "JavaScript"
+    },
+    {
+      "name": "English B2"
     },
     {
       "name": "PHP"
@@ -121,6 +157,15 @@
     },
     {
       "name": "Astro"
+    },
+    {
+      "name": "Discord"
+    },
+    {
+      "name": "Twitch"
+    },
+    {
+      "name": "Youtube"
     }
   ]
 }
