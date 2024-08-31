@@ -86,15 +86,14 @@ const { summary, name } = basics;
         // Funcionalidad del botón "Volver arriba"
         window.addEventListener("scroll", () => {
           if (window.pageYOffset > 150) {
-            backToTopButton.classList.add("show");
+            backToTopButton?.classList.add("show");
           } else {
-            backToTopButton.classList.remove("show");
+            backToTopButton?.classList.remove("show");
           }
         });
 
         if (backToTopButton) {
           backToTopButton.addEventListener("click", (e) => {
-            e.preventDefault();
             window.scrollTo({
               top: 0,
               behavior: "smooth",
