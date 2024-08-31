@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         theme: "rgba(147, 158, 178, 0.8)",
-        primary: "rgba(235, 236, 240, 0.8)",
+        primary: "rgba(235, 236, 240, 0.9)",
         enphasis: "rgba(15,25,43, 0.8)",
         secondary: "rgba(71, 27, 48, 0.8)",
         themebg: "rgba(47, 58, 78, 0.8)",
@@ -16,20 +16,18 @@ export default {
       boxShadow: {
         "theme": [
           "0 0 2px rgb(0, 0, 0, 1)",
-          "0 0 8px rgba(255, 255, 255, 0.3)",
-          "0 0 10px rgba(140, 90, 195, 0.3)",
-          "0 0 15px rgba(189, 198, 221, 0.3)",
-          "0 0 20px rgb(147, 158, 178, 0.3)",
+          "0 0 7px rgba(255, 255, 255, 0.3)",
+          "0 0 10px rgb(115, 25, 43, 0.3)",
         ],
-        "neon": [
+        "primary": [
           "0 0 2px rgba(255, 255, 255, 1)",
-          "0 0 4px rgba(255, 255, 255, 0.8)",
-          "0 0 6px rgba(255, 255, 255, 0.6)",
+          "0 0 9px rgba(255, 255, 255, .5)",
+          "0 0 10px rgb(115, 25, 43, 0.3)",
         ],
-        "small": [
-          "0 0 1px rgba(255, 255, 255, 1)",
-          "0 0 2px rgba(140, 90, 195, 0.8)",
-          "0 0 3px rgba(255, 255, 255, 0.6)",
+        "enphasis": [
+          "0 0 2px rgba(0, 0, 0, 1)",
+          "0 0 4px rgba(255, 255, 255, 0.4)",
+          "0 0 6px rgb(140, 90, 195, 0.9)",
         ],
       },
       screens: {
@@ -38,20 +36,18 @@ export default {
       dropShadow: {
         "theme": [
           "0 0 2px rgb(0, 0, 0, 1)",
-          "0 0 8px rgba(255, 255, 255, 0.3)",
-          "0 0 10px rgba(140, 90, 195, 0.3)",
-          "0 0 15px rgba(189, 198, 221, 0.3)",
-          "0 0 20px rgb(147, 158, 178, 0.3)",
+          "0 0 7px rgba(255, 255, 255, 0.3)",
+          "0 0 10px rgb(115, 25, 43, 0.3)",
         ],
-        "neon": [
+        "primary": [
           "0 0 2px rgba(255, 255, 255, 1)",
-          "0 0 4px rgba(255, 255, 255, 0.8)",
-          "0 0 6px rgba(255, 255, 255, 0.6)",
+          "0 0 9px rgba(255, 255, 255, .5)",
+          "0 0 10px rgb(115, 25, 43, 0.3)",
         ],
-        "small": [
-          "0 0 1px rgba(255, 255, 255, 1)",
-          "0 0 2px rgba(140, 90, 195, 0.8)",
-          "0 0 3px rgba(255, 255, 255, 0.6)",
+        "enphasis": [
+          "0 0 2px rgba(0, 0, 0, 1)",
+          "0 0 4px rgba(255, 255, 255, 0.4)",
+          "0 0 6px rgb(140, 90, 195, 0.9)",
         ],
       },
       fontSize: {
@@ -59,11 +55,9 @@ export default {
         'sm-font': ['.6rem'],
         'md-font': ['.8rem'],
         'lg-font': ['1.5rem'],
+        'lg-font-sm': ['1.9rem'],
+        'md-font-sm': ['1.1rem'],
 
-        
-        'xl-title': ['1.5rem'],
-        'xl-sub': ['.8rem'],
-        'xs-title': ['.6rem', { lineHeight: '1'}],
       },
     },
   },

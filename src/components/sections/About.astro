@@ -2,31 +2,22 @@
 import Section from "../Section.astro";
 import { skills } from "@cv";
 
-import {basics} from "@cv"
-const {summary} = basics
+import { basics } from "@cv";
+const { summary } = basics;
 ---
 
 <Section title="Acerca de mi" id="section3">
-    <div class="h-screen">
-        <p>
-            {summary}
-        </p>
-        <h1 class="uppercase text-center text-xl-sub my-4">Habilidades</h1>
-        <ul class="justify-center flex flex-wrap flex-row gap-4">
-            {
-                skills.map(({ name }) => (
-                    <li class="text-xs-title rounded drop-shadow-small text-primary bg-enphasis">
-                      <span>{name}</span>
-                      </li>
-                      ))
-                  }
-                  </ul>
-    </div>
-    
-</Section>
-
-<style>
-    li {
-      padding: .3rem .6rem;
+  <p>
+    {summary}
+  </p>
+  <h1 class="uppercase text-center text-md-font my-4">Habilidades</h1>
+  <ul class="justify-center flex flex-wrap flex-row gap-4">
+    {
+      skills.map(({ name }) => (
+        <li class="text-sm-font rounded drop-shadow-enphasis text-primary bg-enphasis py-1 px-2">
+          <span>{name}</span>
+        </li>
+      ))
     }
-  </style>
+  </ul>
+</Section>

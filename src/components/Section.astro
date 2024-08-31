@@ -2,14 +2,7 @@
 const { title, id } = Astro.props;
 ---
 
-<section class="section text-primary h-screen pt-24" id={id}>
-  {title && <h2 class="font-bold text-xl-title drop-shadow-theme">{title}</h2>}
+<section class="section text-primary max-w-[700px] m-auto h-screen pt-24" id={id}>
+  {title && <h2 class="font-bold text-lg-font md:text-lg-font-sm drop-shadow-theme">{title}</h2>}
   <slot />
 </section>
-
-<style>
-  section {
-    max-width: 700px;
-    margin: 0 auto 48px;
-  }
-</style>

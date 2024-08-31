@@ -29,16 +29,16 @@ import { work } from "@cv";
                 <header class="flex justify-between items-center mb-2">
                   <div>
                     <h3>{name}</h3>
-                    <h4 class="text-xs-title">{position}</h4>
+                    <h4 class="text-sm-font md:text-md-font">{position}</h4>
                   </div>
-                  <p class="flex flex-col text-right font-bold">
+                  <p class="flex flex-col text-right font-bold text-dsm-font md:text-md-font">
                     <time>{durationString}</time>
                     <span>
                       {startDate} <br /> {endDate ? endDate : "Actual"}
                       </span>
                   </p>
                 </header>
-                <footer class="flex flex-col text-xl-sub">
+                <footer class="flex flex-col text-md-font">
                 <ul class="flex flex-col gap-2">
                   {highlights.map((highlight) => {
                     return <li class="list-disc ml-4">{highlight}</li>;
@@ -53,15 +53,3 @@ import { work } from "@cv";
     </ul>
   <Projects></Projects>
 </Section>
-
-
-<style>
-  @media screen and (max-width: 410px) {
-  /* Estilos específicos para pantallas pequeñas */
-  p span, time {
-    text-align: right;
-    font-size: .5rem;
-  }
-  /* Otros estilos... */
-}
-</style>

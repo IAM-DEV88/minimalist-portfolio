@@ -22,15 +22,15 @@ const highlightCounts = projects.reduce((acc: Record<string, number>, project) =
 const initialProjects = projects.slice(0, 5);
 ---
 
-<h4 class="mt-6 mb-4 text-xl-sub uppercase font-bold">proyectos</h4>
+<h4 class="mt-6 mb-5 text-md-font uppercase font-bold md:text-md-font-sm">proyectos</h4>
 
 <div id="project-list" class="flex flex-col items-center">
   <!-- Input de búsqueda -->
   <input
     id="search-input"
     list="projectNames"
-    placeholder="Buscar proyecto..."
-    class="bg-enphasis drop-shadow-theme rounded px-4 py-1 mb-2"
+    placeholder="Buscar..."
+    class="bg-enphasis drop-shadow-enphasis rounded px-4 py-1 mb-2 w-[60%]"
   />
   <datalist id="projectNames">
     {projects.map((project) => <option value={project.name} />)}
@@ -39,21 +39,21 @@ const initialProjects = projects.slice(0, 5);
   <!-- Lista de proyectos -->
   <ul
     id="project-list-items"
-    class="my-2 gap-y-2 flex flex-col dsm:w-[230px]"
+    class="my-3 gap-y-2 flex flex-col w-[90%]"
   >
     {initialProjects.map((project) => <li>{project.name}</li>)}
   </ul>
 
   <!-- Controles de paginación -->
-  <div id="pagination-controls text-xl-sub" class="flex flex-row gap-2">
-    <button id="prev-page" class="rounded bg-enphasisbg w-6 h-6">&lt;</button>
+  <div id="pagination-controls text-md-font" class="flex flex-row gap-2">
+    <button id="prev-page" class="rounded bg-gray-800 w-6 h-6">&lt;</button>
     <span id="page-info"></span>
-    <button id="next-page" class="rounded bg-enphasisbg w-6 h-6">&gt;</button>
+    <button id="next-page" class="rounded bg-gray-800 w-6 h-6">&gt;</button>
   </div>
 
   <!-- Panel de filtros -->
-  <h5 class="text-xl-sub uppercase font-bold my-3">TIPO</h5>
-  <div class="text-xl-sub flex flex-wrap justify-between">
+  <h5 class="text-md-font uppercase font-bold my-3">TIPO</h5>
+  <div class="text-md-font flex flex-wrap justify-between gap-x-2">
     {
       Object.entries(highlightCounts).map(([highlight, count]) => (
         <label class="cursor-pointer">
@@ -70,10 +70,10 @@ const initialProjects = projects.slice(0, 5);
       <span class="close">&times;</span>
       <div class="flex flex-col gap-y-2">
         <h2 id="modal-project-name" class="font-bold"></h2>
-        <p id="modal-project-description" class="text-xl-sub"></p>
-        <span id="modal-project-link" class="text-xl-sub self-center py-2"></span>
-        <h3 class="text-xl-sub font-medium">TIPO:</h3>
-        <ul id="modal-project-highlights" class="text-xs-title flex flex-wrap gap-2"></ul>
+        <p id="modal-project-description" class="text-md-font"></p>
+        <span id="modal-project-link" class="text-md-font self-center py-2"></span>
+        <h3 class="text-md-font font-medium">TIPO:</h3>
+        <ul id="modal-project-highlights" class="text-sm-font flex flex-wrap gap-2"></ul>
         <footer class="no-print flex flex-row justify-center">
           {
             email && (
@@ -140,10 +140,10 @@ const initialProjects = projects.slice(0, 5);
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    transition: opacity .3s ease-in-out, display .3s ease allow-discrete;
+    /* transition: opacity .3s ease-in-out, display .3s ease allow-discrete; */
   }
   
-  .modal-content{
+  /* .modal-content{
     transition: opacity .3s ease-in-out, display .3s ease allow-discrete;
     opacity:0;
   }
@@ -155,7 +155,7 @@ const initialProjects = projects.slice(0, 5);
     @starting-style{
       opacity:0;
     }
-  }
+  } */
 
   .modal-content {
     margin: 15% auto;
@@ -230,7 +230,7 @@ const initialProjects = projects.slice(0, 5);
         )
         .join("");
   
-      pageInfo.innerHTML = `<span class='text-xl-sub'>Página ${currentPage} de ${totalPages}</span>`;
+      pageInfo.innerHTML = `<span class='text-md-font'>Página ${currentPage} de ${totalPages}</span>`;
       prevPageButton.disabled = currentPage === 1;
       nextPageButton.disabled = currentPage === totalPages;
   

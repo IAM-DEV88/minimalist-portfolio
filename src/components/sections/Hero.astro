@@ -22,25 +22,25 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
 ---
 
 <Section id="section1">
-  <div class="flex flex-col items-center pt-[8vh]">
+  <div class="flex flex-col items-center pt-[8vh] sm:pt-[4vh]">
     <figure>
-      <img src={image} alt={name} class="w-[128px] rounded opacity-90 drop-shadow-theme" />
+      <img src={image} alt={name} class="w-[128px] sm:w-[200px] rounded opacity-90 drop-shadow-theme" />
     </figure>
     <div class="flex flex-col items-center gap-y-2 text-center">
-      <h1 class="text-primary font-bold text-lg-font drop-shadow-theme">{name}</h1>
-      <h2 class="text-enphasis text-md-font font-medium drop-shadow-neon">{label}</h2>
-      <span class="flex items-center gap-1 text-primary bg-enphasis p-1 px-2 rounded drop-shadow-theme">
+      <h1 class="text-primary font-bold text-lg-font drop-shadow-theme sm:text-lg-font-sm">{name}</h1>
+      <h2 class="text-enphasis text-md-font font-medium drop-shadow-primary sm:text-md-font-sm">{label}</h2>
+      <span class="flex items-center gap-1 text-sm-font text-primary bg-enphasis p-1 px-2 rounded drop-shadow-theme">
         <WorldMap />
         {city}, {region} &bull; {countryCode}
       </span>
       <div class="print">
           {printInfo}
       </div>
-      <footer class="no-print">
+      <footer class="flex flex-row gap-2 mt-2 no-print">
         {
           email && (
             <a
-            class="bg-enphasis drop-shadow-theme hover:drop-shadow-neon transition"
+            class="bg-enphasis drop-shadow-theme hover:drop-shadow-primary transition"
               href={`mailto:${email}`}
               title={`Enviar correo electronico a ${name} al correo ${email}`}
               target="_blank"
@@ -53,7 +53,7 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
         {
           phone && (
             <a
-            class="bg-enphasis drop-shadow-theme hover:drop-shadow-neon transition"
+            class="bg-enphasis drop-shadow-theme hover:drop-shadow-primary transition"
               href={`tel:${phone}`}
               title={`Llamar a ${name} al telefono ${phone}`}
               target="_blank"
@@ -68,7 +68,7 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
             const Icon = SOCIAL_ICONS[network];
             return (
               <a
-              class="bg-enphasis drop-shadow-theme hover:drop-shadow-neon transition"
+              class="bg-enphasis drop-shadow-theme hover:drop-shadow-primary transition"
                 href={`${url}`}
                 title={`Mirar perfil de ${username} en ${network}`}
                 target="_blank"
@@ -86,20 +86,7 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
 </Section>
 
 <style>
-  img {
-    aspect-ratio: 1 / 1;
-    
-  }
-  span {
-   
-  }
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 8px;
-  }
   footer a {
-    color: #777;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -109,11 +96,4 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
     border-radius: 5px;
     transition: all 0.3s ease;
   }
-  @media screen and (max-width: 410px) {
-  /* Estilos específicos para pantallas pequeñas */
-  span {
-    font-size: .6rem;
-  }
-  /* Otros estilos... */
-}
 </style>
