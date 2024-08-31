@@ -14,7 +14,7 @@ const { summary, name } = basics;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={summary} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="../src/styles/global.css" />
@@ -24,11 +24,10 @@ const { summary, name } = basics;
   <body>
     <slot />
     <button
-  id="back-to-top"
-  class="fixed bottom-4 right-4 text-white p-2 rounded-full hidden"
-  aria-label="Volver arriba"
->
-
+      id="back-to-top"
+      class="fixed bottom-4 right-4 text-white p-2 rounded-full hidden"
+      aria-label="Volver arriba"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6"
@@ -47,7 +46,8 @@ const { summary, name } = basics;
       document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menu-toggle");
         const menuMobile = document.getElementById("menu-mobile");
-        const mobileMenuItems = menuMobile.querySelectorAll(".scroll-link");
+        const mobileMenuItems =
+          menuMobile?.querySelectorAll(".scroll-link") ?? [];
         const sections = document.querySelectorAll(".section");
         const backToTopButton = document.getElementById("back-to-top");
 
@@ -61,7 +61,6 @@ const { summary, name } = basics;
             menuMobile?.classList.remove("active");
           });
         });
-
 
         // Intersection Observer para manejar animaciones al entrar en la vista
         const observer = new IntersectionObserver(
@@ -83,23 +82,20 @@ const { summary, name } = basics;
           observer.observe(section);
         });
 
-        // Funcionalidad del botón "Volver arriba"
         window.addEventListener("scroll", () => {
-          if (window.pageYOffset > 150) {
+          if (window.scrollY > 150) {
             backToTopButton?.classList.add("show");
           } else {
             backToTopButton?.classList.remove("show");
           }
         });
 
-        if (backToTopButton) {
-          backToTopButton.addEventListener("click", (e) => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
+        backToTopButton.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
           });
-        }
+        });
       });
     </script>
   </body>

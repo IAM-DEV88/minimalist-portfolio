@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
@@ -10,7 +10,6 @@ module.exports = {
         secondary: "rgba(71, 27, 48, 0.8)",
         primarybg: "rgba(0, 170, 250, 0.8)",
         enphasisbg: "rgba(0, 0, 0, 0.6)",
-        // Nuevos colores con efecto neón
         neonBlue: "rgba(0, 255, 255, 0.8)",
         neonPink: "rgba(255, 0, 255, 0.8)",
         neonGreen: "rgba(0, 255, 0, 0.8)",
@@ -53,7 +52,6 @@ module.exports = {
         'xl-title': ['1.5rem'],
         'xl-sub': ['.8rem'],
         'xs-title': ['.6rem', { lineHeight: '1'}],
-
       },
     },
   },

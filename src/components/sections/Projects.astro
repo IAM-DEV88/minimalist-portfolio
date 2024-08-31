@@ -166,7 +166,7 @@ const initialProjects = projects.slice(0, 5);
   }
 </style>
 
-<script define:vars={{ projects }}>
+<script define:vars={{ projects }} is:inline>
 document.addEventListener("DOMContentLoaded", () => {
   let searchQuery = "";
   let selectedFilters = [];
