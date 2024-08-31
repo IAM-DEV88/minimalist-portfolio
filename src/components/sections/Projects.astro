@@ -167,136 +167,129 @@ const initialProjects = projects.slice(0, 5);
 </style>
 
 <script define:vars={{ projects }} is:inline>
-document.addEventListener("DOMContentLoaded", () => {
-  let searchQuery = "";
-  let selectedFilters = [];
-  let currentPage = 1;
-  const itemsPerPage = 5;
-
-  const searchInput = document.getElementById("search-input");
-  const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-  const projectListItems = document.getElementById("project-list-items");
-  const prevPageButton = document.getElementById("prev-page");
-  const nextPageButton = document.getElementById("next-page");
-  const pageInfo = document.getElementById("page-info");
-  const modal = document.getElementById("project-modal");
-  const closeModal = document.querySelector(".close");
-
-  function getFilteredProjects() {
-    return projects.filter((project) => {
-      const matchesSearch = project.name
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesFilters =
-        selectedFilters.length === 0 ||
-        selectedFilters.some((filter) => project.highlights.includes(filter));
-      return matchesSearch && matchesFilters;
-    });
-  }
-
-  function updateProjectList() {
-  const filteredProjects = getFilteredProjects();
-  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-
-  if (currentPage > totalPages) {
-    currentPage = totalPages || 1;
-  }
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const projectsToShow = filteredProjects.slice(startIndex, endIndex);
-
-  projectListItems.innerHTML = projectsToShow
-    .map(
-      (project, index) =>
-        `<li class='cursor-pointer hover:pl-2 hover:bg-secondary rounded transition-all' data-project-name="${project.name}">
-          ${startIndex + index + 1}. ${project.name}
-        </li>`
-    )
-    .join("");
-
-  pageInfo.innerHTML = `<span class='text-xl-sub'>Página ${currentPage} de ${totalPages}</span>`;
-  prevPageButton.disabled = currentPage === 1;
-  nextPageButton.disabled = currentPage === totalPages;
-
-  // Agregar event listeners a los nuevos elementos de la lista
-  projectListItems.querySelectorAll("li").forEach((li) => {
-    li.addEventListener("click", handleProjectClick);
-  });
-}
-
-
-  function handleSearchChange() {
-    searchQuery = searchInput.value;
-    currentPage = 1;
-    updateProjectList();
-  }
-
-  function handleFilterChange(event) {
-    const filter = event.target.value;
-    if (event.target.checked) {
-      selectedFilters.push(filter);
-    } else {
-      selectedFilters = selectedFilters.filter((f) => f !== filter);
+  document.addEventListener("DOMContentLoaded", () => {
+    let searchQuery = "";
+    let selectedFilters = [];
+    let currentPage = 1;
+    const itemsPerPage = 5;
+  
+    const searchInput = document.getElementById("search-input");
+    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
+    const projectListItems = document.getElementById("project-list-items");
+    const prevPageButton = document.getElementById("prev-page");
+    const nextPageButton = document.getElementById("next-page");
+    const pageInfo = document.getElementById("page-info");
+    const modal = document.getElementById("project-modal");
+    const closeModal = document.querySelector(".close");
+  
+    function getFilteredProjects() {
+      return projects.filter((project) => {
+        const matchesSearch = project.name
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        const matchesFilters =
+          selectedFilters.length === 0 ||
+          selectedFilters.some((filter) => project.highlights.includes(filter));
+        return matchesSearch && matchesFilters;
+      });
     }
-    currentPage = 1;
-    updateProjectList();
-  }
-
-  function handlePrevPage() {
-    if (currentPage > 1) {
-      currentPage--;
+  
+    function updateProjectList() {
+      const filteredProjects = getFilteredProjects();
+      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  
+      if (currentPage > totalPages) {
+        currentPage = totalPages || 1;
+      }
+  
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+  
+      projectListItems.innerHTML = projectsToShow
+        .map(
+          (project, index) =>
+            `<li class='cursor-pointer hover:pl-2 hover:bg-secondary rounded transition-all' data-project-name="${project.name}">
+              ${startIndex + index + 1}. ${project.name}
+            </li>`
+        )
+        .join("");
+  
+      pageInfo.innerHTML = `<span class='text-xl-sub'>Página ${currentPage} de ${totalPages}</span>`;
+      prevPageButton.disabled = currentPage === 1;
+      nextPageButton.disabled = currentPage === totalPages;
+  
+      projectListItems.querySelectorAll("li").forEach((li) => {
+        li.addEventListener("click", handleProjectClick);
+      });
+    }
+  
+    function handleSearchChange() {
+      searchQuery = searchInput.value;
+      currentPage = 1;
       updateProjectList();
     }
-  }
-
-  function handleNextPage() {
-    const filteredProjects = getFilteredProjects();
-    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
+  
+    function handleFilterChange(event) {
+      const filter = event.target.value;
+      if (event.target.checked) {
+        selectedFilters.push(filter);
+      } else {
+        selectedFilters = selectedFilters.filter((f) => f !== filter);
+      }
+      currentPage = 1;
       updateProjectList();
     }
-  }
-
-  function handleProjectClick(event) {
-    const projectName = event.target.dataset.projectName;
-    const project = projects.find((p) => p.name === projectName);
-    if (project) {
-      document.getElementById("modal-project-name").textContent =
-        project.name;
-      document.getElementById("modal-project-description").textContent =
-      project.description;
-      document.getElementById("modal-project-link").innerHTML =
-      `<a target="_blank" href="${project.url}" title="${project.name}" class="px-2 py-1 items-center border-2 rounded border-primary uppercase">Visitar</a>`;
-      document.getElementById("modal-project-highlights").innerHTML =
-        project.highlights
-          .map((highlight) => `<li>${highlight}</li>`)
-          .join("");
-      modal.style.display = "block";
+  
+    function handlePrevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updateProjectList();
+      }
     }
-  }
-
-  function handleCloseModal() {
-    modal.style.display = "none";
-  }
-
-  searchInput.addEventListener("input", handleSearchChange);
-  filterCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", handleFilterChange);
-  });
-  prevPageButton.addEventListener("click", handlePrevPage);
-  nextPageButton.addEventListener("click", handleNextPage);
-  closeModal.addEventListener("click", handleCloseModal);
-
-  // Cerrar el modal si se hace clic fuera de él
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
+  
+    function handleNextPage() {
+      const filteredProjects = getFilteredProjects();
+      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateProjectList();
+      }
+    }
+  
+    function handleProjectClick(event) {
+      const projectName = event.target.dataset.projectName;
+      const project = projects.find((p) => p.name === projectName);
+      if (project) {
+        document.getElementById("modal-project-name").textContent = project.name;
+        document.getElementById("modal-project-description").textContent = project.description;
+        document.getElementById("modal-project-link").innerHTML = 
+          `<a target="_blank" href="${project.url}" title="${project.name}" class="px-2 py-1 items-center border-2 rounded border-primary uppercase">Visitar</a>`;
+        document.getElementById("modal-project-highlights").innerHTML = 
+          project.highlights.map((highlight) => `<li>${highlight}</li>`).join("");
+        modal.style.display = "block";
+      }
+    }
+  
+    function handleCloseModal() {
       modal.style.display = "none";
+    }
+  
+    searchInput.addEventListener("input", handleSearchChange);
+    filterCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", handleFilterChange);
+    });
+    prevPageButton.addEventListener("click", handlePrevPage);
+    nextPageButton.addEventListener("click", handleNextPage);
+    closeModal.addEventListener("click", handleCloseModal);
+  
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
       }
     });
-
-    // Inicializar la lista
+  
     updateProjectList();
   });
-</script>
+  </script>
+  
