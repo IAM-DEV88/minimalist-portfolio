@@ -14,80 +14,94 @@ const { summary, name } = basics;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={summary} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="stylesheet" href="../src/styles/global.css" />
+    <link rel="stylesheet" href="../src/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} &bull; {name}</title>
   </head>
   <body>
     <slot />
-	<button id="back-to-top" class="fixed bottom-4 right-4 text-white p-2 rounded-full hidden">
-		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-		</svg>
-	  </button>
+    <button
+  id="back-to-top"
+  class="fixed bottom-4 right-4 text-white p-2 rounded-full hidden"
+  aria-label="Volver arriba"
+>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
     <script>
-			document.addEventListener("DOMContentLoaded", function () {
-			  const menuToggle = document.getElementById("menu-toggle");
-			  const menuMobile = document.getElementById("menu-mobile");
-			  const mobileMenuItems = menuMobile.querySelectorAll(".scroll-link");
-		  
-			  menuToggle.addEventListener("click", function () {
-				menuMobile.classList.toggle("active");
-			  });
-		  
-			  // Agregar event listener a cada elemento del menú móvil
-			  mobileMenuItems.forEach(item => {
-				item.addEventListener("click", function () {
-				  menuMobile.classList.remove("active");
-				});
-			  });
-			});
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuMobile = document.getElementById("menu-mobile");
+        const mobileMenuItems = menuMobile.querySelectorAll(".scroll-link");
+        const sections = document.querySelectorAll(".section");
+        const backToTopButton = document.getElementById("back-to-top");
 
-			document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll(".section");
-    const backToTopButton = document.getElementById("back-to-top");
+        menuToggle?.addEventListener("click", function () {
+          menuMobile?.classList.toggle("active");
+        });
 
-    // Intersection Observer para manejar animaciones al entrar en la vista
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            console.log(`Sección ${entry.target.id} está en vista.`);
-            entry.target.classList.add("visible");
+        // Agregar event listener a cada elemento del menú móvil
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            menuMobile?.classList.remove("active");
+          });
+        });
+
+
+        // Intersection Observer para manejar animaciones al entrar en la vista
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              } else {
+                entry.target.classList.remove("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.2, // Ajusta el threshold según tus necesidades
+          }
+        );
+
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Funcionalidad del botón "Volver arriba"
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 150) {
+            backToTopButton.classList.add("show");
           } else {
-            console.log(`Sección ${entry.target.id} salió de vista.`);
-            entry.target.classList.remove("visible");
+            backToTopButton.classList.remove("show");
           }
         });
-      },
-      {
-        threshold: 0.2, // Ajusta el threshold según tus necesidades
-      }
-    );
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Funcionalidad del botón "Volver arriba"
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 150) {
-        backToTopButton.classList.add("show");
-      } else {
-        backToTopButton.classList.remove("show");
-      }
-    });
-
-    backToTopButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        if (backToTopButton) {
+          backToTopButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+        }
       });
-    });
-  });
-		  </script>
+    </script>
   </body>
 </html>
