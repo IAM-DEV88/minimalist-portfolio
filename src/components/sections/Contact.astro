@@ -83,20 +83,20 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
       }
     </footer>
     <section
-      class="flex flex-col flex-wrap lg:flex-row rounded mt-4 w-full"
+      class="flex flex-col flex-wrap lg:flex-row mt-4 w-full"
     >
       <div class="w-full text-center py-2">
         <span
           class="text-sm-font uppercase mb-1 md:font-medium mt-2"
-          >Inviteme un café</span
+          >Invitame un café</span
         >
       </div>
       <div
-        class="flex flex-wrap flex-col md:flex-row py-2 mx-2 gap-2  justify-center items-center"
+        class="flex flex-wrap flex-col md:flex-row gap-2 w-full justify-around items-center"
       >
         {
           accounts.map((account) => (
-            <div class="transition flex flex-row flex-wrap justify-center items-center w-[100%] md:w-[28%] min-h-[90px] text-normal text-center my-2 shadow-3xl mx-2 bg-txtbg1">
+            <div class="transition flex flex-row dsm:flex-col flex-wrap justify-center items-center w-[100%] md:w-[28%] min-h-[90px] text-normal text-center my-2 shadow-3xl bg-txtbg1">
               <div class="grow text-bold text-md-font">
                 {account.link ? (
                   <a
@@ -119,14 +119,13 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
                   />
                 )}
               </div>
-              <div class="flex flex-col gap-4 mt-4">
+              <div class="flex flex-col gap-4 mt-4 bg-primary rounded px-2 py-1">
                 <ImageComponent
                   classes="max-h-[40px]"
                   imageName={
                     account.service.toLowerCase().replace(" ", "_") + ".png"
                   }
                 />
-                <div>{account.service}</div>
               </div>
             </div>
           ))
