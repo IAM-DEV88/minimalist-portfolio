@@ -1,76 +1,302 @@
 ---
-import Section from "../Section.astro";
-
 import { projects } from "@cv";
+import { basics } from "@cv";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import GitHub from "@/icons/GitHub.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+const { name, profiles, phone, email } = basics;
+const SOCIAL_ICONS: Record<string, any> = {
+  GitHub,
+  LinkedIn,
+};
+
+const highlightCounts = projects.reduce((acc: Record<string, number>, project) => {
+  project.highlights.forEach((highlight) => {
+    acc[highlight] = (acc[highlight] || 0) + 1;
+  });
+  return acc;
+}, {} as Record<string, number>);
+
+
+const initialProjects = projects.slice(0, 5);
 ---
 
-<Section title="Mis proyectos">
-  <ul>
-    {
-      projects.map(({ url, name, description, highlights }) => {
-        return (
-          <li>
-            <article>
-              <header>
-                <a href={url} title={`Proyecto ${name}`} target="_blank"
-              rel="noopener noreferrer">
-                  <h3>{name}</h3>
-                </a>
-              </header>
-              <p>{description}</p>
-              <footer>
-                  {highlights.map((highlight) => {
-                    return <span>{highlight}</span>;
-                  })}
-              </footer>
-            </article>
-          </li>
-        );
-      })
-    }
+<h4 class="mt-6 mb-4 text-xl-sub uppercase font-bold">proyectos</h4>
+
+<div id="project-list" class="flex flex-col items-center">
+  <!-- Input de búsqueda -->
+  <input
+    id="search-input"
+    list="projectNames"
+    placeholder="Buscar proyecto..."
+    class="bg-enphasis drop-shadow-theme rounded px-4 py-1 mb-2"
+  />
+  <datalist id="projectNames">
+    {projects.map((project) => <option value={project.name} />)}
+  </datalist>
+
+  <!-- Lista de proyectos -->
+  <ul
+    id="project-list-items"
+    class="my-2 gap-y-2 flex flex-col dsm:w-[230px]"
+  >
+    {initialProjects.map((project) => <li>{project.name}</li>)}
   </ul>
-</Section>
+
+  <!-- Controles de paginación -->
+  <div id="pagination-controls text-xl-sub" class="flex flex-row gap-2">
+    <button id="prev-page" class="rounded bg-enphasisbg w-6 h-6">&lt;</button>
+    <span id="page-info"></span>
+    <button id="next-page" class="rounded bg-enphasisbg w-6 h-6">&gt;</button>
+  </div>
+
+  <!-- Panel de filtros -->
+  <h5 class="text-xl-sub uppercase font-bold my-3">TIPO</h5>
+  <div class="text-xl-sub flex flex-wrap justify-between">
+    {
+      Object.entries(highlightCounts).map(([highlight, count]) => (
+        <label class="cursor-pointer">
+          <input type="checkbox" value={highlight} class="filter-checkbox" />
+          {highlight} ({count})
+        </label>
+      ))
+    }
+  </div>
+
+  <!-- Modal -->
+  <div id="project-modal" class="modal dsm:mt-16">
+    <div class="modal-content rounded bg-enphasis drop-shadow-theme">
+      <span class="close">&times;</span>
+      <div class="flex flex-col gap-y-2">
+        <h2 id="modal-project-name" class="font-bold"></h2>
+        <p id="modal-project-description" class="text-xl-sub"></p>
+        <span id="modal-project-link" class="text-xl-sub self-center py-2"></span>
+        <h3 class="text-xl-sub font-medium">TIPO:</h3>
+        <ul id="modal-project-highlights" class="text-xs-title flex flex-wrap gap-2"></ul>
+        <footer class="no-print flex flex-row justify-center">
+          {
+            email && (
+              <a
+                href={`mailto:${email}`}
+                title={`Enviar correo electronico a ${name} al correo ${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail />
+              </a>
+            )
+          }
+          {
+            phone && (
+              <a
+                href={`tel:${phone}`}
+                title={`Llamar a ${name} al telefono ${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Phone />
+              </a>
+            )
+          }
+          {
+            profiles.map(({ network, url, username }) => {
+              const Icon = SOCIAL_ICONS[network];
+              return (
+                <a
+                  href={`${url}`}
+                  title={`Mirar perfil de ${username} en ${network}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon />
+                </a>
+              );
+            })
+          }
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
-    
-    ul{
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
-        gap: 1rem;
-    }
-    article{
-        border-radius: 8px;
-        border: 1px solid #eee;
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
-        height: 100%;
-    }
-    article h3{
-        margin-bottom: 4px;
-    }
-    article p{
-        flex: 1;
-    }
-    article a{
-        color:#333;
-    }
-    article a:hover{
-        text-decoration: underline;
-    }
-    footer{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-        font-size: .7rem;
-        padding-top: 6px;
-    }
-    footer span{
-        font-weight: 500;
-        padding: .2rem .5rem;
-        color: #444;
-        background: #eee;
-        display: inline-flex;
-        border-radius: 6px;
-    }
+  footer a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 32px;
+    width: 32px;
+    border-radius: 5px;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 </style>
+
+<script define:vars={{ projects }}>
+document.addEventListener("DOMContentLoaded", () => {
+  let searchQuery = "";
+  let selectedFilters = [];
+  let currentPage = 1;
+  const itemsPerPage = 5;
+
+  const searchInput = document.getElementById("search-input");
+  const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
+  const projectListItems = document.getElementById("project-list-items");
+  const prevPageButton = document.getElementById("prev-page");
+  const nextPageButton = document.getElementById("next-page");
+  const pageInfo = document.getElementById("page-info");
+  const modal = document.getElementById("project-modal");
+  const closeModal = document.querySelector(".close");
+
+  function getFilteredProjects() {
+    return projects.filter((project) => {
+      const matchesSearch = project.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      const matchesFilters =
+        selectedFilters.length === 0 ||
+        selectedFilters.some((filter) => project.highlights.includes(filter));
+      return matchesSearch && matchesFilters;
+    });
+  }
+
+  function updateProjectList() {
+  const filteredProjects = getFilteredProjects();
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+
+  if (currentPage > totalPages) {
+    currentPage = totalPages || 1;
+  }
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+
+  projectListItems.innerHTML = projectsToShow
+    .map(
+      (project, index) =>
+        `<li class='cursor-pointer hover:pl-2 hover:bg-secondary rounded transition-all' data-project-name="${project.name}">
+          ${startIndex + index + 1}. ${project.name}
+        </li>`
+    )
+    .join("");
+
+  pageInfo.innerHTML = `<span class='text-xl-sub'>Página ${currentPage} de ${totalPages}</span>`;
+  prevPageButton.disabled = currentPage === 1;
+  nextPageButton.disabled = currentPage === totalPages;
+
+  // Agregar event listeners a los nuevos elementos de la lista
+  projectListItems.querySelectorAll("li").forEach((li) => {
+    li.addEventListener("click", handleProjectClick);
+  });
+}
+
+
+  function handleSearchChange() {
+    searchQuery = searchInput.value;
+    currentPage = 1;
+    updateProjectList();
+  }
+
+  function handleFilterChange(event) {
+    const filter = event.target.value;
+    if (event.target.checked) {
+      selectedFilters.push(filter);
+    } else {
+      selectedFilters = selectedFilters.filter((f) => f !== filter);
+    }
+    currentPage = 1;
+    updateProjectList();
+  }
+
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      updateProjectList();
+    }
+  }
+
+  function handleNextPage() {
+    const filteredProjects = getFilteredProjects();
+    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      updateProjectList();
+    }
+  }
+
+  function handleProjectClick(event) {
+    const projectName = event.target.dataset.projectName;
+    const project = projects.find((p) => p.name === projectName);
+    if (project) {
+      document.getElementById("modal-project-name").textContent =
+        project.name;
+      document.getElementById("modal-project-description").textContent =
+      project.description;
+      document.getElementById("modal-project-link").innerHTML =
+      `<a target="_blank" href="${project.url}" title="${project.name}" class="px-2 py-1 items-center border-2 rounded border-primary uppercase">Visitar</a>`;
+      document.getElementById("modal-project-highlights").innerHTML =
+        project.highlights
+          .map((highlight) => `<li>${highlight}</li>`)
+          .join("");
+      modal.style.display = "block";
+    }
+  }
+
+  function handleCloseModal() {
+    modal.style.display = "none";
+  }
+
+  searchInput.addEventListener("input", handleSearchChange);
+  filterCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", handleFilterChange);
+  });
+  prevPageButton.addEventListener("click", handlePrevPage);
+  nextPageButton.addEventListener("click", handleNextPage);
+  closeModal.addEventListener("click", handleCloseModal);
+
+  // Cerrar el modal si se hace clic fuera de él
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+      }
+    });
+
+    // Inicializar la lista
+    updateProjectList();
+  });
+</script>

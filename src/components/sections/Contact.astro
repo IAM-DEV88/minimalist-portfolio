@@ -1,0 +1,169 @@
+---
+import { basics } from "@cv";
+import Section from "@/components/Section.astro";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import GitHub from "@/icons/GitHub.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import ImageComponent from "@/components/ImageComponent.astro";
+
+const accounts = [
+  {
+    name: "Paypal",
+    service: "Paypal",
+    link: "https://paypal.me/iamdev88",
+  },
+  {
+    name: "Nequi",
+    service: "Nequi",
+    qr: true,
+  },
+];
+
+const { name, profiles, phone, email } = basics;
+
+const SOCIAL_ICONS: Record<string, any> = {
+  GitHub,
+  LinkedIn,
+};
+
+const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
+const linkedUrl = linkedInfo?.url;
+
+const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
+---
+
+<Section title="Contacto" id="section4">
+  <div class="flex flex-col items-center gap-2">
+    <div class="print">
+      {printInfo}
+    </div>
+    <footer class="no-print">
+      {
+        email && (
+          <a
+            class="bg-enphasis hover:drop-shadow-neon transition"
+            href={`mailto:${email}`}
+            title={`Enviar correo electronico a ${name} al correo ${email}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Mail />
+          </a>
+        )
+      }
+      {
+        phone && (
+          <a
+            class="bg-enphasis hover:drop-shadow-neon transition"
+            href={`tel:${phone}`}
+            title={`Llamar a ${name} al telefono ${phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Phone />
+          </a>
+        )
+      }
+      {
+        profiles.map(({ network, url, username }) => {
+          const Icon = SOCIAL_ICONS[network];
+          return (
+            <a
+              class="bg-enphasis hover:drop-shadow-neon transition"
+              href={`${url}`}
+              title={`Mirar perfil de ${username} en ${network}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon />
+            </a>
+          );
+        })
+      }
+    </footer>
+    <section
+      class="flex flex-col flex-wrap lg:flex-row rounded mt-4"
+    >
+      <div class="w-full text-center py-2">
+        <span
+          class="text-[1.5rem] uppercase mb-1 md:font-medium mt-2"
+          >Invite un café</span
+        >
+      </div>
+      <div
+        class="flex flex-wrap flex-1 flex-col md:flex-row py-2 mx-2  justify-center items-center"
+      >
+        {
+          accounts.map((account) => (
+            <div class="transition flex flex-row flex-wrap justify-center items-center w-[100%] md:w-[28%] min-h-[90px] text-normal text-center py-2 shadow-3xl px-2 bg-txtbg1">
+              <div class="grow text-bold text-[1.5rem]">
+                {account.link ? (
+                  <a
+                    href={account.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-enphasis drop-shadow-theme px-3 py-1 rounded"
+                  >
+                    {account.name}
+                  </a>
+                ) : (""
+                )}
+                {account.qr && (
+                  <ImageComponent
+                    classes="max-w-[200px] mx-auto"
+                    imageName={
+                      account.service.toLowerCase().replace(" ", "_") +
+                      "qr.jpeg"
+                    }
+                  />
+                )}
+              </div>
+              <div class="flex flex-col gap-4">
+                <ImageComponent
+                  classes="max-w-[40px]"
+                  imageName={
+                    account.service.toLowerCase().replace(" ", "_") + ".png"
+                  }
+                />
+                <div>{account.service}</div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+    
+  </div>
+</Section>
+
+<style>
+  img {
+    aspect-ratio: 1 / 1;
+  }
+  span {
+  }
+  footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 8px;
+  }
+  footer a {
+    color: #777;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 32px;
+    width: 32px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  @media screen and (max-width: 410px) {
+    /* Estilos específicos para pantallas pequeñas */
+    span {
+      font-size: 0.6rem;
+    }
+    /* Otros estilos... */
+  }
+</style>

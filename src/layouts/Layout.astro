@@ -5,9 +5,8 @@ interface Props {
 
 const { title } = Astro.props;
 
-import {basics} from "@cv"
+import { basics } from "@cv";
 const { summary, name } = basics;
-
 ---
 
 <!doctype html>
@@ -17,82 +16,78 @@ const { summary, name } = basics;
     <meta name="description" content={summary} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="../src/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} &bull; {name}</title>
   </head>
   <body>
     <slot />
+	<button id="back-to-top" class="fixed bottom-4 right-4 text-white p-2 rounded-full hidden">
+		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+		</svg>
+	  </button>
+    <script>
+			document.addEventListener("DOMContentLoaded", function () {
+			  const menuToggle = document.getElementById("menu-toggle");
+			  const menuMobile = document.getElementById("menu-mobile");
+			  const mobileMenuItems = menuMobile.querySelectorAll(".scroll-link");
+		  
+			  menuToggle.addEventListener("click", function () {
+				menuMobile.classList.toggle("active");
+			  });
+		  
+			  // Agregar event listener a cada elemento del menú móvil
+			  mobileMenuItems.forEach(item => {
+				item.addEventListener("click", function () {
+				  menuMobile.classList.remove("active");
+				});
+			  });
+			});
+
+			document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".section");
+    const backToTopButton = document.getElementById("back-to-top");
+
+    // Intersection Observer para manejar animaciones al entrar en la vista
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log(`Sección ${entry.target.id} está en vista.`);
+            entry.target.classList.add("visible");
+          } else {
+            console.log(`Sección ${entry.target.id} salió de vista.`);
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Ajusta el threshold según tus necesidades
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Funcionalidad del botón "Volver arriba"
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 150) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
+      }
+    });
+
+    backToTopButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  });
+		  </script>
   </body>
 </html>
-<style is:global>
-  html {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      "Courier New",
-      Courier,
-      monospace;
-    background: #fff;
-    letter-spacing: -0.025rem;
-  }
-  body,
-  figure {
-    padding: 0;
-    margin: 0;
-  }
-  a {
-    text-decoration: none;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin: 0;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      sans-serif;
-  }
-  p {
-    color: #333;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin: 0;
-    text-wrap: pretty;
-  }
-
-  .print {
-    display: none;
-    color: #444;
-    font-weight: 500;
-    font-size: 0.7rem;
-  }
-  @media print {
-    .print {
-      display: block;
-    }
-    .no-print,
-    ninja-keys {
-      display: none !important;
-    }
-  }
-</style>

@@ -31,61 +31,11 @@
       "startDate": "2023-10-18",
       "endDate": null,
       "highlights": [
-        "Desarrollo de páginas y aplicaciones web personalizadas."
+        "Páginas y aplicaciones web personalizadas."
       ]
     }
   ],
   "projects": [
-    {
-      "name": "Administrador de tienda",
-      "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
-      "description": "Administrador de tienda en el navegador con control de usuarios, registro contable, de facturación e inventarios",
-      "highlights": [
-        "CRUD",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "PHP",
-        "MySQL"
-      ]
-    },
-    {
-      "name": "Gestor de estudiantes",
-      "url": "https://iam-dev88.github.io/student-manager/",
-      "description": "Gestor de estudiantes para profesores",
-      "highlights": [
-        "CRUD",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "PHP",
-        "JSON"
-      ]
-    },
-    {
-      "name": "Space Invaders",
-      "url": "https://iamdev-space-invaders.netlify.app",
-      "description": "Juego Space Invaders",
-      "highlights": [
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ]
-    },
-    {
-      "name": "Agenda Contable",
-      "url": "https://github.com/IAM-DEV88/agendareact",
-      "description": "Agenda de turnos con registros en libro mayor contable",
-      "highlights": [
-        "CRUD",
-        "Node",
-        "React",
-        "Axios",
-        "Express",
-        "MongoDB",
-        "G Cloud"
-      ]
-    },
     {
       "name": "Comunidad Raid Dominion Tools",
       "url": "https://raid-dominion.netlify.app/",
@@ -103,6 +53,56 @@
       "description": "Addon para World of Warcraft 3.3.5a",
       "highlights": [
         "LUA"
+      ]
+    },
+    {
+      "name": "Gestor de estudiantes",
+      "url": "https://iam-dev88.github.io/student-manager/",
+      "description": "Gestor de estudiantes para profesores",
+      "highlights": [
+        "CRUD",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "JSON"
+      ]
+    },
+    {
+      "name": "Administrador de tienda",
+      "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
+      "description": "Administrador de tienda en el navegador con control de usuarios, registro contable, de facturación e inventarios",
+      "highlights": [
+        "CRUD",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "MySQL"
+      ]
+    },
+    {
+      "name": "Agenda Contable",
+      "url": "https://github.com/IAM-DEV88/agendareact",
+      "description": "Agenda de turnos con registros en libro mayor contable",
+      "highlights": [
+        "CRUD",
+        "Node",
+        "React",
+        "Axios",
+        "Express",
+        "MongoDB",
+        "G Cloud"
+      ]
+    },
+    {
+      "name": "Space Invaders",
+      "url": "https://iamdev-space-invaders.netlify.app",
+      "description": "Juego Space Invaders",
+      "highlights": [
+        "HTML",
+        "CSS",
+        "JavaScript"
       ]
     }
   ],
