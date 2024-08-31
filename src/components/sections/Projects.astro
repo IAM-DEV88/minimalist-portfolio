@@ -140,6 +140,21 @@ const initialProjects = projects.slice(0, 5);
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    transition: opacity .3s ease-in-out, display .3s ease allow-discrete;
+  }
+  
+  .modal-content{
+    transition: opacity .3s ease-in-out, display .3s ease allow-discrete;
+    opacity:0;
+  }
+
+  .modal[style*="display: block"] > .modal-content {
+    opacity:1;
+    transition: opacity .3s ease-in-out;
+
+    @starting-style{
+      opacity:0;
+    }
   }
 
   .modal-content {
