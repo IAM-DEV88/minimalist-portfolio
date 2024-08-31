@@ -15,8 +15,55 @@ const { summary, name } = basics;
     <meta charset="UTF-8" />
     <meta name="description" content={summary} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+    name="description"
+    content={summary}
+  />
+  <meta
+    name="keywords"
+    content="comunidad, raid, dominion, tools, addon, world, warcraft, 3.3.5a, macro, ayuda, compacto, fácil"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Andrés Muñoz" />
+  <meta name="language" content="es" />
+  <meta name="revisit-after" content="7 days" />
+  <link rel="canonical" href="https://iamgamecode.netlify.app/" />
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content={`${title} • ${name}`} />
+  <meta
+    property="og:description"
+    content={summary}
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://iamgamecode.netlify.app/" />
+  <meta
+    property="og:image"
+    content="https://iamgamecode.netlify.app/logo.png"
+  />
+  <meta
+    property="og:site_name"
+    content={`${title} • ${name}`}
+  />
+  <meta property="og:locale" content="es_ES" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content={`${title} • ${name}`}
+  />
+  <meta
+    name="twitter:description"
+    content={summary}
+  />
+  <meta
+    name="twitter:image"
+    content="https://iamgamecode.netlify.app/logo.png"
+  />
+  <!-- <meta name="twitter:site" content="@tu_usuario" /> -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="stylesheet" href="/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} &bull; {name}</title>
@@ -45,61 +92,6 @@ const { summary, name } = basics;
           d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     </button>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-        const menuMobile = document.getElementById("menu-mobile");
-        const mobileMenuItems =
-          menuMobile?.querySelectorAll(".scroll-link") ?? [];
-        const sections = document.querySelectorAll(".section");
-        const backToTopButton = document.getElementById("back-to-top");
-
-        menuToggle?.addEventListener("click", function () {
-          menuMobile?.classList.toggle("active");
-        });
-
-        // Agregar event listener a cada elemento del menú móvil
-        mobileMenuItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            menuMobile?.classList.remove("active");
-          });
-        });
-
-        // Intersection Observer para manejar animaciones al entrar en la vista
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              } else {
-                entry.target.classList.remove("visible");
-              }
-            });
-          },
-          {
-            threshold: 0.2, // Ajusta el threshold según tus necesidades
-          }
-        );
-
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 150) {
-            backToTopButton?.classList.add("show");
-          } else {
-            backToTopButton?.classList.remove("show");
-          }
-        });
-
-        backToTopButton?.addEventListener("click", () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
+    <script src="/scripts/global.js" is:inline></script>
   </body>
 </html>

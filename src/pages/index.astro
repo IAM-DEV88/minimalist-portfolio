@@ -1,64 +1,83 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Hero from '@/components/sections/Hero.astro';
-import About from '@/components/sections/About.astro';
-import Contact from '@/components/sections/Contact.astro';
-import Experience from '@/components/sections/Experience.astro';
-import Footer from '@/components/sections/Footer.astro';
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import About from "@/components/sections/About.astro";
+import Contact from "@/components/sections/Contact.astro";
+import Experience from "@/components/sections/Experience.astro";
+import Footer from "@/components/sections/Footer.astro";
 ---
 
 <Layout title="Web Oficial">
-  <header class="opacity-90 fixed w-full bg-gray-800 z-10">
-		<nav class="container mx-auto p-4 flex justify-between items-center text-primary">
-		  <!-- Logo -->
-		  <a href="#section1" class="text-xl-title font-bold text-primary">IAM<div class="uppercase text-xs-title">gamecode</div></a>
-  
-		  <!-- Botón del menú hamburguesa para móviles -->
-		  <button class="sm:hidden text-white" id="menu-toggle">
-			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-			  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-			</svg>
-		  </button>
-  
-		  <!-- Menú en pantallas grandes -->
-		  <ul id="menu" class="hidden sm:flex space-x-4">
-			<li><a href="#section1" class="scroll-link">Inicio</a></li>
-			<li><a href="#section2" class="scroll-link">Experiencia</a></li>
-			<li><a href="#section3" class="scroll-link">Acerca de mi</a></li>
-			<li><a href="#section4" class="scroll-link">Contacto</a></li>
-		  </ul>
-  
-  <!-- Menú desplegable en móviles -->
-  <ul id="menu-mobile" class="absolute top-full left-0 w-full bg-gray-800 sm:hidden space-y-2">
-	  <li><a href="#section1" class="scroll-link block px-4 py-2">Inicio</a></li>
-	  <li><a href="#section2" class="scroll-link block px-4 py-2">Experiencia</a></li>
-	  <li><a href="#section3" class="scroll-link block px-4 py-2">Acerca de mi</a></li>
-	  <li><a href="#section4" class="scroll-link block px-4 py-2">Contacto</a></li>
-	</ul>
-		</nav>
-	  </header>
+  <navbar class="opacity-90 fixed w-full bg-gray-800 z-10">
+    <nav
+      class="container mx-auto p-4 flex justify-between items-center text-primary"
+    >
+      <!-- Logo -->
+      <a href="#section1" class="text-xl-title font-bold text-primary"
+        >IAM<div class="uppercase text-xs-title">gamecode</div></a
+      >
 
-	<div id="mask"
-      style="position:absolute;  background: url('/bgweb.jpg') no-repeat,
-      #939EB2;
+      <!-- Botón del menú hamburguesa para móviles -->
+      <button class="sm:hidden" id="menu-toggle">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+
+      <!-- Menú en pantallas grandes -->
+      <ul id="menu" class="hidden sm:flex space-x-4">
+        <li><a href="#section1">Inicio</a></li>
+        <li><a href="#section2">Experiencia</a></li>
+        <li><a href="#section3">Acerca de mi</a></li>
+        <li><a href="#section4">Contacto</a></li>
+      </ul>
+
+      <!-- Menú desplegable en móviles -->
+      <ul
+        id="menu-mobile"
+        class="absolute top-full left-0 w-full bg-gray-800 sm:hidden space-y-2"
+      >
+        <li>
+          <a href="#section1" class="block px-4 py-2">Inicio</a>
+        </li>
+        <li>
+          <a href="#section2" class="block px-4 py-2"
+            >Experiencia</a>
+        </li>
+        <li>
+          <a href="#section3" class="block px-4 py-2"
+            >Acerca de mi</a>
+        </li>
+        <li>
+          <a href="#section4" class="block px-4 py-2">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+  </navbar>
+
+  <div
+    style="position:absolute;  background: url('/bgweb.jpg') no-repeat,
+	rgb(15,25,43);
     background-size: 100% 100vh;
     background-position: center top;"
-      class="w-100 h-[100vh] max-w-[1024px] mx-auto inset-x-0 z-[-2]"
-    >
-    </div>
-	<main>
-		<Hero />
-		<Experience />
-		<About />
-		<Contact />
-	</main>
-	<Footer></Footer>
+    class="mask w-100 h-[100vh] max-w-[1024px] mx-auto inset-x-0 z-[-2]"
+  >
+  </div>
+  <main>
+    <Hero />
+    <Experience />
+    <About />
+    <Contact />
+  </main>
+  <Footer />
 </Layout>
-
-<style>
-	main{
-		padding: 2rem;
-		margin: auto;
-		width: 100%;
-	}
-</style>

@@ -22,13 +22,13 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
 ---
 
 <Section id="section1">
-  <div class="flex flex-col items-center gap-2 pt-[5vh] h-screen">
+  <div class="flex flex-col items-center gap-2 pt-[6vh]">
     <figure>
       <img src={image} alt={name} class="w-[128px] rounded opacity-70 drop-shadow-theme" />
     </figure>
-    <div class="flex flex-col items-center gap-y-4 text-center">
-      <h1 class="text-primary font-bold text-xl-title drop-shadow-theme">{name}</h1>
-      <h2 class="text-enphasis text-xl-sub font-medium drop-shadow-neon">{label}</h2>
+    <div class="flex flex-col items-center gap-y-2 text-center">
+      <h1 class="text-primary font-bold text-lg-font drop-shadow-theme">{name}</h1>
+      <h2 class="text-enphasis text-md-font font-medium drop-shadow-neon">{label}</h2>
       <span class="flex items-center gap-1 text-primary bg-enphasis p-1 px-2 rounded drop-shadow-theme">
         <WorldMap />
         {city}, {region} &bull; {countryCode}

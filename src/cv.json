@@ -1,11 +1,11 @@
 {
   "basics": {
     "name": "Ioan Andrés Muñoz",
-    "label": "Desarrollador fullstack con experiencia en brindar soluciones personalizadas",
+    "label": "Desarrollador Fullstack con amplia experiencia en ofrecer soluciones tecnológicas personalizadas y efectivas",
     "image": "https://avatars.githubusercontent.com/u/141512518?v=4",
     "email": "jaguerx88@gmail.com",
     "phone": "(+57) 317-868-4451",
-    "summary": "Desarrollador fullstack certificado con experiencia resolviendo necesidades de clientes como Instituciones Educativas, negocios pequeños y medianos.",
+    "summary": "Desarrollador Fullstack certificado con una trayectoria probada en la resolución de desafíos tecnológicos para hoteles, instituciones educativas y empresas de pequeño a mediano tamaño. Especializado en el diseño y ejecución de estrategias digitales efectivas.",
     "location": {
       "city": "Pitalito",
       "countryCode": "CO",
@@ -27,11 +27,13 @@
   "work": [
     {
       "name": "Desarrollo Web",
-      "position": "Freelance fullstack developer",
+      "position": "Desarrollador Fullstack Freelance",
       "startDate": "2023-10-18",
       "endDate": null,
       "highlights": [
-        "Páginas y aplicaciones web personalizadas."
+        "Diseño y desarrollo de páginas web y aplicaciones personalizadas.",
+        "Implementación de soluciones tecnológicas a medida para diversos clientes.",
+        "Optimización de la experiencia del usuario y rendimiento web."
       ]
     }
   ],
@@ -39,26 +41,26 @@
     {
       "name": "Comunidad Raid Dominion Tools",
       "url": "https://raid-dominion.netlify.app/",
-      "description": "Comunidad World of Warcraft 3.3.5a",
+      "description": "Plataforma integral para la comunidad de World of Warcraft 3.3.5a, que ofrece integración con Discord, Twitch, y YouTube para una experiencia completa.",
       "highlights": [
         "Portal web",
         "Discord",
         "Twitch",
-        "Youtube"
+        "YouTube"
       ]
     },
     {
       "name": "Addon Raid Dominion Tools",
       "url": "https://github.com/IAM-DEV88/RaidDominion",
-      "description": "Addon para World of Warcraft 3.3.5a",
+      "description": "Addon especializado para World of Warcraft 3.3.5a, diseñado para mejorar la experiencia del juego mediante personalizaciones avanzadas.",
       "highlights": [
         "LUA"
       ]
     },
     {
-      "name": "Gestor de estudiantes",
+      "name": "Gestor de Estudiantes",
       "url": "https://iam-dev88.github.io/student-manager/",
-      "description": "Gestor de estudiantes para profesores",
+      "description": "Sistema de gestión para profesores que facilita la administración de estudiantes con funcionalidades completas de CRUD..",
       "highlights": [
         "CRUD",
         "HTML",
@@ -69,9 +71,9 @@
       ]
     },
     {
-      "name": "Administrador de tienda",
+      "name": "Administrador de Tienda",
       "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
-      "description": "Administrador de tienda en el navegador con control de usuarios, registro contable, de facturación e inventarios",
+      "description": "Aplicación web para la administración de tiendas que incluye control de usuarios, registro contable, facturación e inventarios, optimizando la gestión del negocio.",
       "highlights": [
         "CRUD",
         "HTML",
@@ -84,7 +86,7 @@
     {
       "name": "Agenda Contable",
       "url": "https://github.com/IAM-DEV88/agendareact",
-      "description": "Agenda de turnos con registros en libro mayor contable",
+      "description": "Aplicación de gestión de turnos con integración de libro mayor contable, desarrollada con tecnologías modernas para facilitar la contabilidad y el registro de datos.",
       "highlights": [
         "CRUD",
         "Node",
@@ -98,14 +100,14 @@
     {
       "name": "Space Invaders",
       "url": "https://iamdev-space-invaders.netlify.app",
-      "description": "Juego Space Invaders",
+      "description": "Versión web del clásico juego Space Invaders, implementado con tecnologías básicas de front-end para ofrecer una experiencia de juego entretenida.",
       "highlights": [
         "HTML",
         "CSS",
         "JavaScript"
       ]
     }
-  ],
+  ],  
   "skills": [
     {
       "name": "HTML"

@@ -24,6 +24,12 @@ html {
     text-decoration: none;
   }
 
+  main {
+    padding: 2rem;
+    margin: auto;
+    width: 100%;
+  }
+
   .section {
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
@@ -45,12 +51,12 @@ html {
     }
   }
 
-#mask {
+.mask {
     display: inline-block;
     position: relative;
   }
 
-  #mask:after {
+  .mask:after {
    content: "";
    display: block;
    width: 100%;
