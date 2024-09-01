@@ -38,6 +38,7 @@
   "projects": [
     {
       "name": "Comunidad Raid Dominion Tools",
+      "image": "rdtCommunity.avif",
       "url": "https://raid-dominion.netlify.app/",
       "description": "Plataforma integral para la comunidad de World of Warcraft 3.3.5a, que ofrece integración con Discord, Twitch, y YouTube para una experiencia completa.",
       "highlights": [

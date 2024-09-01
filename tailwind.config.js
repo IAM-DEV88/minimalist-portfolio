@@ -4,14 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        theme: "rgba(147, 158, 178, 0.8)",
+        theme: "rgba(15,25,43, 0.8)",
         primary: "rgba(235, 236, 240, 0.9)",
-        enphasis: "rgba(15,25,43, 0.8)",
+        enphasis: "rgba(147, 158, 178, 0.8)",
         secondary: "rgba(71, 27, 48, 0.8)",
-        themebg: "rgba(47, 58, 78, 0.8)",
-        primarybg: "rgba(35, 36, 40, 0.4)",
-        secondarybg: "rgba(35, 13, 24, 0.8)",
-        enphasisbg: "rgba(7,12,21, 0.8)",
       },
       boxShadow: {
         "theme": [

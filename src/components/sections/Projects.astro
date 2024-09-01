@@ -30,7 +30,7 @@ const initialProjects = projects.slice(0, 5);
     id="search-input"
     list="projectNames"
     placeholder="Buscar..."
-    class="bg-enphasis drop-shadow-enphasis rounded px-4 py-1 mb-2 w-[60%]"
+    class="bg-theme drop-shadow-enphasis rounded px-4 py-1 mb-2 w-[60%]"
   />
   <datalist id="projectNames">
     {projects.map((project) => <option value={project.name} />)}
@@ -66,10 +66,11 @@ const initialProjects = projects.slice(0, 5);
 
   <!-- Modal -->
   <div id="project-modal" class="modal pt-[11vh]">
-    <div class="modal-content rounded bg-enphasis drop-shadow-theme w-[90%]">
-      <span class="close">&times;</span>
+    <div class="modal-content rounded bg-theme drop-shadow-theme w-[90%]">
+      <span class="close absolute right-6 top-0">&times;</span>
       <div class="flex flex-col gap-y-2">
         <h2 id="modal-project-name" class="font-bold"></h2>
+        <figure id="modal-project-img"></figure>
         <p id="modal-project-description" class="text-md-font"></p>
         <span id="modal-project-link" class="text-md-font self-center py-2"></span>
         <h3 class="text-md-font font-medium">TIPO:</h3>
@@ -224,7 +225,7 @@ const initialProjects = projects.slice(0, 5);
       projectListItems.innerHTML = projectsToShow
         .map(
           (project, index) =>
-            `<li class='cursor-pointer hover:pl-2 hover:bg-secondary rounded transition-all' data-project-name="${project.name}">
+            `<li class='cursor-pointer hover:pl-2 hover:bg-enphasis py-1 border-b-2 border-secondary transition-all' data-project-name="${project.name}">
               ${startIndex + index + 1}. ${project.name}
             </li>`
         )
@@ -277,6 +278,9 @@ const initialProjects = projects.slice(0, 5);
       const project = projects.find((p) => p.name === projectName);
       if (project) {
         document.getElementById("modal-project-name").textContent = project.name;
+        document.getElementById("modal-project-img").innerHTML = 
+  `<img src="/gallery/project/${project.image}" alt="${project.name}" class="rounded w-[50%] m-auto" />`;
+
         document.getElementById("modal-project-description").textContent = project.description;
         document.getElementById("modal-project-link").innerHTML = 
           `<a target="_blank" href="${project.url}" title="${project.name}" class="px-2 py-1 items-center border-2 rounded border-primary uppercase">Visitar</a>`;
