@@ -50,6 +50,7 @@
     },
     {
       "name": "Addon Raid Dominion Tools",
+      "image": "rdtAddon.png",
       "url": "https://github.com/IAM-DEV88/RaidDominion",
       "description": "Addon especializado para World of Warcraft 3.3.5a, diseñado para mejorar la experiencia del juego mediante personalizaciones avanzadas.",
       "highlights": [
@@ -58,6 +59,7 @@
     },
     {
       "name": "Gestor de Estudiantes",
+      "image": "studentMng.png",
       "url": "https://iam-dev88.github.io/student-manager/",
       "description": "Sistema de gestión para profesores que facilita la administración de estudiantes con funcionalidades completas de CRUD..",
       "highlights": [
@@ -71,6 +73,7 @@
     },
     {
       "name": "Administrador de Tienda",
+      "image": "webShopAdmin.png",
       "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
       "description": "Aplicación web para la administración de tiendas que incluye control de usuarios, registro contable, facturación e inventarios, optimizando la gestión del negocio.",
       "highlights": [
@@ -84,6 +87,7 @@
     },
     {
       "name": "Agenda Contable",
+      "image": "agenda.png",
       "url": "https://github.com/IAM-DEV88/agendareact",
       "description": "Aplicación de gestión de turnos con integración de libro mayor contable, desarrollada con tecnologías modernas para facilitar la contabilidad y el registro de datos.",
       "highlights": [
