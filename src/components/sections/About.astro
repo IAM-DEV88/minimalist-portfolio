@@ -10,7 +10,7 @@ const { summary } = basics;
   <p>
     {summary}
   </p>
-  <h1 class="uppercase text-center text-md-font my-4">Habilidades</h1>
+  <h1 class="uppercase text-center text-md-font my-4 drop-shadow-enphasis text-primary font-medium">Habilidades</h1>
   <ul class="justify-center flex flex-wrap flex-row gap-4">
     {
       skills.map(({ name }) => (
@@ -20,4 +20,73 @@ const { summary } = basics;
       ))
     }
   </ul>
+
+  <!-- Banner para la animación de lluvia de palabras -->
+  <div class="word-rain-banner">
+    {skills.map(({ name }) => <span class="falling-word">{name}</span>)}
+  </div>
 </Section>
+
+<style>
+  .word-rain-banner {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Ajusta la altura según sea necesario */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .falling-word {
+    position: absolute;
+    font-size: 1rem;
+    color: var(--theme-primary); /* Color del texto */
+    animation: fall 10s linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes fall {
+    0% {
+      top: -0px;
+      opacity: 0;
+      text-shadow:
+        0 0 2px rgba(0, 0, 0, 1),
+        0 0 4px rgba(255, 255, 255, 0.4),
+        0 0 6px rgb(140, 90, 195, 0.9);
+    }
+    10% {
+      opacity: 1;
+    }
+    70% {
+      text-shadow: none;
+
+      opacity: 1;
+    }
+    85% {
+      opacity: 0;
+    }
+    100% {
+      text-shadow:
+        0 0 2px rgba(0, 0, 0, 1),
+        0 0 4px rgba(255, 255, 255, 0.4),
+        0 0 6px rgb(140, 90, 195, 0.9);
+      top: 150px;
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const words = document.querySelectorAll(".falling-word");
+
+    words.forEach((word) => {
+      const delay = Math.random() * 10; // Retardo aleatorio entre 0 y 5 segundos
+      const leftPosition = Math.random() * 100; // Posición aleatoria en el eje X (0-100%)
+
+      word.style.animationDelay = `${delay}s`;
+      word.style.left = `${leftPosition}%`;
+    });
+  });
+</script>

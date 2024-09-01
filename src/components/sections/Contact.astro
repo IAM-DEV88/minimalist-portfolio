@@ -41,53 +41,60 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
     <footer class="flex flex-row gap-2 mt-2 no-print">
       {
         email && (
-          <a
-            class="bg-enphasis hover:drop-shadow-primary transition"
-            href={`mailto:${email}`}
-            title={`Enviar correo electronico a ${name} al correo ${email}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Mail />
-          </a>
+          <div class="flex flex-col items-center">
+            <a
+              class="bg-enphasis hover:drop-shadow-primary transition"
+              href={`mailto:${email}`}
+              title={`Enviar correo electronico a ${name} al correo ${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Mail />
+            </a>
+            <span class="network-name text-sm-font">Correo</span>
+          </div>
         )
       }
       {
         phone && (
-          <a
-            class="bg-enphasis hover:drop-shadow-primary transition"
-            href={`tel:${phone}`}
-            title={`Llamar a ${name} al telefono ${phone}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Phone />
-          </a>
+          <div class="flex flex-col items-center">
+            <a
+              class="bg-enphasis hover:drop-shadow-primary transition"
+              href={`tel:${phone}`}
+              title={`Llamar a ${name} al telefono ${phone}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Phone />
+            </a>
+            <span class="network-name text-sm-font">Teléfono</span>
+          </div>
         )
       }
       {
         profiles.map(({ network, url, username }) => {
           const Icon = SOCIAL_ICONS[network];
           return (
-            <a
-              class="bg-enphasis hover:drop-shadow-primary transition"
-              href={`${url}`}
-              title={`Mirar perfil de ${username} en ${network}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon />
-            </a>
+            <div class="flex flex-col items-center">
+              <a
+                class="bg-enphasis hover:drop-shadow-primary transition"
+                href={`${url}`}
+                title={`Mirar perfil de ${username} en ${network}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon />
+              </a>
+              <span class="network-name text-sm-font">{network}</span>
+            </div>
           );
         })
       }
     </footer>
-    <section
-      class="flex flex-col flex-wrap lg:flex-row mt-4 w-full"
-    >
+    <section class="flex flex-col flex-wrap lg:flex-row mt-4 w-full">
       <div class="w-full text-center py-2">
         <span
-          class="text-sm-font uppercase mb-1 md:font-medium mt-2"
+          class="text-md-font drop-shadow-enphasis uppercase mb-1 md:font-medium mt-2"
           >Invitame un café</span
         >
       </div>
@@ -107,7 +114,8 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
                   >
                     {account.name}
                   </a>
-                ) : (""
+                ) : (
+                  ""
                 )}
                 {account.qr && (
                   <ImageComponent
@@ -132,7 +140,6 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         }
       </div>
     </section>
-    
   </div>
 </Section>
 
