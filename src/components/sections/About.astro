@@ -82,11 +82,12 @@ const { summary } = basics;
     const words = document.querySelectorAll(".falling-word");
 
     words.forEach((word) => {
-      const delay = Math.random() * 10; // Retardo aleatorio entre 0 y 5 segundos
+      const htmlWord = word as HTMLElement; // Aserción de tipo a HTMLElement
+      const delay = Math.random() * 10; // Retardo aleatorio entre 0 y 10 segundos
       const leftPosition = Math.random() * 100; // Posición aleatoria en el eje X (0-100%)
 
-      word.style.animationDelay = `${delay}s`;
-      word.style.left = `${leftPosition}%`;
+      htmlWord.style.animationDelay = `${delay}s`;
+      htmlWord.style.left = `${leftPosition}%`;
     });
   });
 </script>
