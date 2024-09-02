@@ -5,10 +5,18 @@ import Mail from "@/icons/Mail.astro";
 import Phone from "@/icons/Phone.astro";
 import GitHub from "@/icons/GitHub.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
+import Facebook from "@/icons/Facebook.astro";
+import Youtube from "@/icons/Youtube.astro";
+import TikTok from "@/icons/TikTok.astro";
+import Twitch from "@/icons/Twitch.astro";
 const { name, profiles, phone, email } = basics;
 const SOCIAL_ICONS: Record<string, any> = {
   GitHub,
   LinkedIn,
+  Twitch,
+  Youtube,
+  TikTok,
+  Facebook,
 };
 
 const highlightCounts = projects.reduce((acc: Record<string, number>, project) => {
@@ -102,11 +110,11 @@ const initialProjects = projects.slice(0, 5);
           }
           {
             profiles.map(({ network, url, username }) => {
-              const Icon = SOCIAL_ICONS[network];
+              const Icon = SOCIAL_ICONS[username];
               return (
                 <a
                   href={`${url}`}
-                  title={`Mirar perfil de ${username} en ${network}`}
+                  title={`Mirar perfil de ${username}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
