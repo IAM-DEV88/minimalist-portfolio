@@ -5,6 +5,10 @@ import Mail from "@/icons/Mail.astro";
 import Phone from "@/icons/Phone.astro";
 import GitHub from "@/icons/GitHub.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
+import Facebook from "@/icons/Facebook.astro";
+import Youtube from "@/icons/Youtube.astro";
+import TikTok from "@/icons/TikTok.astro";
+import Twitch from "@/icons/Twitch.astro";
 import ImageComponent from "@/components/ImageComponent.astro";
 
 const accounts = [
@@ -23,6 +27,10 @@ const accounts = [
 const { name, profiles, phone, email } = basics;
 
 const SOCIAL_ICONS: Record<string, any> = {
+  Twitch,
+  Youtube,
+  TikTok,
+  Facebook,
   GitHub,
   LinkedIn,
 };
@@ -38,7 +46,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
     <div class="print">
       {printInfo}
     </div>
-    <footer class="flex flex-row gap-2 mt-2 no-print">
+    <footer class="flex flex-row flex-wrap justify-center gap-2 mt-2 no-print">
       {
         email && (
           <div class="flex flex-col items-center">
@@ -73,19 +81,19 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
       }
       {
         profiles.map(({ network, url, username }) => {
-          const Icon = SOCIAL_ICONS[network];
+          const Icon = SOCIAL_ICONS[username];
           return (
             <div class="flex flex-col items-center">
               <a
                 class="bg-enphasis hover:drop-shadow-primary transition"
                 href={`${url}`}
-                title={`Mirar perfil de ${username} en ${network}`}
+                title={`Mirar perfil de ${network}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Icon />
               </a>
-              <span class="network-name text-sm-font">{network}</span>
+              <span class="network-name text-sm-font">{username}</span>
             </div>
           );
         })

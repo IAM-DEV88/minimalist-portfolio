@@ -14,12 +14,32 @@
     "profiles": [
       {
         "network": "GitHub",
-        "username": "IAM-DEV88",
+        "username": "Twitch",
+        "url": "https://www.twitch.tv/iamgamecode"
+      },
+      {
+        "network": "GitHub",
+        "username": "Youtube",
+        "url": "https://www.youtube.com/@IAM-GAMECODE"
+      },
+      {
+        "network": "GitHub",
+        "username": "TikTok",
+        "url": "https://www.tiktok.com/@iamgamecode"
+      },
+      {
+        "network": "GitHub",
+        "username": "Facebook",
+        "url": "https://www.facebook.com/iamGameCode/"
+      },
+      {
+        "network": "GitHub",
+        "username": "GitHub",
         "url": "https://github.com/IAM-DEV88/"
       },
       {
         "network": "LinkedIn",
-        "username": "IAM-DEV88",
+        "username": "LinkedIn",
         "url": "https://www.linkedin.com/in/iam-dev88"
       }
     ]
