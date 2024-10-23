@@ -58,9 +58,13 @@
       "name": "CLAROS SOLUCIONES",
       "position": "Desarrollador Frontend",
       "startDate": "2019-10-14",
-      "endDate": "2023-02-01",
+      "endDate": "2023-01-31",
       "highlights": [
-        "Programacion y desarrollo de plataformas web segun UX."
+        "Desarrollo de plataformas con enfoque en la experiencia de usuario (UX).",
+        "Colaboración con equipos de diseño y backend para implementar interfaces intuitivas y eficientes.",
+        "Uso de metodologías modernas de frontend como HTML, CSS, JavaScript y frameworks como React/Vue para crear soluciones web robustas y adaptables.",
+        "Optimización de aplicaciones web para mejorar el rendimiento accesibilidad y experiencia del usuario.",
+        "Implementación de buenas prácticas de desarrollo, asegurando código limpio y escalable."
       ]
     }
   ],
