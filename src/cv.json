@@ -70,6 +70,21 @@
   ],
   "projects": [
     {
+      "name": "AgendaYa",
+      "image": "rdtCommunity.avif",
+      "url": "https://agendalisto.netlify.app/",
+      "description": "Plataforma para registro de usuarios/negocios, gestión de turnos y agenda de citas.",
+      "highlights": [
+        "CRUD",
+        "Node",
+        "React",
+        "Vite",
+        "Redux",
+        "Supabase",
+        "Tailwind",
+        "Netlify"
+      ]
+    },{
       "name": "Comunidad Raid Dominion Tools",
       "image": "rdtCommunity.avif",
       "url": "https://raid-dominion.netlify.app/",
