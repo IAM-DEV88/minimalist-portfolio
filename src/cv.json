@@ -72,7 +72,7 @@
     {
       "name": "AgendaYa",
       "image": "rdtCommunity.avif",
-      "url": "https://agendalisto.netlify.app/",
+      "url": "https://agendaya.netlify.app/",
       "description": "Plataforma para registro de usuarios/negocios, gestión de turnos y agenda de citas.",
       "highlights": [
         "CRUD",
