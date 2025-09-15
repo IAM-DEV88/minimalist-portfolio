@@ -5,20 +5,12 @@ import Mail from "@/icons/Mail.astro";
 import Phone from "@/icons/Phone.astro";
 import GitHub from "@/icons/GitHub.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
-import Facebook from "@/icons/Facebook.astro";
-import Youtube from "@/icons/Youtube.astro";
-import TikTok from "@/icons/TikTok.astro";
-import Twitch from "@/icons/Twitch.astro";
 import WorldMap from "@/icons/WorldMap.astro";
 
 const { name, label, image, location, profiles, phone, email } = basics;
 const { city, region, countryCode } = location;
 
 const SOCIAL_ICONS: Record<string, any> = {
-  Twitch,
-  Youtube,
-  TikTok,
-  Facebook,
   GitHub,
   LinkedIn,
 };
@@ -72,20 +64,22 @@ const printInfo = [email,phone,linkedUrl].filter(Boolean).join(" • ")
           )
         }
         {
-          profiles.map(({ network, url, username }) => {
-            const Icon = SOCIAL_ICONS[username];
-            return (
-              <a
-              class="bg-theme drop-shadow-theme hover:drop-shadow-primary transition"
-                href={`${url}`}
-                title={`Mirar perfil de ${username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon />
-              </a>
-            );
-          })
+          profiles
+            .filter(({ username }) => SOCIAL_ICONS[username]) // Only include profiles with valid icons
+            .map(({ network, url, username }) => {
+              const Icon = SOCIAL_ICONS[username];
+              return (
+                <a
+                  class="bg-theme drop-shadow-theme hover:drop-shadow-primary transition"
+                  href={`${url}`}
+                  title={`Mirar perfil de ${username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon />
+                </a>
+              );
+            })
         }
       </footer>
     </div>
