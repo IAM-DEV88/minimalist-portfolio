@@ -156,6 +156,8 @@ const { email, phone } = basics;
 
 <script define:vars={{ projects }} is:inline>
   document.addEventListener("DOMContentLoaded", () => {
+    // @ts-ignore
+    const _projects = projects;
     // Desactivar restauración automática del scroll y forzar inicio en el top
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -167,7 +169,7 @@ const { email, phone } = basics;
     const closeModalBtn = modal.querySelector(".close-modal");
     
     function openModal(projectName) {
-      const project = projects.find(p => p.name === projectName);
+      const project = _projects.find(p => p.name === projectName);
       if (!project) return;
 
       document.getElementById("modal-project-name").textContent = project.name;

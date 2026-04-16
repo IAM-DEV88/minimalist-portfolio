@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.40.0";
 
-Deno.serve(async (req) => {
+Deno.serve(async (_req: Request) => {
   try {
     const GROQ_API_KEY = Deno.env.get('GROQ_API_KEY');
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL');

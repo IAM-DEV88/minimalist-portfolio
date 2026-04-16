@@ -1,8 +1,9 @@
+// @ts-nocheck
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
 
-serve(async (req) => {
+serve(async (req: Request) => {
   try {
     const { record } = await req.json()
     const { email, full_name } = record
@@ -44,7 +45,7 @@ serve(async (req) => {
       headers: { 'Content-Type': 'application/json' },
       status: res.status,
     })
-  } catch (error) {
+  } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500,
