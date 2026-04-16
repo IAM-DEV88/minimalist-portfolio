@@ -1,23 +1,6 @@
 ---
 import { projects } from "@cv";
-import { basics } from "@cv";
-import Mail from "@/icons/Mail.astro";
-import Phone from "@/icons/Phone.astro";
-import GitHub from "@/icons/GitHub.astro";
-import LinkedIn from "@/icons/LinkedIn.astro";
-import Facebook from "@/icons/Facebook.astro";
-import Youtube from "@/icons/Youtube.astro";
-import TikTok from "@/icons/TikTok.astro";
-import Twitch from "@/icons/Twitch.astro";
-const { name, profiles, phone, email } = basics;
-const SOCIAL_ICONS: Record<string, any> = {
-  GitHub,
-  LinkedIn,
-  Twitch,
-  Youtube,
-  TikTok,
-  Facebook,
-};
+import Section from "../Section.astro";
 
 const highlightCounts = projects.reduce((acc: Record<string, number>, project) => {
   project.highlights.forEach((highlight) => {
@@ -26,167 +9,166 @@ const highlightCounts = projects.reduce((acc: Record<string, number>, project) =
   return acc;
 }, {} as Record<string, number>);
 
-
-const initialProjects = projects.slice(0, 5);
+const initialProjects = projects.slice(0, 6);
 ---
 
-<h4 class="mt-6 mb-5 text-md-font uppercase font-bold md:text-md-font-sm">proyectos</h4>
+<Section title="Proyectos" id="section2">
+<div id="project-list" class="flex flex-col w-full gap-8">
+  <!-- Cabecera de Controles: Todo en una sola línea -->
+  <div class="flex flex-col md:flex-row items-center gap-4 w-full no-print mb-8">
+    <!-- Búsqueda -->
+    <div class="relative flex-1 w-full">
+      <input
+        id="search-input"
+        list="projectNames"
+        placeholder="Buscar..."
+        class="w-full bg-white/5 border border-white/10 text-white text-sm rounded-xl px-5 py-2.5 focus:outline-none focus:border-cyan-500 transition-all placeholder:text-gray-500 font-medium backdrop-blur-sm"
+      />
+      <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-500">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+    </div>
 
-<div id="project-list" class="flex flex-col items-center">
-  <!-- Input de búsqueda -->
-  <input
-    id="search-input"
-    list="projectNames"
-    placeholder="Buscar..."
-    class="bg-theme drop-shadow-enphasis rounded px-4 py-1 mb-2 w-[60%]"
-  />
+    <!-- Filtro Desplegable -->
+    <div class="relative w-full md:w-auto">
+      <button 
+        id="filter-toggle"
+        class="flex items-center justify-between w-full md:w-auto min-w-[160px] bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.1em] text-gray-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all group"
+      >
+        <div class="flex items-center gap-2">
+          <svg class="w-3.5 h-3.4 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+          <span>Stack</span>
+        </div>
+        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-[.active]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+
+      <div 
+        id="filter-dropdown" 
+        class="absolute top-full right-0 mt-2 w-full md:w-max min-w-[200px] bg-slate-900/95 border border-white/10 rounded-xl p-3 backdrop-blur-xl shadow-2xl opacity-0 scale-95 pointer-events-none transition-all duration-300 z-40 origin-top-right"
+      >
+        <div class="grid grid-cols-1 gap-y-1">
+          {
+            Object.entries(highlightCounts).map(([highlight, count]) => (
+              <label class="group flex items-center justify-between gap-4 cursor-pointer select-none p-1.5 hover:bg-white/5 rounded-lg transition-colors">
+                <div class="flex items-center gap-2.5">
+                  <div class="relative w-3.5 h-3.5 bg-white/5 border border-white/10 rounded group-hover:border-cyan-500 transition-all overflow-hidden">
+                    <input type="checkbox" value={highlight} class="filter-checkbox absolute inset-0 opacity-0 cursor-pointer z-10" />
+                    <div class="check-mark hidden absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 pointer-events-none">
+                      <svg class="w-full h-full text-white p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-white transition-colors">
+                    {highlight}
+                  </span>
+                </div>
+                <span class="text-cyan-500/50 font-black text-[9px] bg-cyan-500/5 px-1.5 py-0.5 rounded border border-cyan-500/10">
+                  {count}
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Paginación -->
+    <div id="pagination-controls" class="flex items-center gap-3 shrink-0 bg-white/[0.03] border border-white/10 rounded-xl px-3 py-1.5">
+      <button id="prev-page" class="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all disabled:opacity-10 disabled:cursor-not-allowed" aria-label="Anterior">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <span id="page-info" class="text-[9px] font-black uppercase tracking-[0.1em] text-cyan-400/60 min-w-[40px] text-center"></span>
+      <button id="next-page" class="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all disabled:opacity-10 disabled:cursor-not-allowed" aria-label="Siguiente">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
   <datalist id="projectNames">
     {projects.map((project) => <option value={project.name} />)}
   </datalist>
 
-  <!-- Lista de proyectos -->
+  <!-- Lista de proyectos con Rejilla Dinámica -->
   <ul
     id="project-list-items"
-    class="my-3 gap-y-2 flex flex-col w-[90%]"
+    class="grid grid-cols-1 md:grid-cols-6 gap-4 w-full no-print min-h-[400px]"
   >
-    {initialProjects.map((project) => <li>{project.name}</li>)}
+    {initialProjects.map((project, index) => {
+      let gridClass = "md:col-span-3";
+      if (index === 0) gridClass = "md:col-span-4";
+      if (index === 1) gridClass = "md:col-span-2";
+
+      return (
+        <li 
+          class={`group relative bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col ${gridClass}`} 
+          data-project-name={project.name}
+        >
+          <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          
+          <div class="relative flex flex-col h-full pointer-events-none">
+            <h3 class="text-lg font-black text-white group-hover:text-cyan-400 transition-colors mb-1.5 tracking-tight">
+              {project.name}
+            </h3>
+            <p class="text-[13px] text-gray-400 line-clamp-2 mb-4 leading-relaxed font-medium">
+              {project.description}
+            </p>
+            <div class="mt-auto flex flex-wrap gap-1.5">
+              {project.highlights.map(h => (
+                <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 px-2 py-0.5 bg-white/5 rounded-md border border-white/5 group-hover:border-cyan-500/20 transition-colors">
+                  {h}
+                </span>
+              ))}
+            </div>
+          </div>
+        </li>
+      )
+    })}
   </ul>
 
-  <!-- Controles de paginación -->
-  <div id="pagination-controls text-md-font" class="flex flex-row gap-2">
-    <button id="prev-page" class="rounded bg-gray-800 w-6 h-6">&lt;</button>
-    <span id="page-info"></span>
-    <button id="next-page" class="rounded bg-gray-800 w-6 h-6">&gt;</button>
-  </div>
-
-  <!-- Panel de filtros -->
-  <h5 class="text-md-font uppercase font-bold my-3">TIPO</h5>
-  <div class="text-md-font flex flex-wrap justify-between gap-x-2">
-    {
-      Object.entries(highlightCounts).map(([highlight, count]) => (
-        <label class="cursor-pointer">
-          <input type="checkbox" value={highlight} class="filter-checkbox" />
-          {highlight} ({count})
-        </label>
-      ))
-    }
-  </div>
-
-  <!-- Modal -->
-  <div id="project-modal" class="modal pt-[11vh]">
-    <div class="modal-content rounded bg-theme drop-shadow-theme w-[90%]">
-      <span class="close absolute right-6 top-0">&times;</span>
-      <div class="flex flex-col gap-y-2">
-        <h2 id="modal-project-name" class="font-bold"></h2>
-        <figure id="modal-project-img"></figure>
-        <p id="modal-project-description" class="text-md-font"></p>
-        <span id="modal-project-link" class="text-md-font self-center py-2"></span>
-        <h3 class="text-md-font font-medium">TIPO:</h3>
-        <ul id="modal-project-highlights" class="text-sm-font flex flex-wrap gap-2"></ul>
-        <footer class="no-print flex flex-row justify-center">
-          {
-            email && (
-              <a
-                href={`mailto:${email}`}
-                title={`Enviar correo electronico a ${name} al correo ${email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Mail />
-              </a>
-            )
-          }
-          {
-            phone && (
-              <a
-                href={`tel:${phone}`}
-                title={`Llamar a ${name} al telefono ${phone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Phone />
-              </a>
-            )
-          }
-          {
-            profiles.map(({ network, url, username }) => {
-              const Icon = SOCIAL_ICONS[username];
-              return (
-                <a
-                  href={`${url}`}
-                  title={`Mirar perfil de ${username}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon />
-                </a>
-              );
-            })
-          }
-        </footer>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- Versión de impresión: Todos los proyectos sin paginación -->
+  <ul class="hidden print:block space-y-8 w-full">
+    {projects.map((project) => (
+      <li class="border-b border-gray-200 pb-6 last:border-0">
+        <h3 class="text-lg font-bold text-black mb-2">{project.name}</h3>
+        <p class="text-sm text-gray-700 mb-4 leading-relaxed">{project.description}</p>
+        <div class="flex flex-wrap gap-2">
+          {project.highlights.map(h => (
+            <span class="text-[9pt] font-medium text-gray-600 px-2 py-0.5 bg-gray-100 rounded border border-gray-200">
+              {h}
+            </span>
+          ))}
+        </div>
+        {project.url && (
+          <p class="text-[9pt] text-gray-500 mt-2">
+            URL: <span class="underline">{project.url}</span>
+          </p>
+        )}
+      </li>
+    ))}
+  </ul>
+</Section>
 
 <style>
-  footer a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    height: 32px;
-    width: 32px;
-    border-radius: 5px;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* transition: opacity .3s ease-in-out, display .3s ease allow-discrete; */
+  .filter-checkbox:checked ~ .check-mark {
+    display: block;
   }
   
-  /* .modal-content{
-    transition: opacity .3s ease-in-out, display .3s ease allow-discrete;
-    opacity:0;
+  #project-list-items {
+    transition: all 0.5s ease;
   }
 
-  .modal[style*="display: block"] > .modal-content {
-    opacity:1;
-    transition: opacity .3s ease-in-out;
+  .project-fade-in {
+    animation: projectFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
 
-    @starting-style{
-      opacity:0;
+  @keyframes projectFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
     }
-  } */
-
-  .modal-content {
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%;
-    max-width: 600px;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 </style>
 
@@ -195,7 +177,7 @@ const initialProjects = projects.slice(0, 5);
     let searchQuery = "";
     let selectedFilters = [];
     let currentPage = 1;
-    const itemsPerPage = 5;
+    const itemsPerPage = 6;
   
     const searchInput = document.getElementById("search-input");
     const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
@@ -203,8 +185,30 @@ const initialProjects = projects.slice(0, 5);
     const prevPageButton = document.getElementById("prev-page");
     const nextPageButton = document.getElementById("next-page");
     const pageInfo = document.getElementById("page-info");
-    const modal = document.getElementById("project-modal");
-    const closeModal = document.querySelector(".close");
+    const filterToggle = document.getElementById("filter-toggle");
+    const filterDropdown = document.getElementById("filter-dropdown");
+
+    // Lógica del Desplegable de Filtros
+    filterToggle?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = filterToggle.classList.toggle("active");
+      if (isActive) {
+        filterDropdown?.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+        filterDropdown?.classList.add("opacity-100", "scale-100", "pointer-events-auto");
+      } else {
+        filterDropdown?.classList.add("opacity-0", "scale-95", "pointer-events-none");
+        filterDropdown?.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
+      }
+    });
+
+    // Cerrar desplegable al hacer clic fuera
+    document.addEventListener("click", (e) => {
+      if (!filterToggle?.contains(e.target) && !filterDropdown?.contains(e.target)) {
+        filterToggle?.classList.remove("active");
+        filterDropdown?.classList.add("opacity-0", "scale-95", "pointer-events-none");
+        filterDropdown?.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
+      }
+    });
   
     function getFilteredProjects() {
       return projects.filter((project) => {
@@ -218,34 +222,69 @@ const initialProjects = projects.slice(0, 5);
       });
     }
   
-    function updateProjectList() {
+    function updateProjectList(isInitial = false) {
       const filteredProjects = getFilteredProjects();
-      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage) || 1;
   
       if (currentPage > totalPages) {
-        currentPage = totalPages || 1;
+        currentPage = totalPages;
       }
   
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const projectsToShow = filteredProjects.slice(startIndex, endIndex);
   
-      projectListItems.innerHTML = projectsToShow
-        .map(
-          (project, index) =>
-            `<li class='cursor-pointer hover:pl-2 hover:bg-enphasis py-1 border-b-2 border-secondary transition-all' data-project-name="${project.name}">
-              ${startIndex + index + 1}. ${project.name}
-            </li>`
-        )
-        .join("");
+      const render = () => {
+        projectListItems.innerHTML = projectsToShow
+          .map((project, index) => {
+            // Rejilla dinámica: el primero destaca un poco más si estamos en la pag 1 y no hay filtros
+            let gridClass = "md:col-span-3";
+            if (currentPage === 1 && searchQuery === "" && selectedFilters.length === 0) {
+              if (index === 0) gridClass = "md:col-span-4";
+              if (index === 1) gridClass = "md:col-span-2";
+            }
+
+            return `
+            <li class="group relative bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col project-fade-in ${gridClass}" data-project-name="${project.name}" style="animation-delay: ${index * 0.05}s">
+              <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div class="relative flex flex-col h-full pointer-events-none">
+                <h3 class="text-lg font-black text-white group-hover:text-cyan-400 transition-colors mb-1.5 tracking-tight">${project.name}</h3>
+                <p class="text-[13px] text-gray-400 line-clamp-2 mb-4 leading-relaxed font-medium">
+                  ${project.description}
+                </p>
+                <div class="mt-auto flex flex-wrap gap-1.5">
+                  ${project.highlights.map(h => `
+                    <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 px-2 py-0.5 bg-white/5 rounded-md border border-white/5 group-hover:border-cyan-500/20 transition-colors">
+                      ${h}
+                    </span>
+                  `).join('')}
+                </div>
+              </div>
+            </li>`;
+          })
+          .join("");
+
+        projectListItems.style.opacity = "1";
+
+        projectListItems.querySelectorAll("li").forEach((li) => {
+          li.addEventListener("click", () => {
+            window.dispatchEvent(new CustomEvent('open-project-modal', { 
+              detail: { projectName: li.dataset.projectName } 
+            }));
+          });
+        });
+      };
+
+      if (isInitial) {
+        render();
+      } else {
+        projectListItems.style.opacity = "0";
+        setTimeout(render, 200);
+      }
   
-      pageInfo.innerHTML = `<span class='text-md-font'>Página ${currentPage} de ${totalPages}</span>`;
+      pageInfo.textContent = `${currentPage} / ${totalPages}`;
       prevPageButton.disabled = currentPage === 1;
       nextPageButton.disabled = currentPage === totalPages;
-  
-      projectListItems.querySelectorAll("li").forEach((li) => {
-        li.addEventListener("click", handleProjectClick);
-      });
     }
   
     function handleSearchChange() {
@@ -281,42 +320,13 @@ const initialProjects = projects.slice(0, 5);
       }
     }
   
-    function handleProjectClick(event) {
-      const projectName = event.target.dataset.projectName;
-      const project = projects.find((p) => p.name === projectName);
-      if (project) {
-        document.getElementById("modal-project-name").textContent = project.name;
-        document.getElementById("modal-project-img").innerHTML = 
-  `<img src="/gallery/project/${project.image}" alt="${project.name}" class="rounded w-[50%] m-auto" />`;
-
-        document.getElementById("modal-project-description").textContent = project.description;
-        document.getElementById("modal-project-link").innerHTML = 
-          `<a target="_blank" href="${project.url}" title="${project.name}" class="px-2 py-1 items-center border-2 rounded border-primary uppercase">Visitar</a>`;
-        document.getElementById("modal-project-highlights").innerHTML = 
-          project.highlights.map((highlight) => `<li>${highlight}</li>`).join("");
-        modal.style.display = "block";
-      }
-    }
-  
-    function handleCloseModal() {
-      modal.style.display = "none";
-    }
-  
     searchInput.addEventListener("input", handleSearchChange);
     filterCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", handleFilterChange);
     });
     prevPageButton.addEventListener("click", handlePrevPage);
     nextPageButton.addEventListener("click", handleNextPage);
-    closeModal.addEventListener("click", handleCloseModal);
   
-    window.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-  
-    updateProjectList();
+    updateProjectList(true);
   });
-  </script>
-  
+</script>

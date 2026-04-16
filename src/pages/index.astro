@@ -1,24 +1,37 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/Hero.astro";
+import Projects from "@/components/sections/Projects.astro";
 import About from "@/components/sections/About.astro";
 import Contact from "@/components/sections/Contact.astro";
 import Experience from "@/components/sections/Experience.astro";
 import Footer from "@/components/sections/Footer.astro";
+import { projects, basics } from "@cv";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+
+const { email, phone } = basics;
 ---
 
 <Layout title="Web Oficial">
-  <navbar class="opacity-90 fixed w-full bg-gray-800 z-10">
+  <navbar id="main-nav" class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-slate-950/60 border-b border-white/5 opacity-0 -translate-y-full transition-all duration-700 ease-out">
+    <div id="scroll-progress" class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-600 to-blue-600 w-0 transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.6)]"></div>
     <nav
-      class="container mx-auto py-2 flex justify-between items-center text-primary w-[90%] max-w-[700px]"
+      class="container mx-auto py-4 flex justify-between items-center px-8 max-w-[900px]"
     >
       <!-- Logo -->
-      <a href="#section1" class="text-lg-font font-bold text-primary"
-        >IAM<div class="uppercase text-sm-font">gamecode</div></a
-      >
+      <a href="#section1" id="nav-logo" class="group flex items-center gap-3">
+        <div class="relative">
+          <div class="absolute -inset-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg blur opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
+          <div class="relative flex flex-col leading-none">
+            <span class="text-2xl font-black tracking-tighter text-white">IAM</span>
+            <span class="text-[10px] uppercase font-bold tracking-[0.3em] text-cyan-400">Jaguer</span>
+          </div>
+        </div>
+      </a>
 
       <!-- Botón del menú hamburguesa para móviles -->
-      <button class="sm:hidden" id="menu-toggle">
+      <button class="sm:hidden text-white p-2 hover:bg-white/5 rounded-xl transition-colors" id="menu-toggle" aria-label="Abrir menú">
         <svg
           class="w-6 h-6"
           fill="none"
@@ -35,49 +48,312 @@ import Footer from "@/components/sections/Footer.astro";
       </button>
 
       <!-- Menú en pantallas grandes -->
-      <ul id="menu" class="hidden sm:flex space-x-4">
-        <li><a href="#section1">Inicio</a></li>
-        <li><a href="#section2">Experiencia</a></li>
-        <li><a href="#section3">Acerca de mi</a></li>
-        <li><a href="#section4">Contacto</a></li>
-      </ul>
+      <div class="hidden sm:block">
+        <div class="relative">
+          <ul id="menu" class="flex items-center gap-8 text-[11px] uppercase font-black tracking-[0.2em] text-gray-400">
+            <li><a href="#section1" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Inicio</a></li>
+            <li><a href="#section2" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Proyectos</a></li>
+            <li><a href="#section3" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Experiencia</a></li>
+            <li><a href="#section4" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Acerca</a></li>
+            <li><a href="#section5" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Contacto</a></li>
+          </ul>
+          <!-- Indicador activo moderno -->
+          <div id="nav-indicator" class="absolute bottom-[-14px] h-[3px] bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-500 ease-out opacity-0 shadow-[0_0_15px_rgba(6,182,212,0.8)] z-[60]"></div>
+        </div>
+      </div>
 
       <!-- Menú desplegable en móviles -->
       <ul
         id="menu-mobile"
-        class="absolute top-full left-0 w-full bg-gray-800 sm:hidden space-y-2"
+        class="absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-2xl border-b border-white/5 sm:hidden flex flex-col items-center py-10 gap-6 text-xs uppercase font-black tracking-[0.3em] text-gray-400"
       >
-        <li>
-          <a href="#section1" class="block px-4 py-2">Inicio</a>
-        </li>
-        <li>
-          <a href="#section2" class="block px-4 py-2"
-            >Experiencia</a>
-        </li>
-        <li>
-          <a href="#section3" class="block px-4 py-2"
-            >Acerca de mi</a>
-        </li>
-        <li>
-          <a href="#section4" class="block px-4 py-2">Contacto</a>
-        </li>
+        <li><a href="#section1" class="hover:text-cyan-400">Inicio</a></li>
+        <li><a href="#section2" class="hover:text-cyan-400">Proyectos</a></li>
+        <li><a href="#section3" class="hover:text-cyan-400">Experiencia</a></li>
+        <li><a href="#section4" class="hover:text-cyan-400">Acerca</a></li>
+        <li><a href="#section5" class="hover:text-cyan-400">Contacto</a></li>
       </ul>
     </nav>
   </navbar>
 
   <div
-    style="background: url('/bgweb.jpg') no-repeat,
-	var(--theme-color);
-    background-size: 100% 100vh;
-    background-position: center top;"
-    class="fixed sm:absolute mask w-100 h-[100vh] max-w-[700px] mx-auto inset-x-0 z-[-2]"
+    id="bg-container"
+    class="fixed inset-0 z-[-2] pointer-events-none overflow-hidden bg-slate-950 opacity-0 transition-opacity duration-700 ease-in-out"
   >
+    <!-- Malla base estática -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+    
+    <!-- Malla cian iluminada por el cursor -->
+    <div 
+      class="absolute inset-0 bg-[linear-gradient(to_right,#06b6d433_1px,transparent_1px),linear-gradient(to_bottom,#06b6d433_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(400px_circle_at_var(--mouse-x)_var(--mouse-y),black,transparent)]"
+    ></div>
+
+    <!-- Glow radial que acompaña al cursor -->
+    <div id="cursor-radar" class="absolute inset-0 pointer-events-none z-[-1] opacity-0 transition-opacity duration-500" style="background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.1), transparent 60%);"></div>
+    
+    <!-- Pulso expansivo (Malla iluminada) -->
+    <div 
+      id="grid-pulse" 
+      class="absolute inset-0 pointer-events-none z-[-1] opacity-0 bg-[linear-gradient(to_right,#06b6d4_1.5px,transparent_1.5px),linear-gradient(to_bottom,#06b6d4_1.5px,transparent_1.5px)] bg-[size:40px_40px]" 
+      style="mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), transparent var(--pulse-inner), black var(--pulse-radius), transparent var(--pulse-outer)); -webkit-mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), transparent var(--pulse-inner), black var(--pulse-radius), transparent var(--pulse-outer));"
+    ></div>
+
+    <!-- Overlay de degradado para profundidad -->
   </div>
-  <main class="w-[90%] m-auto">
+  <main class="relative w-full max-w-[800px] mx-auto">
     <Hero />
+    <Projects />
     <Experience />
     <About />
     <Contact />
   </main>
   <Footer />
+
+  <!-- Global Modal for Projects -->
+  <div id="project-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-8 bg-black/95 backdrop-blur-xl opacity-0 transition-opacity duration-300">
+    <div class="modal-content relative bg-[#0b0e14] border border-white/10 rounded-[2.5rem] w-full max-w-6xl h-fit max-h-[90vh] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.9)] scale-90 transition-all duration-300 flex flex-col md:flex-row">
+      <button class="close-modal absolute right-6 top-6 text-gray-400 hover:text-white transition-colors z-30 bg-black/40 backdrop-blur-md rounded-full p-3 border border-white/10 hover:scale-110 active:scale-95" aria-label="Cerrar">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      
+      <figure id="modal-project-img" class="md:w-3/5 min-h-[300px] md:h-auto bg-black/60 flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-white/10 relative">
+        <!-- Image will be inserted here -->
+      </figure>
+      
+      <div class="md:w-2/5 p-8 md:p-12 flex flex-col overflow-y-auto bg-gradient-to-br from-gray-900/40 to-black/40 custom-scrollbar">
+        <div class="mb-10">
+          <h2 id="modal-project-name" class="text-3xl md:text-5xl font-black text-white tracking-tighter mb-6 leading-none"></h2>
+          <div id="modal-project-highlights" class="flex flex-wrap gap-2"></div>
+        </div>
+        
+        <p id="modal-project-description" class="text-base md:text-lg text-gray-400 leading-relaxed font-medium mb-12"></p>
+        
+        <div class="mt-auto space-y-10">
+          <div id="modal-project-link"></div>
+          
+          <div class="pt-10 border-t border-white/10">
+            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-8 text-center">Conectar por este proyecto</p>
+            <footer class="flex justify-center gap-8">
+              {email && (
+                <a href={`mailto:${email}`} class="group relative p-5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[1.5rem] transition-all duration-300 hover:-translate-y-2" title="Email">
+                  <Mail />
+                  <span class="absolute -top-12 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-all duration-200 bg-white text-black text-[11px] font-bold py-2 px-4 rounded-xl shadow-2xl z-50 pointer-events-none">Email</span>
+                </a>
+              )}
+              {phone && (
+                <a href={`tel:${phone}`} class="group relative p-5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[1.5rem] transition-all duration-300 hover:-translate-y-2" title="Teléfono">
+                  <Phone />
+                  <span class="absolute -top-12 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-all duration-200 bg-white text-black text-[11px] font-bold py-2 px-4 rounded-xl shadow-2xl z-50 pointer-events-none">Teléfono</span>
+                </a>
+              )}
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>
+
+<script define:vars={{ projects }} is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Desactivar restauración automática del scroll y forzar inicio en el top
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    setTimeout(() => window.scrollTo(0, 0), 10);
+
+    const modal = document.getElementById("project-modal");
+    const closeModalBtn = modal.querySelector(".close-modal");
+    
+    function openModal(projectName) {
+      const project = projects.find(p => p.name === projectName);
+      if (!project) return;
+
+      document.getElementById("modal-project-name").textContent = project.name;
+      document.getElementById("modal-project-img").innerHTML = 
+        `<img src="/gallery/project/${project.image}" alt="${project.name}" class="w-full h-full object-contain md:object-cover transition-all duration-700" />`;
+      document.getElementById("modal-project-description").textContent = project.description;
+      document.getElementById("modal-project-link").innerHTML = 
+        `<a target="_blank" href="${project.url}" class="inline-flex items-center justify-center w-full px-10 py-5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)]">Explorar Proyecto</a>`;
+      
+      document.getElementById("modal-project-highlights").innerHTML = 
+        project.highlights.map(h => `
+          <span class="text-[10px] font-black uppercase tracking-widest text-cyan-400 px-3 py-1.5 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+            ${h}
+          </span>
+        `).join("");
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      void modal.offsetWidth;
+      modal.classList.add("active");
+      modal.querySelector(".modal-content").classList.remove("scale-90");
+      modal.querySelector(".modal-content").classList.add("scale-100");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      modal.querySelector(".modal-content").classList.remove("scale-100");
+      modal.querySelector(".modal-content").classList.add("scale-90");
+      setTimeout(() => {
+        if (!modal.classList.contains("active")) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          document.body.style.overflow = "";
+        }
+      }, 300);
+    }
+
+    // Listen for custom event from Projects.astro
+    window.addEventListener('open-project-modal', (e) => {
+      openModal(e.detail.projectName);
+    });
+
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    
+    // Scroll progress & Radar effect
+    const scrollProgress = document.getElementById("scroll-progress");
+    const cursorRadar = document.getElementById("cursor-radar");
+    const gridPulse = document.getElementById("grid-pulse");
+    const navLogo = document.getElementById("nav-logo");
+    const heroMascot = document.getElementById("hero-mascot");
+    const mainNav = document.getElementById("main-nav");
+    const bgContainer = document.getElementById("bg-container");
+    const heroContent = document.getElementById("hero-content");
+
+    // Secuencia de entrada coordinada (Máx 2.5s total)
+    // 1. Entrada simultánea de Navbar y Malla (0s -> 1s)
+    setTimeout(() => {
+      // Navbar
+      mainNav?.classList.remove("opacity-0", "-translate-y-full");
+      mainNav?.classList.add("opacity-100", "translate-y-0");
+      
+      // Malla (BG Container)
+      if (bgContainer) {
+        bgContainer.classList.remove("opacity-0");
+        bgContainer.classList.add("opacity-100");
+      }
+    }, 100);
+
+    // 2. Aparición del Hero y el Pulso inicial (0.8s -> 1.8s)
+    setTimeout(() => {
+      if (heroContent) {
+        heroContent.classList.remove("opacity-0");
+        heroContent.classList.add("opacity-100");
+      }
+      triggerPulse(window.innerWidth / 2, window.innerHeight / 3);
+    }, 300);
+
+    let pulseAnimId = null;
+    let pulseStartTime = 0;
+    const pulseDuration = 10000; // ms (Extremadamente lento)
+
+    function animatePulse(timestamp) {
+      if (!pulseStartTime) pulseStartTime = timestamp;
+      const elapsed = timestamp - pulseStartTime;
+      const progress = elapsed / pulseDuration;
+
+      if (progress < 1) {
+        // Curva de aceleración muy gradual (Quad out)
+        const easeOut = 1 - Math.pow(1 - progress, 2);
+        const radius = easeOut * 4000; // Radio final más amplio para cubrir todo muy despacio
+        const width = 300 * (1 - progress); // Anillo más ancho para mayor visibilidad en cámara lenta
+        
+        gridPulse.style.opacity = (0.5 * (1 - progress)).toString();
+        gridPulse.style.setProperty('--pulse-radius', `${radius}px`);
+        gridPulse.style.setProperty('--pulse-inner', `${radius - width}px`);
+        gridPulse.style.setProperty('--pulse-outer', `${radius + width}px`);
+        
+        pulseAnimId = requestAnimationFrame(animatePulse);
+      } else {
+        gridPulse.style.opacity = "0";
+        pulseStartTime = 0;
+        pulseAnimId = null;
+      }
+    }
+
+    function triggerPulse(eOrX, y) {
+      if (!gridPulse) return;
+      
+      let xPos, yPos;
+      
+      if (eOrX && typeof eOrX === 'object' && 'clientX' in eOrX) {
+        // Es un evento
+        const rect = gridPulse.getBoundingClientRect();
+        xPos = eOrX.clientX - rect.left;
+        yPos = eOrX.clientY - rect.top;
+      } else {
+        // Son coordenadas directas
+        xPos = eOrX || window.innerWidth / 2;
+        yPos = y || window.innerHeight / 2;
+      }
+      
+      gridPulse.style.setProperty('--pulse-x', `${xPos}px`);
+      gridPulse.style.setProperty('--pulse-y', `${yPos}px`);
+      
+      // Reiniciar animación si ya hay una en curso
+      if (pulseAnimId) {
+        cancelAnimationFrame(pulseAnimId);
+        pulseStartTime = 0;
+      }
+      
+      pulseAnimId = requestAnimationFrame(animatePulse);
+    }
+
+    navLogo?.addEventListener('mouseenter', triggerPulse);
+    heroMascot?.addEventListener('mouseenter', triggerPulse);
+
+    // Seguimiento del cursor para el efecto de radar
+    window.addEventListener('mousemove', (e) => {
+      if (cursorRadar) {
+        cursorRadar.style.setProperty('--mouse-x', `${e.clientX}px`);
+        cursorRadar.style.setProperty('--mouse-y', `${e.clientY}px`);
+        cursorRadar.style.opacity = "1";
+      }
+      
+      // Actualizar variables globales para la malla
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+
+    let hasScrolledDown = false;
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      
+      // Actualizar barra de progreso
+      if (scrollProgress) {
+        scrollProgress.style.width = scrolled + "%";
+      }
+
+      // Detectar si el usuario ha bajado lo suficiente
+      if (winScroll > 200) {
+        hasScrolledDown = true;
+      }
+
+      // Disparar pulso al volver arriba del todo
+      if (winScroll === 0 && hasScrolledDown) {
+        triggerPulse(window.innerWidth / 2, window.innerHeight / 3);
+        hasScrolledDown = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  #project-modal.active { opacity: 1; }
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+</style>
+
+<style>
+  .radial-vignette {
+    background: radial-gradient(circle at center, transparent 0%, rgba(15, 25, 43, 0.4) 40%, rgba(15, 25, 43, 0.9) 100%);
+  }
+</style>

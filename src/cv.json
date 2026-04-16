@@ -13,34 +13,14 @@
     },
     "profiles": [
       {
-        "network": "GitHub",
-        "username": "Twitch",
-        "url": "https://www.twitch.tv/iamgamecode"
+        "network": "Youtube",
+        "username": "JAGUER",
+        "url": "https://www.youtube.com/@JAGUER"
       },
       {
         "network": "GitHub",
-        "username": "Youtube",
-        "url": "https://www.youtube.com/@IAM-GAMECODE"
-      },
-      {
-        "network": "GitHub",
-        "username": "TikTok",
-        "url": "https://www.tiktok.com/@iamgamecode"
-      },
-      {
-        "network": "GitHub",
-        "username": "Facebook",
-        "url": "https://www.facebook.com/iamGameCode/"
-      },
-      {
-        "network": "GitHub",
-        "username": "GitHub",
-        "url": "https://github.com/IAM-DEV88/"
-      },
-      {
-        "network": "LinkedIn",
-        "username": "LinkedIn",
-        "url": "https://www.linkedin.com/in/iam-dev88"
+        "username": "JAGUER-DEV",
+        "url": "https://github.com/JAGUER-DEV/"
       }
     ]
   },
@@ -83,6 +63,17 @@
         "Supabase",
         "Tailwind",
         "Netlify"
+      ]
+    },{
+      "name": "Comunidad Colmillo de Acero",
+      "image": "rdtCommunity.avif",
+      "url": "https://colmillo.netlify.app/",
+      "description": "Comunidad de World of Warcraft 3.3.5a, que ofrece integración con Discord, Twitch, y YouTube para una experiencia completa.",
+      "highlights": [
+        "Portal web",
+        "Discord",
+        "Twitch",
+        "YouTube"
       ]
     },{
       "name": "Comunidad Raid Dominion Tools",

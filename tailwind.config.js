@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        theme: "rgba(15,25,43, 0.8)",
-        primary: "rgba(235, 236, 240, 0.9)",
-        enphasis: "rgba(147, 158, 178, 0.8)",
-        secondary: "rgba(71, 27, 48, 0.8)",
+        theme: "#020617", // Slate 950 (Darker body)
+        primary: "#ffffff",
+        enphasis: "#06b6d4", // Cyan 500 (Circuit/Eyes glow)
+        secondary: "#3b82f6", // Blue 500 (Body highlights)
+        accent: "#f59e0b", // Amber 500 (Circuitry copper)
+        surface: "rgba(6, 182, 212, 0.03)", // Cyan tint surface
+        "surface-hover": "rgba(6, 182, 212, 0.08)",
       },
       boxShadow: {
         "theme": [

@@ -9,154 +9,179 @@ import ImageComponent from "@/components/ImageComponent.astro";
 
 const accounts = [
   {
-    name: "Paypal",
-    service: "Paypal",
+    name: "PayPal",
+    service: "PayPal",
     link: "https://paypal.me/iamdev88",
+    cta: "Donar con PayPal",
+    description: "Pagos internacionales seguros"
   },
   {
     name: "Nequi",
     service: "Nequi",
     qr: true,
+    cta: "Escanear QR Nequi",
+    description: "Transferencias rápidas (Colombia)"
   },
 ];
+
+import Twitch from "@/icons/Twitch.astro";
+import Youtube from "@/icons/Youtube.astro";
+import TikTok from "@/icons/TikTok.astro";
+import Facebook from "@/icons/Facebook.astro";
 
 const { name, profiles, phone, email } = basics;
 
 const SOCIAL_ICONS: Record<string, any> = {
   GitHub,
   LinkedIn,
+  Twitch,
+  Youtube,
+  TikTok,
+  Facebook,
 };
 
 const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
-
-const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 ---
 
-<Section title="Contacto" id="section4">
-  <div class="flex flex-col items-center gap-2 mt-6">
-    <div class="print">
-      {printInfo}
+<Section title="Contacto" id="section5">
+  <div class="flex flex-col items-center gap-16 mt-6">
+    <!-- Versión de impresión: Enlaces y números de texto -->
+    <div class="hidden print:flex flex-col gap-4 w-full text-sm text-gray-800 font-medium">
+      {email && (
+        <p class="flex items-center gap-3">
+          <span class="font-black uppercase tracking-widest text-[10px] text-gray-500 min-w-[100px]">Email:</span> {email}
+        </p>
+      )}
+      {phone && (
+        <p class="flex items-center gap-3">
+          <span class="font-black uppercase tracking-widest text-[10px] text-gray-500 min-w-[100px]">Teléfono:</span> {phone}
+        </p>
+      )}
+      {profiles.map(({ network, url }) => (
+        <p class="flex items-center gap-3">
+          <span class="font-black uppercase tracking-widest text-[10px] text-gray-500 min-w-[100px]">{network}:</span> {url}
+        </p>
+      ))}
     </div>
-    <footer class="flex flex-row flex-wrap justify-center gap-2 mt-2 no-print">
+
+    <!-- Redes y Contacto Directo -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full no-print">
       {
         email && (
-          <div class="flex flex-col items-center">
-            <a
-              class="bg-enphasis hover:drop-shadow-primary transition"
-              href={`mailto:${email}`}
-              title={`Enviar correo electronico a ${name} al correo ${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <a
+            class="group relative flex flex-col items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-cyan-500/10"
+            href={`mailto:${email}`}
+            title={`Enviar correo electronico a ${name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="p-3 bg-cyan-500/10 rounded-2xl group-hover:scale-110 transition-transform duration-300">
               <Mail />
-            </a>
-            <span class="network-name text-sm-font">Correo</span>
-          </div>
+            </div>
+            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-cyan-400 transition-colors">Correo</span>
+          </a>
         )
       }
       {
         phone && (
-          <div class="flex flex-col items-center">
-            <a
-              class="bg-enphasis hover:drop-shadow-primary transition"
-              href={`tel:${phone}`}
-              title={`Llamar a ${name} al telefono ${phone}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <a
+            class="group relative flex flex-col items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-cyan-500/10"
+            href={`tel:${phone}`}
+            title={`Llamar a ${name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="p-3 bg-cyan-500/10 rounded-2xl group-hover:scale-110 transition-transform duration-300">
               <Phone />
-            </a>
-            <span class="network-name text-sm-font">Teléfono</span>
-          </div>
+            </div>
+            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-cyan-400 transition-colors">Teléfono</span>
+          </a>
         )
       }
       {
         profiles
-          .filter(({ username }) => SOCIAL_ICONS[username]) // Only include profiles with valid icons
-          .map(({ network, url, username }) => {
-            const Icon = SOCIAL_ICONS[username];
+          .filter(({ network }) => SOCIAL_ICONS[network])
+          .map(({ network, url }) => {
+            const Icon = SOCIAL_ICONS[network];
             return (
-              <div class="flex flex-col items-center">
-                <a
-                  class="bg-enphasis hover:drop-shadow-primary transition"
-                  href={`${url}`}
-                  title={`Mirar perfil de ${network}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <a
+                class="group relative flex flex-col items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-cyan-500/10"
+                href={`${url}`}
+                title={`Perfil de ${network}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="p-3 bg-cyan-500/10 rounded-2xl group-hover:scale-110 transition-transform duration-300">
                   <Icon />
-                </a>
-                <span class="network-name text-sm-font">{username}</span>
-              </div>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-cyan-400 transition-colors">{network}</span>
+              </a>
             );
           })
       }
-    </footer>
-    <section class="flex flex-col flex-wrap lg:flex-row mt-4 w-full">
-      <div class="w-full text-center py-2">
-        <span
-          class="text-md-font drop-shadow-enphasis uppercase mb-1 md:font-medium mt-2"
-          >Invitame un café</span
-        >
-      </div>
-      <div
-        class="flex flex-wrap flex-col md:flex-row gap-2 w-full justify-around items-center"
-      >
-        {
-          accounts.map((account) => (
-            <div class="transition flex flex-row dsm:flex-col flex-wrap justify-center items-center w-[100%] md:w-[28%] min-h-[90px] text-normal text-center my-2 shadow-3xl bg-txtbg1">
-              <div class="grow text-bold text-md-font">
+    </div>
+
+    <!-- Apoyo y Donaciones -->
+    <div class="w-full no-print">
+      <div class="bg-gradient-to-br from-cyan-900/10 via-slate-900/40 to-blue-900/10 border border-white/5 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-sm overflow-hidden relative group">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl group-hover:bg-cyan-600/20 transition-all duration-700"></div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-all duration-700"></div>
+
+        <div class="relative z-10 text-center mb-12">
+          <h3 class="text-xs font-black uppercase tracking-[0.4em] text-cyan-400 mb-3">Support my Work</h3>
+          <p class="text-2xl md:text-3xl font-black text-white tracking-tighter mb-4">¿Te gusta lo que hago?</p>
+          <p class="text-sm text-gray-400 font-medium max-w-md mx-auto leading-relaxed">Cada apoyo cuenta para seguir creando herramientas y contenido de calidad para la comunidad.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+          {accounts.map((account) => (
+            <div class="flex flex-col bg-black/40 border border-white/5 rounded-3xl p-6 hover:border-white/10 transition-all duration-300 group/card">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="p-3 bg-white rounded-xl shadow-lg">
+                   <ImageComponent
+                    classes="max-h-[24px] object-contain"
+                    imageName={account.service.toLowerCase().replace(" ", "_") + ".png"}
+                  />
+                </div>
+                <div class="text-left">
+                  <h4 class="text-white font-black tracking-tight text-lg leading-none mb-1">{account.name}</h4>
+                  <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{account.description}</p>
+                </div>
+              </div>
+
+              <div class="mt-auto">
                 {account.link ? (
                   <a
                     href={account.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="bg-enphasis drop-shadow-theme px-3 py-1 rounded hover:drop-shadow-primary transition"
+                    class="flex items-center justify-center w-full py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-2xl hover:bg-cyan-500 hover:text-white transition-all duration-300 shadow-xl"
                   >
-                    {account.name}
+                    {account.cta}
                   </a>
-                ) : (
-                  ""
-                )}
-                {account.qr && (
-                  <ImageComponent
-                    classes="max-w-[200px] mx-auto"
-                    imageName={
-                      account.service.toLowerCase().replace(" ", "_") +
-                      "qr.jpeg"
-                    }
-                  />
-                )}
-              </div>
-              <div class="flex flex-col gap-4 mt-4 bg-primary rounded px-2 py-1">
-                <ImageComponent
-                  classes="max-h-[40px]"
-                  imageName={
-                    account.service.toLowerCase().replace(" ", "_") + ".png"
-                  }
-                />
+                ) : account.qr ? (
+                  <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-2xl inline-block mx-auto group-hover/card:scale-105 transition-transform duration-500">
+                      <ImageComponent
+                        classes="max-w-[140px] mx-auto rounded-lg"
+                        imageName={account.service.toLowerCase().replace(" ", "_") + "qr.jpeg"}
+                      />
+                    </div>
+                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{account.cta}</p>
+                  </div>
+                ) : null}
               </div>
             </div>
-          ))
-        }
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 </Section>
 
 <style>
-  img {
-    aspect-ratio: 1 / 1;
-  }
-  footer a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    height: 32px;
-    width: 32px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  .section {
+    padding-bottom: 5rem;
   }
 </style>
