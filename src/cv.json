@@ -50,8 +50,24 @@
   ],
   "projects": [
     {
+  "name": "Silueta Pro",
+  "image": "",
+  "url": "https://siluetapro.netlify.app/ ",
+  "description": "SaaS profesional para la eliminación de fondos y pulido de bordes mediante procesamiento de imagen en servidor.",
+  "highlights": [
+    "Astro",
+    "Node",
+    "Sharp",
+    "TypeScript",
+    "Supabase",
+    "Stripe",
+    "PayPal",
+    "Tailwind"
+  ]
+},
+    {
       "name": "AgendaYa",
-      "image": "rdtCommunity.avif",
+      "image": "",
       "url": "https://agendaya.netlify.app/",
       "description": "Plataforma para registro de usuarios/negocios, gestión de turnos y agenda de citas.",
       "highlights": [
@@ -66,7 +82,7 @@
       ]
     },{
       "name": "Comunidad Colmillo de Acero",
-      "image": "rdtCommunity.avif",
+      "image": "",
       "url": "https://colmillo.netlify.app/",
       "description": "Comunidad de World of Warcraft 3.3.5a, que ofrece integración con Discord, Twitch, y YouTube para una experiencia completa.",
       "highlights": [
