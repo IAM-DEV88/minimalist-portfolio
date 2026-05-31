@@ -347,7 +347,9 @@ html {
   .filter-checkbox,
   datalist,
   button,
-  footer .flex.gap-4 {
+  a[class*="project-link"],
+  footer .flex.gap-4,
+  div[class*="no-print"] {
     display: none !important;
   }
 
@@ -358,10 +360,13 @@ html {
   .section {
     opacity: 1 !important;
     transform: none !important;
-    page-break-inside: auto !important;
+    page-break-inside: avoid !important;
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
     min-height: auto !important;
+  }
+  .section ~ .section {
+    page-break-before: always !important;
   }
 
   h1, h2, h3, h4, h5, h6 {

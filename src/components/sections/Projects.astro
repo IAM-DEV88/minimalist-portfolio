@@ -37,7 +37,7 @@ function getRole(p: { description: string }): string {
     {projects.map((p) => <option value={p.name} />)}
   </datalist>
 
-  <div id="project-grid" class="flex flex-col gap-3 w-full no-print">
+  <div id="project-grid" class="flex flex-col gap-3 w-full">
     {projects.map((p) => {
       const role = getRole(p);
       const url = (p.url || "").trim();
@@ -110,6 +110,27 @@ function getRole(p: { description: string }): string {
   @keyframes cardIn {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media print {
+    #project-grid { display: block !important; }
+    #project-grid .project-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      background: none !important;
+      border: 1px solid #ddd !important;
+      padding: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+    #project-grid .project-card h3 { color: #000 !important; }
+    #project-grid .project-card p { color: #333 !important; }
+    #project-grid .project-link { display: none !important; }
+    #project-grid .relative.flex-wrap { display: flex !important; }
+    #project-grid .project-card span:not([class*="bg-white"]) {
+      color: #555 !important;
+      background: #f5f5f5 !important;
+      border-color: #ddd !important;
+    }
   }
 </style>
 
