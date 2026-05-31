@@ -26,43 +26,43 @@
   },
   "work": [
     {
-      "name": "Independiente / Freelance",
-      "position": "Desarrollador Fullstack & Arquitecto de Software",
+      "name": "Freelance / Self-Employed",
+      "position": "Fullstack Developer & Software Architect",
       "startDate": "2023-02-01",
       "endDate": null,
       "highlights": [
-        "Diseñé y desarrollé aplicaciones web full-stack con React, TypeScript, Astro y Next.js, usando Supabase para autenticación, base de datos y almacenamiento.",
-        "Integré pasarelas de pago (Stripe, PayPal) con webhooks para actualización de suscripciones y planes en tiempo real.",
-        "Creé APIs serverless con Astro + Edge Functions para procesamiento de imágenes (Sharp) y generación de contenido automatizado (Groq).",
-        "Gestioné despliegues continuos en Netlify con SSR, variables de entorno y redirecciones SPA.",
-        "Implementé sistemas de autenticación con roles y permisos por usuario usando Supabase Auth y Row Level Security.",
-        "Construí interfaces de usuario modernas con Tailwind CSS, Framer Motion y componentes reutilizables."
+        "Built full-stack web applications with React, TypeScript, Astro and Next.js, using Supabase for auth, database, and storage.",
+        "Integrated payment gateways (Stripe, PayPal) with webhooks for real-time subscription and plan updates.",
+        "Created serverless APIs with Astro + Edge Functions for image processing (Sharp) and automated content generation (Groq).",
+        "Managed continuous deployments on Netlify with SSR, environment variables, and SPA redirects.",
+        "Implemented role-based authentication systems with Supabase Auth and Row Level Security.",
+        "Built modern UIs with Tailwind CSS, Framer Motion, and reusable component libraries."
       ]
     },
     {
       "name": "CLAROS SOLUCIONES",
-      "position": "Desarrollador Frontend Senior",
+      "position": "Senior Frontend Developer",
       "startDate": "2019-10-14",
       "endDate": "2023-01-31",
       "highlights": [
-        "Lideré el desarrollo de plataformas web con enfoque en experiencia de usuario (UX), logrando mejoras en tiempos de carga y usabilidad.",
-        "Colaboré con equipos multidisciplinarios (diseño UX, backend QA) para implementar interfaces intuitivas y eficientes usando React y Vue.",
-        "Implementé arquitecturas de componentes reutilizables que redujeron el tiempo de desarrollo de nuevas funcionalidades.",
-        "Optimicé aplicaciones web mediante lazy loading, code splitting y renderizado optimizado, mejorando métricas Core Web Vitals.",
-        "Establecí estándares de calidad con TypeScript, ESLint, pruebas unitarias y revisiones de código entre pares.",
-        "Migré aplicaciones legacy a frameworks modernos (React), mejorando mantenibilidad y rendimiento."
+        "Led web platform development with UX focus, achieving improvements in load times and usability.",
+        "Collaborated with cross-functional teams (UX design, backend, QA) to implement intuitive interfaces using React and Vue.",
+        "Implemented reusable component architectures that reduced development time for new features.",
+        "Optimized web apps through lazy loading, code splitting, and optimized rendering, improving Core Web Vitals scores.",
+        "Established quality standards with TypeScript, ESLint, unit testing, and peer code reviews.",
+        "Migrated legacy applications to modern frameworks (React), improving maintainability and performance."
       ]
     },
     {
-      "name": "Proyectos Personales",
-      "position": "Fundador & Desarrollador Principal",
+      "name": "Personal Projects",
+      "position": "Founder & Lead Developer",
       "startDate": "2019-07-01",
       "endDate": "2023-01-31",
       "highlights": [
-        "Desarrollé aplicaciones full-stack con React, Node.js y MongoDB para gestión de turnos contables y administración de tiendas.",
-        "Construí portales comunitarios para comunidades de gaming con integración de Discord, Twitch y YouTube.",
-        "Implementé addons en LUA para World of Warcraft con sincronización de datos vía API web.",
-        "Publiqué y mantuve proyectos open-source en GitHub con documentación y guías de despliegue."
+        "Developed full-stack applications with React, Node.js and MongoDB for appointment scheduling and store management.",
+        "Built gaming community portals with Discord, Twitch and YouTube integration.",
+        "Implemented LUA addons for World of Warcraft with data sync via web API.",
+        "Published and maintained open-source projects on GitHub with documentation and deployment guides."
       ]
     }
   ],
@@ -71,7 +71,7 @@
       "name": "Silueta Pro",
       "image": "",
       "url": "https://siluetapro.netlify.app/",
-      "description": "SaaS de eliminación de fondos con procesamiento de imágenes en servidor (Sharp), suscripciones vía PayPal, autenticación Supabase, y planes Free/Premium con límites por resolución y herramientas.",
+      "description": "Server-side image processing SaaS for background removal and edge polishing. Features PayPal subscriptions, Free/Premium plans with resolution limits, and Sharp-based processing pipeline.",
       "highlights": [
         "Astro",
         "TypeScript",
@@ -88,7 +88,7 @@
     {
       "name": "LingoCraft",
       "url": "https://github.com/IAM-DEV88/lexigo",
-      "description": "Plataforma multi-tenant de aprendizaje de idiomas con gamificación (XP, rachas, logros), suscripciones PayPal, roles (student/moderator/admin), tutorías con Cal.com, y contenido estructurado en cursos/lecciones.",
+      "description": "Multi-tenant language learning platform with gamification (XP, streaks, achievements), PayPal subscriptions, role-based access (student/moderator/admin), tutoring via Cal.com, and structured course/lesson content.",
       "highlights": [
         "React",
         "TypeScript",
@@ -103,7 +103,7 @@
       "name": "AgendaYa",
       "image": "",
       "url": "https://agendaya.netlify.app/",
-      "description": "Plataforma SaaS de agenda de citas multi-rol con registro de negocios, servicios, horarios, reservas, reseñas, y chat en tiempo real. Panel para business_owner con gestión completa de disponibilidad y notificaciones.",
+      "description": "Multi-role appointment scheduling SaaS with business registration, services, hours, bookings, reviews, and real-time chat. Business owner dashboard with availability management and notifications.",
       "highlights": [
         "React",
         "TypeScript",
@@ -118,7 +118,7 @@
     {
       "name": "BioGalería",
       "url": "",
-      "description": "Red social de biodiversidad con catalogación colaborativa, mapas interactivos (Leaflet), identificación por comunidad, gamificación (niveles, logros), suscripciones Stripe y dashboard por roles (explorer/naturalist/moderator).",
+      "description": "Biodiversity social network with collaborative cataloging, interactive maps (Leaflet), community-powered identification, gamification (levels, achievements), Stripe subscriptions, and role-based dashboards.",
       "highlights": [
         "React",
         "TypeScript",
@@ -133,7 +133,7 @@
     {
       "name": "Grupo GM",
       "url": "https://github.com/IAM-DEV88/grupogm",
-      "description": "Dashboard empresarial multi-tenant con autenticación por empresa, gestión de empleados, contratos, auditoría, módulo Ecotech para monitoreo de pinos, y gráficos interactivos con Recharts.",
+      "description": "Enterprise multi-tenant dashboard with company-based auth, employee management, contracts, audit trail, Ecotech pine monitoring module, and interactive Recharts visualizations.",
       "highlights": [
         "Next.js",
         "TypeScript",
@@ -147,7 +147,7 @@
       "name": "Comunidad Colmillo de Acero",
       "image": "",
       "url": "https://colmillo.netlify.app/",
-      "description": "Portal comunitario para guild de WoW con sistema de reclutamiento, gestor de raids, encuestas, blog automatizado (Groq AI), calendario de eventos, y panel admin con JWT propio.",
+      "description": "Guild community portal with recruitment system, raid scheduler, polls, AI-powered blog (Groq), event calendar, and custom JWT admin panel.",
       "highlights": [
         "Astro",
         "TypeScript",
@@ -163,9 +163,9 @@
       "name": "Comunidad Raid Dominion Tools",
       "image": "rdtCommunity.avif",
       "url": "https://raid-dominion.netlify.app/",
-      "description": "Portal web complementario para la comunidad de WoW con integración de Discord, streaming en Twitch, contenido en YouTube, y herramientas de gestión de guild.",
+      "description": "Complementary web portal for WoW community with Discord integration, Twitch streaming, YouTube content, and guild management tools.",
       "highlights": [
-        "Portal web",
+        "Web Portal",
         "Discord",
         "Twitch",
         "YouTube"
@@ -175,7 +175,7 @@
       "name": "Addon Raid Dominion Tools",
       "image": "rdtAddon.png",
       "url": "https://github.com/IAM-DEV88/RaidDominion",
-      "description": "Addon en LUA para World of Warcraft 3.3.5a que mejora la experiencia de juego con personalizaciones avanzadas de UI, integración con el portal web y automatización de rutinas.",
+      "description": "LUA addon for World of Warcraft 3.3.5a enhancing gameplay with advanced UI customizations, web portal integration, and routine automation.",
       "highlights": [
         "LUA"
       ]
@@ -184,7 +184,7 @@
       "name": "Agenda Contable",
       "image": "agenda.png",
       "url": "https://github.com/IAM-DEV88/agendareact",
-      "description": "Aplicación full-stack con React + Express + MongoDB para gestión de turnos y libro mayor contable, desplegada en Google Cloud con API RESTful y autenticación.",
+      "description": "Full-stack React + Express + MongoDB application for appointment management and accounting ledger, deployed on Google Cloud with RESTful API.",
       "highlights": [
         "React",
         "Node",
@@ -199,7 +199,7 @@
       "name": "Administrador de Tienda",
       "image": "webShopAdmin.png",
       "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
-      "description": "Sistema web full-stack (PHP + MySQL) para control de inventarios, facturación, registro contable y gestión de usuarios, con sesiones persistentes y panel administrativo.",
+      "description": "Full-stack web system (PHP + MySQL) for inventory control, invoicing, accounting records and user management with persistent sessions and admin panel.",
       "highlights": [
         "PHP",
         "MySQL",
@@ -213,7 +213,7 @@
       "name": "Gestor de Estudiantes",
       "image": "studentMng.png",
       "url": "https://iam-dev88.github.io/student-manager/",
-      "description": "Sistema CRUD completo para administración de estudiantes con PHP + JSON, interfaz responsiva, búsqueda y filtros, ideal para gestion académica de profesores.",
+      "description": "Complete CRUD system for student management with PHP + JSON, responsive UI, search and filters, ideal for academic administration.",
       "highlights": [
         "PHP",
         "JavaScript",
@@ -226,14 +226,14 @@
     {
       "name": "Space Invaders",
       "url": "https://iamdev-space-invaders.netlify.app",
-      "description": "Versión web del clásico Space Invaders con canvas API, bucles de juego, detección de colisiones y puntuación, implementado vanilla sin librerías.",
+      "description": "Web version of the classic Space Invaders game built with Canvas API, game loops, collision detection and scoring — vanilla JavaScript without libraries.",
       "highlights": [
         "JavaScript",
         "HTML",
         "CSS"
       ]
     }
-  ],  
+  ],
   "skills": [
     {
       "name": "HTML"

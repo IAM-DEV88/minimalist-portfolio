@@ -2,331 +2,236 @@
 import { projects } from "@cv";
 import Section from "../Section.astro";
 
-const highlightCounts = projects.reduce((acc: Record<string, number>, project) => {
-  project.highlights.forEach((highlight) => {
-    acc[highlight] = (acc[highlight] || 0) + 1;
-  });
-  return acc;
-}, {} as Record<string, number>);
-
-const initialProjects = projects.slice(0, 6);
+function getRole(p: { description: string }): string {
+  const d = p.description.toLowerCase();
+  if (d.includes("saas")) return "SaaS";
+  if (d.includes("aprendizaje") || d.includes("idiomas") || d.includes("language") || d.includes("learning")) return "E-Learning";
+  if (d.includes("agenda") || d.includes("citas") || d.includes("turnos") || d.includes("negocios") || d.includes("appointment") || d.includes("scheduling")) return "Agenda";
+  if (d.includes("biodiversidad") || d.includes("catalogación") || d.includes("naturaleza") || d.includes("biodiversity") || d.includes("cataloging")) return "Ciencia";
+  if (d.includes("dashboard") || d.includes("empresarial") || d.includes("enterprise") || d.includes("multi-tenant") || d.includes("auditoría") || d.includes("inventory") || d.includes("invoicing") || d.includes("management")) return "Dashboard";
+  if (d.includes("addon") || d.includes("lua") || d.includes("wow")) return "Addon";
+  if (d.includes("comunidad") || d.includes("portal") || d.includes("community") || d.includes("guild")) return "Portal";
+  if (d.includes("juego") || d.includes("invaders") || d.includes("canvas") || d.includes("classic") || d.includes("game")) return "Juego";
+  if (d.includes("full-stack") || d.includes("api rest") || d.includes("restful") || d.includes("rest api")) return "Full-Stack";
+  if (d.includes("sistema") || d.includes("inventarios") || d.includes("facturación") || d.includes("gestión") || d.includes("administración") || d.includes("crud")) return "Dashboard";
+  return "Web";
+}
 ---
 
-<Section title="Proyectos" id="section2">
-<div id="project-list" class="flex flex-col w-full gap-8">
-  <!-- Cabecera de Controles: Todo en una sola línea -->
-  <div class="flex flex-col md:flex-row items-center gap-4 w-full no-print mb-8">
-    <!-- Búsqueda -->
-    <div class="relative flex-1 w-full">
-      <input
-        id="search-input"
-        list="projectNames"
-        placeholder="Buscar..."
-        class="w-full bg-white/5 border border-white/10 text-white text-sm rounded-xl px-5 py-2.5 focus:outline-none focus:border-cyan-500 transition-all placeholder:text-gray-500 font-medium backdrop-blur-sm"
+<Section title="Proyectos" id="section2" i18n="section.projects">
+  <div class="flex flex-col w-full gap-4">
+  <div class="flex items-center gap-3 w-full no-print">
+    <span id="project-counter" class="shrink-0 text-[10px] font-bold text-slate-500 bg-slate-800/50 px-2.5 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap">{projects.length} proyectos</span>
+    <div class="relative flex-1">
+      <input id="search-input" list="projectNames" placeholder="Buscar proyecto..."
+        class="w-full bg-slate-800/80 border border-slate-700 text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-all placeholder:text-slate-500 font-medium"
+        data-i18n-placeholder="search.placeholder"
       />
-      <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-500">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </div>
+      <svg class="absolute inset-y-0 right-3 my-auto w-4 h-4 text-slate-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
-
-    <!-- Filtro Desplegable -->
-    <div class="relative w-full md:w-auto">
-      <button 
-        id="filter-toggle"
-        class="flex items-center justify-between w-full md:w-auto min-w-[160px] bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.1em] text-gray-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all group"
-      >
-        <div class="flex items-center gap-2">
-          <svg class="w-3.5 h-3.4 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-          <span>Stack</span>
-        </div>
-        <svg class="w-3.5 h-3.5 transition-transform duration-300 group-[.active]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-      </button>
-
-      <div 
-        id="filter-dropdown" 
-        class="absolute top-full right-0 mt-2 w-full md:w-max min-w-[200px] bg-slate-900/95 border border-white/10 rounded-xl p-3 backdrop-blur-xl shadow-2xl opacity-0 scale-95 pointer-events-none transition-all duration-300 z-40 origin-top-right"
-      >
-        <div class="grid grid-cols-1 gap-y-1">
-          {
-            Object.entries(highlightCounts).map(([highlight, count]) => (
-              <label class="group flex items-center justify-between gap-4 cursor-pointer select-none p-1.5 hover:bg-white/5 rounded-lg transition-colors">
-                <div class="flex items-center gap-2.5">
-                  <div class="relative w-3.5 h-3.5 bg-white/5 border border-white/10 rounded group-hover:border-cyan-500 transition-all overflow-hidden">
-                    <input type="checkbox" value={highlight} class="filter-checkbox absolute inset-0 opacity-0 cursor-pointer z-10" />
-                    <div class="check-mark hidden absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 pointer-events-none">
-                      <svg class="w-full h-full text-white p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
-                    </div>
-                  </div>
-                  <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-white transition-colors">
-                    {highlight}
-                  </span>
-                </div>
-                <span class="text-cyan-500/50 font-black text-[9px] bg-cyan-500/5 px-1.5 py-0.5 rounded border border-cyan-500/10">
-                  {count}
-                </span>
-              </label>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-
-    <!-- Paginación -->
-    <div id="pagination-controls" class="flex items-center gap-3 shrink-0 bg-white/[0.03] border border-white/10 rounded-xl px-3 py-1.5">
-      <button id="prev-page" class="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all disabled:opacity-10 disabled:cursor-not-allowed" aria-label="Anterior">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <span id="page-info" class="text-[9px] font-black uppercase tracking-[0.1em] text-cyan-400/60 min-w-[40px] text-center"></span>
-      <button id="next-page" class="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all disabled:opacity-10 disabled:cursor-not-allowed" aria-label="Siguiente">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      </button>
-    </div>
+    <button id="clear-search" class="shrink-0 text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-500 hover:text-white hover:border-slate-500 transition-all bg-slate-800/50 hidden" data-i18n="search.clear">Limpiar</button>
   </div>
+  <div class="flex flex-wrap gap-1.5 no-print" id="quick-filters"></div>
 
   <datalist id="projectNames">
-    {projects.map((project) => <option value={project.name} />)}
+    {projects.map((p) => <option value={p.name} />)}
   </datalist>
 
-  <!-- Lista de proyectos con Rejilla Dinámica -->
-  <ul
-    id="project-list-items"
-    class="grid grid-cols-1 md:grid-cols-6 gap-4 w-full no-print min-h-[400px]"
-  >
-    {initialProjects.map((project, index) => {
-      let gridClass = "md:col-span-3";
-      if (index === 0) gridClass = "md:col-span-4";
-      if (index === 1) gridClass = "md:col-span-2";
-
+  <div id="project-grid" class="flex flex-col gap-3 w-full no-print">
+    {projects.map((p) => {
+      const role = getRole(p);
+      const url = (p.url || "").trim();
+      const deployed = url.includes(".netlify.app") || url.includes(".vercel.app") || url.includes(".github.io");
+      const gh = url.includes("github.com") ? url : "";
       return (
-        <li 
-          class={`group relative bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col ${gridClass}`} 
-          data-project-name={project.name}
+        <div class="project-card group relative bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-500 transition-all duration-300 flex flex-col gap-3"
+          data-project-name={p.name}
+          data-techs={p.highlights.join(",")}
         >
-          <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          
-          <div class="relative flex flex-col h-full pointer-events-none">
-            <h3 class="text-lg font-black text-white group-hover:text-cyan-400 transition-colors mb-1.5 tracking-tight">
-              {project.name}
-            </h3>
-            <p class="text-[13px] text-gray-400 line-clamp-2 mb-4 leading-relaxed font-medium">
-              {project.description}
-            </p>
-            <div class="mt-auto flex flex-wrap gap-1.5">
-              {project.highlights.map(h => (
-                <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 px-2 py-0.5 bg-white/5 rounded-md border border-white/5 group-hover:border-cyan-500/20 transition-colors">
-                  {h}
-                </span>
-              ))}
+
+
+          <div class="relative flex items-start justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base font-bold text-white group-hover:text-white transition-colors">{p.name}</h3>
+              <span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md
+                {role === 'SaaS' ? 'bg-amber-600/20 text-amber-300 border border-amber-500/30' :
+                 role === 'E-Learning' ? 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/30' :
+                 role === 'Agenda' ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30' :
+                 role === 'Ciencia' ? 'bg-teal-600/20 text-teal-300 border border-teal-500/30' :
+                 role === 'Dashboard' || role === 'Full-Stack' ? 'bg-violet-600/20 text-violet-300 border border-violet-500/30' :
+                 role === 'Addon' ? 'bg-orange-600/20 text-orange-300 border border-orange-500/30' :
+                 role === 'Portal' ? 'bg-sky-600/20 text-sky-300 border border-sky-500/30' :
+                 role === 'Juego' ? 'bg-rose-600/20 text-rose-300 border border-rose-500/30' :
+                 'bg-slate-600/20 text-slate-300 border border-slate-500/30'}"
+              >{role}</span>
+            </div>
+            <div class="flex gap-1.5 shrink-0 mt-1">
+              {deployed && <a href={url} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-cyan-300 hover:bg-slate-600 hover:border-cyan-500 transition-all" title="Sitio en vivo"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>}
+              {gh && <a href={gh} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" title="Código fuente"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>}
             </div>
           </div>
-        </li>
+
+          <p class="relative text-sm text-slate-300 leading-relaxed line-clamp-3">{p.description}</p>
+
+          <div class="relative flex flex-wrap gap-1.5 mt-auto pt-1">
+            {p.highlights.map(h => {
+              const fe = ["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"];
+              const be = ["Node","Express","PHP","Sharp","LUA","Python","BullMQ"];
+              const d = ["Supabase","MongoDB","MySQL","JSON","PostgreSQL"];
+              const inf = ["Netlify","Vercel","G Cloud","Docker","Redis"];
+              const pay = ["Stripe","PayPal"];
+              const svc = ["Discord","Twitch","YouTube","Resend"];
+              const cls = fe.includes(h) ? "text-sky-300 bg-sky-500/15 border-sky-500/25" :
+                         be.includes(h) ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25" :
+                         d.includes(h) ? "text-violet-300 bg-violet-500/15 border-violet-500/25" :
+                         inf.includes(h) ? "text-amber-300 bg-amber-500/15 border-amber-500/25" :
+                         pay.includes(h) ? "text-cyan-300 bg-cyan-500/15 border-cyan-500/25" :
+                         svc.includes(h) ? "text-rose-300 bg-rose-500/15 border-rose-500/25" :
+                         "text-slate-400 bg-slate-700/50 border-slate-600/50";
+              return <span class={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${cls}`}>{h}</span>
+            })}
+          </div>
+        </div>
       )
     })}
-  </ul>
+  </div>
 
-  <!-- Versión de impresión: Todos los proyectos sin paginación -->
-  <ul class="hidden print:block space-y-8 w-full">
-    {projects.map((project) => (
-      <li class="border-b border-gray-200 pb-6 last:border-0">
-        <h3 class="text-lg font-bold text-black mb-2">{project.name}</h3>
-        <p class="text-sm text-gray-700 mb-4 leading-relaxed">{project.description}</p>
-        <div class="flex flex-wrap gap-2">
-          {project.highlights.map(h => (
-            <span class="text-[9pt] font-medium text-gray-600 px-2 py-0.5 bg-gray-100 rounded border border-gray-200">
-              {h}
-            </span>
-          ))}
-        </div>
-        {project.url && (
-          <p class="text-[9pt] text-gray-500 mt-2">
-            URL: <span class="underline">{project.url}</span>
-          </p>
-        )}
-      </li>
-    ))}
-  </ul>
+  <div id="empty-state" class="hidden flex-col items-center justify-center py-20 text-center">
+    <svg class="w-14 h-14 text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <p class="text-base text-slate-500 font-medium" data-i18n="search.empty">No se encontraron proyectos</p>
+  </div>
+</div>
 </Section>
 
 <style>
-  .filter-checkbox:checked ~ .check-mark {
-    display: block;
+  .project-card {
+    animation: cardIn 0.4s ease both;
   }
-  
-  #project-list-items {
-    transition: all 0.5s ease;
-  }
-
-  .project-fade-in {
-    animation: projectFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  @keyframes projectFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px) scale(0.98);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 
 <script define:vars={{ projects }} is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    let searchQuery = "";
-    let selectedFilters = [];
-    let currentPage = 1;
-    const itemsPerPage = 6;
-  
-    const searchInput = document.getElementById("search-input");
-    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-    const projectListItems = document.getElementById("project-list-items");
-    const prevPageButton = document.getElementById("prev-page");
-    const nextPageButton = document.getElementById("next-page");
-    const pageInfo = document.getElementById("page-info");
-    const filterToggle = document.getElementById("filter-toggle");
-    const filterDropdown = document.getElementById("filter-dropdown");
+(function() {
+var DATA = projects;
+try { if (localStorage.getItem('portfolio-lang') === 'en' && window.__CV_EN) DATA = window.__CV_EN.projects; } catch(e) {}
 
-    // Lógica del Desplegable de Filtros
-    filterToggle?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isActive = filterToggle.classList.toggle("active");
-      if (isActive) {
-        filterDropdown?.classList.remove("opacity-0", "scale-95", "pointer-events-none");
-        filterDropdown?.classList.add("opacity-100", "scale-100", "pointer-events-auto");
-      } else {
-        filterDropdown?.classList.add("opacity-0", "scale-95", "pointer-events-none");
-        filterDropdown?.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
-      }
-    });
+function init() {
+  const grid = document.getElementById("project-grid");
+  const inp = document.getElementById("search-input");
+  const empty = document.getElementById("empty-state");
+  const clear = document.getElementById("clear-search");
+  const flt = document.getElementById("quick-filters");
+  const cnt = document.getElementById("project-counter");
 
-    // Cerrar desplegable al hacer clic fuera
-    document.addEventListener("click", (e) => {
-      if (!filterToggle?.contains(e.target) && !filterDropdown?.contains(e.target)) {
-        filterToggle?.classList.remove("active");
-        filterDropdown?.classList.add("opacity-0", "scale-95", "pointer-events-none");
-        filterDropdown?.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
-      }
-    });
-  
-    function getFilteredProjects() {
-      return projects.filter((project) => {
-        const matchesSearch = project.name
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        const matchesFilters =
-          selectedFilters.length === 0 ||
-          selectedFilters.some((filter) => project.highlights.includes(filter));
-        return matchesSearch && matchesFilters;
-      });
+  if (!grid || !inp) return;
+
+  let q = "", act = new Set();
+
+  function techs() {
+    const s = new Set();
+    for (const p of DATA) for (const h of p.highlights) s.add(h);
+    return [...s].sort();
+  }
+
+  function match(p) {
+    if (q) {
+      const lq = q.toLowerCase();
+      if (!p.name.toLowerCase().includes(lq) &&
+          !p.description.toLowerCase().includes(lq) &&
+          !p.highlights.some(h => h.toLowerCase().includes(lq))) return false;
     }
-  
-    function updateProjectList(isInitial = false) {
-      const filteredProjects = getFilteredProjects();
-      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage) || 1;
-  
-      if (currentPage > totalPages) {
-        currentPage = totalPages;
-      }
-  
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const projectsToShow = filteredProjects.slice(startIndex, endIndex);
-  
-      const render = () => {
-        projectListItems.innerHTML = projectsToShow
-          .map((project, index) => {
-            // Rejilla dinámica: el primero destaca un poco más si estamos en la pag 1 y no hay filtros
-            let gridClass = "md:col-span-3";
-            if (currentPage === 1 && searchQuery === "" && selectedFilters.length === 0) {
-              if (index === 0) gridClass = "md:col-span-4";
-              if (index === 1) gridClass = "md:col-span-2";
-            }
+    if (act.size > 0) for (const t of act) if (!p.highlights.includes(t)) return false;
+    return true;
+  }
 
-            return `
-            <li class="group relative bg-white/[0.03] border border-white/5 rounded-2xl p-5 hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer overflow-hidden flex flex-col project-fade-in ${gridClass}" data-project-name="${project.name}" style="animation-delay: ${index * 0.05}s">
-              <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div class="relative flex flex-col h-full pointer-events-none">
-                <h3 class="text-lg font-black text-white group-hover:text-cyan-400 transition-colors mb-1.5 tracking-tight">${project.name}</h3>
-                <p class="text-[13px] text-gray-400 line-clamp-2 mb-4 leading-relaxed font-medium">
-                  ${project.description}
-                </p>
-                <div class="mt-auto flex flex-wrap gap-1.5">
-                  ${project.highlights.map(h => `
-                    <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 px-2 py-0.5 bg-white/5 rounded-md border border-white/5 group-hover:border-cyan-500/20 transition-colors">
-                      ${h}
-                    </span>
-                  `).join('')}
-                </div>
-              </div>
-            </li>`;
-          })
-          .join("");
+  function col(t) {
+    const fe = ["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"];
+    const be = ["Node","Express","PHP","Sharp","LUA","Python","BullMQ"];
+    const d = ["Supabase","MongoDB","MySQL","JSON","PostgreSQL"];
+    const inf = ["Netlify","Vercel","G Cloud","Docker","Redis"];
+    const pay = ["Stripe","PayPal"];
+    const svc = ["Discord","Twitch","YouTube","Resend"];
+    if (fe.includes(t)) return 'text-sky-300 bg-sky-500/15 border-sky-500/25';
+    if (be.includes(t)) return 'text-emerald-300 bg-emerald-500/15 border-emerald-500/25';
+    if (d.includes(t)) return 'text-violet-300 bg-violet-500/15 border-violet-500/25';
+    if (inf.includes(t)) return 'text-amber-300 bg-amber-500/15 border-amber-500/25';
+    if (pay.includes(t)) return 'text-cyan-300 bg-cyan-500/15 border-cyan-500/25';
+    if (svc.includes(t)) return 'text-rose-300 bg-rose-500/15 border-rose-500/25';
+    return 'text-slate-400 bg-slate-700/50 border-slate-600/50';
+  }
 
-        projectListItems.style.opacity = "1";
+  function roleClass(r) {
+    const m = {SaaS:'bg-amber-600/20 text-amber-300 border-amber-500/30','E-Learning':'bg-emerald-600/20 text-emerald-300 border-emerald-500/30',Agenda:'bg-indigo-600/20 text-indigo-300 border-indigo-500/30',Ciencia:'bg-teal-600/20 text-teal-300 border-teal-500/30',Dashboard:'bg-violet-600/20 text-violet-300 border-violet-500/30','Full-Stack':'bg-violet-600/20 text-violet-300 border-violet-500/30',Addon:'bg-orange-600/20 text-orange-300 border-orange-500/30',Portal:'bg-sky-600/20 text-sky-300 border-sky-500/30',Juego:'bg-rose-600/20 text-rose-300 border-rose-500/30'};
+    return m[r]||'bg-slate-600/20 text-slate-300 border-slate-500/30';
+  }
 
-        projectListItems.querySelectorAll("li").forEach((li) => {
-          li.addEventListener("click", () => {
-            window.dispatchEvent(new CustomEvent('open-project-modal', { 
-              detail: { projectName: li.dataset.projectName } 
-            }));
-          });
-        });
-      };
+  function getRole(p) {
+    const d = p.description.toLowerCase();
+    if (d.includes("saas")) return "SaaS";
+    if (d.includes("aprendizaje") || d.includes("idiomas") || d.includes("language") || d.includes("learning")) return "E-Learning";
+    if (d.includes("agenda") || d.includes("citas") || d.includes("turnos") || d.includes("negocios") || d.includes("appointment") || d.includes("scheduling")) return "Agenda";
+    if (d.includes("biodiversidad") || d.includes("catalogación") || d.includes("naturaleza") || d.includes("biodiversity") || d.includes("cataloging")) return "Ciencia";
+    if (d.includes("dashboard") || d.includes("empresarial") || d.includes("enterprise") || d.includes("multi-tenant") || d.includes("auditoría") || d.includes("inventory") || d.includes("invoicing") || d.includes("management")) return "Dashboard";
+    if (d.includes("addon") || d.includes("lua") || d.includes("wow")) return "Addon";
+    if (d.includes("comunidad") || d.includes("portal") || d.includes("community") || d.includes("guild")) return "Portal";
+    if (d.includes("juego") || d.includes("invaders") || d.includes("canvas") || d.includes("classic") || d.includes("game")) return "Juego";
+    if (d.includes("full-stack") || d.includes("api rest") || d.includes("restful") || d.includes("rest api")) return "Full-Stack";
+    if (d.includes("sistema") || d.includes("inventarios") || d.includes("facturación") || d.includes("gestión") || d.includes("administración") || d.includes("crud")) return "Dashboard";
+    return "Web";
+  }
 
-      if (isInitial) {
+  function render() {
+    const filtered = DATA.filter(match);
+    if (empty) empty.classList.toggle("hidden", filtered.length > 0);
+    if (cnt) cnt.textContent = filtered.length + " de " + DATA.length + " proyectos";
+    if (clear) clear.classList.toggle("hidden", !q && act.size === 0);
+
+    let html = "";
+    for (const p of filtered) {
+      const url = (p.url||"").trim(), role = getRole(p);
+      const deployed = url.includes(".netlify.app")||url.includes(".vercel.app")||url.includes(".github.io");
+      const gh = url.includes("github.com")?url:"";
+      html += '<div class="project-card group relative bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-500 transition-all duration-300 flex flex-col gap-3" data-project-name="'+p.name+'">';
+      html += '<div class="relative flex items-start justify-between gap-3"><div class="min-w-0 flex-1"><h3 class="text-base font-bold text-white group-hover:text-white transition-colors">'+p.name+'</h3>';
+      html += '<span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border '+roleClass(role)+'">'+role+'</span></div>';
+      html += '<div class="flex gap-1.5 shrink-0 mt-1">';
+      if (deployed) html += '<a href="'+url+'" target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-cyan-300 hover:bg-slate-600 hover:border-cyan-500 transition-all" title="Live site"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>';
+      if (gh) html += '<a href="'+gh+'" target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" title="Source code"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>';
+      html += '</div></div><p class="relative text-sm text-slate-300 leading-relaxed line-clamp-3">'+p.description+'</p>';
+      html += '<div class="relative flex flex-wrap gap-1.5 mt-auto pt-1">';
+      for (const h of p.highlights) html += '<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md border '+col(h)+'">'+h+'</span>';
+      html += '</div></div>';
+    }
+    grid.innerHTML = html;
+    for (const el of grid.querySelectorAll(".project-card")) {
+      el.addEventListener("mousemove", (e) => { const r=el.getBoundingClientRect(); el.style.setProperty("--mouse-x",e.clientX-r.left+"px"); el.style.setProperty("--mouse-y",e.clientY-r.top+"px"); });
+    }
+  }
+
+  // Build tech filter buttons
+  if (flt) {
+    for (const t of techs()) {
+      const btn = document.createElement("button");
+      btn.className = "tech-filter text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 transition-all bg-slate-800/50";
+      btn.textContent = t;
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("active"); btn.classList.toggle("bg-cyan-600/20"); btn.classList.toggle("border-cyan-500/40"); btn.classList.toggle("text-cyan-300");
+        if (act.has(t)) act.delete(t); else act.add(t);
         render();
-      } else {
-        projectListItems.style.opacity = "0";
-        setTimeout(render, 200);
-      }
-  
-      pageInfo.textContent = `${currentPage} / ${totalPages}`;
-      prevPageButton.disabled = currentPage === 1;
-      nextPageButton.disabled = currentPage === totalPages;
+      });
+      flt.appendChild(btn);
     }
-  
-    function handleSearchChange() {
-      searchQuery = searchInput.value;
-      currentPage = 1;
-      updateProjectList();
-    }
-  
-    function handleFilterChange(event) {
-      const filter = event.target.value;
-      if (event.target.checked) {
-        selectedFilters.push(filter);
-      } else {
-        selectedFilters = selectedFilters.filter((f) => f !== filter);
-      }
-      currentPage = 1;
-      updateProjectList();
-    }
-  
-    function handlePrevPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        updateProjectList();
-      }
-    }
-  
-    function handleNextPage() {
-      const filteredProjects = getFilteredProjects();
-      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        updateProjectList();
-      }
-    }
-  
-    searchInput.addEventListener("input", handleSearchChange);
-    filterCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", handleFilterChange);
-    });
-    prevPageButton.addEventListener("click", handlePrevPage);
-    nextPageButton.addEventListener("click", handleNextPage);
-  
-    updateProjectList(true);
-  });
+  }
+
+  inp.addEventListener("input", () => { q = inp.value.trim(); render(); });
+  if (clear) clear.addEventListener("click", () => { inp.value=""; q=""; for(const b of flt?.querySelectorAll(".tech-filter")||[]){b.classList.remove("active","bg-cyan-600/20","border-cyan-500/40","text-cyan-300")} act.clear(); render(); inp.focus(); });
+  inp.addEventListener("keydown", (e) => { if (e.key==="Escape") { inp.value=""; q=""; render(); inp.blur(); } });
+  render();
+}
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
 </script>

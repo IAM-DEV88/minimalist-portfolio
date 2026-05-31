@@ -30,6 +30,14 @@ const { email, phone } = basics;
         </div>
       </a>
 
+      <div class="flex items-center gap-1.5">
+        <button id="theme-toggle" class="p-2 rounded-lg border border-slate-700 text-slate-400 hover:text-amber-300 hover:border-amber-500/40 transition-all bg-slate-800/50" aria-label="Toggle theme">
+          <svg id="theme-icon-sun" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-icon-moon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="lang-toggle" class="text-[10px] font-black tracking-widest px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-cyan-300 hover:border-cyan-500 transition-all bg-slate-800/50" data-i18n="lang.btn">EN</button>
+      </div>
+
       <!-- Botón del menú hamburguesa para móviles -->
       <button class="sm:hidden text-white p-2 hover:bg-white/5 rounded-xl transition-colors" id="menu-toggle" aria-label="Abrir menú">
         <svg
@@ -51,11 +59,11 @@ const { email, phone } = basics;
       <div class="hidden sm:block">
         <div class="relative">
           <ul id="menu" class="flex items-center gap-8 text-[11px] uppercase font-black tracking-[0.2em] text-gray-400">
-            <li><a href="#section1" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Inicio</a></li>
-            <li><a href="#section2" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Proyectos</a></li>
-            <li><a href="#section3" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Experiencia</a></li>
-            <li><a href="#section4" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Acerca</a></li>
-            <li><a href="#section5" class="nav-link hover:text-cyan-400 transition-all hover:scale-110">Contacto</a></li>
+            <li><a href="#section1" class="nav-link hover:text-cyan-400 transition-all hover:scale-110" data-i18n="nav.home">Inicio</a></li>
+            <li><a href="#section2" class="nav-link hover:text-cyan-400 transition-all hover:scale-110" data-i18n="nav.projects">Proyectos</a></li>
+            <li><a href="#section3" class="nav-link hover:text-cyan-400 transition-all hover:scale-110" data-i18n="nav.experience">Experiencia</a></li>
+            <li><a href="#section4" class="nav-link hover:text-cyan-400 transition-all hover:scale-110" data-i18n="nav.about">Acerca</a></li>
+            <li><a href="#section5" class="nav-link hover:text-cyan-400 transition-all hover:scale-110" data-i18n="nav.contact">Contacto</a></li>
           </ul>
           <!-- Indicador activo moderno -->
           <div id="nav-indicator" class="absolute bottom-[-14px] h-[3px] bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-500 ease-out opacity-0 shadow-[0_0_15px_rgba(6,182,212,0.8)] z-[60]"></div>
@@ -67,11 +75,11 @@ const { email, phone } = basics;
         id="menu-mobile"
         class="absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-2xl border-b border-white/5 sm:hidden flex flex-col items-center py-10 gap-6 text-xs uppercase font-black tracking-[0.3em] text-gray-400"
       >
-        <li><a href="#section1" class="hover:text-cyan-400">Inicio</a></li>
-        <li><a href="#section2" class="hover:text-cyan-400">Proyectos</a></li>
-        <li><a href="#section3" class="hover:text-cyan-400">Experiencia</a></li>
-        <li><a href="#section4" class="hover:text-cyan-400">Acerca</a></li>
-        <li><a href="#section5" class="hover:text-cyan-400">Contacto</a></li>
+        <li><a href="#section1" class="hover:text-cyan-400" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="#section2" class="hover:text-cyan-400" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#section3" class="hover:text-cyan-400" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#section4" class="hover:text-cyan-400" data-i18n="nav.about">Acerca</a></li>
+        <li><a href="#section5" class="hover:text-cyan-400" data-i18n="nav.contact">Contacto</a></li>
       </ul>
     </nav>
   </navbar>
@@ -132,7 +140,7 @@ const { email, phone } = basics;
           <div id="modal-project-link"></div>
           
           <div class="pt-10 border-t border-white/10">
-            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-8 text-center">Conectar por este proyecto</p>
+            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 mb-8 text-center" data-i18n="modal.connect">Conectar por este proyecto</p>
             <footer class="flex justify-center gap-8">
               {email && (
                 <a href={`mailto:${email}`} class="group relative p-5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[1.5rem] transition-all duration-300 hover:-translate-y-2" title="Email">
@@ -155,9 +163,47 @@ const { email, phone } = basics;
 </Layout>
 
 <script define:vars={{ projects }} is:inline>
+  const TR = {"es":{"meta.title":"Web Oficial","nav.home":"Inicio","nav.projects":"Proyectos","nav.experience":"Experiencia","nav.about":"Acerca","nav.contact":"Contacto","section.projects":"Proyectos","section.experience":"Experiencia","section.about":"Acerca de mi","section.contact":"Contacto","search.placeholder":"Buscar proyecto...","search.empty":"No se encontraron proyectos","search.clear":"Limpiar filtros","link.live":"Sitio en vivo","link.source":"Código fuente","link.explore":"Explorar Proyecto","modal.connect":"Conectar por este proyecto","modal.close":"Cerrar","about.subtitle":"Tecnologías & Herramientas","about.summary":"Desarrollador Fullstack certificado con una trayectoria probada en la resolución de desafíos tecnológicos para hoteles, instituciones educativas y empresas de pequeño a mediano tamaño. Especializado en el diseño y ejecución de estrategias digitales efectivas.","contact.email":"Correo","contact.phone":"Teléfono","contact.donate.paypal":"Donar con PayPal","contact.donate.nequi":"Escanear QR Nequi","contact.donate.paypal.desc":"Pagos internacionales seguros","contact.donate.nequi.desc":"Transferencias rápidas (Colombia)","contact.support.title":"¿Te gusta lo que hago?","contact.support.desc":"Cada apoyo cuenta para seguir creando herramientas y contenido de calidad para la comunidad.","duration.year":"año","duration.years":"años","duration.month":"mes","duration.months":"meses","duration.and":"y","duration.present":"Actual","aria.menu":"Abrir menú","aria.close":"Cerrar","aria.scrollUp":"Subir sección","aria.scrollDown":"Bajar sección","lang.btn":"EN","phone.tooltip":"Teléfono","hero.label":"Desarrollador Fullstack con amplia experiencia en ofrecer soluciones tecnológicas personalizadas y efectivas"},"en":{"meta.title":"Official Website","nav.home":"Home","nav.projects":"Projects","nav.experience":"Experience","nav.about":"About","nav.contact":"Contact","section.projects":"Projects","section.experience":"Experience","section.about":"About Me","section.contact":"Contact","search.placeholder":"Search project...","search.empty":"No projects found","search.clear":"Clear filters","link.live":"Live site","link.source":"Source code","link.explore":"Explore Project","modal.connect":"Connect about this project","modal.close":"Close","about.subtitle":"Technologies & Tools","about.summary":"Certified Fullstack Developer with a proven track record in solving technology challenges for hotels, educational institutions, and small to medium-sized businesses. Specialized in the design and execution of effective digital strategies.","contact.email":"Email","contact.phone":"Phone","contact.donate.paypal":"Donate with PayPal","contact.donate.nequi":"Scan Nequi QR","contact.donate.paypal.desc":"Secure international payments","contact.donate.nequi.desc":"Quick transfers (Colombia)","contact.support.title":"Like what I do?","contact.support.desc":"Every bit of support helps me keep creating quality tools and content for the community.","duration.year":"year","duration.years":"years","duration.month":"month","duration.months":"months","duration.and":"and","duration.present":"Present","aria.menu":"Open menu","aria.close":"Close","aria.scrollUp":"Scroll up","aria.scrollDown":"Scroll down","lang.btn":"ES","phone.tooltip":"Phone","hero.label":"Fullstack Developer with extensive experience delivering customized and effective technology solutions"}};
+  const CV_EN = {"projects":[{"name":"Silueta Pro","image":"","url":"https://siluetapro.netlify.app/","description":"Server-side image processing SaaS for background removal and edge polishing. Features PayPal subscriptions, Free/Premium plans with resolution limits, and Sharp-based processing pipeline.","highlights":["Astro","TypeScript","Node","Sharp","Supabase","Stripe","PayPal","Tailwind","Redis","BullMQ"]},{"name":"LingoCraft","image":"","url":"https://github.com/IAM-DEV88/lexigo","description":"Multi-tenant language learning platform with gamification (XP, streaks, achievements), PayPal subscriptions, role-based access (student/moderator/admin), tutoring via Cal.com, and structured course/lesson content.","highlights":["React","TypeScript","Vite","Supabase","Tailwind","PayPal","Framer Motion"]},{"name":"AgendaYa","image":"","url":"https://agendaya.netlify.app/","description":"Multi-role appointment scheduling SaaS with business registration, services, hours, bookings, reviews, and real-time chat. Business owner dashboard with availability management and notifications.","highlights":["React","TypeScript","Vite","Redux","Supabase","Tailwind","Netlify","PayPal"]},{"name":"BioGalería","image":"","url":"","description":"Biodiversity social network with collaborative cataloging, interactive maps (Leaflet), community-powered identification, gamification (levels, achievements), Stripe subscriptions, and role-based dashboards.","highlights":["React","TypeScript","Vite","Supabase","Tailwind","Leaflet","Stripe","Framer Motion"]},{"name":"Grupo GM","image":"","url":"https://github.com/IAM-DEV88/grupogm","description":"Enterprise multi-tenant dashboard with company-based auth, employee management, contracts, audit trail, Ecotech pine monitoring module, and interactive Recharts visualizations.","highlights":["Next.js","TypeScript","Tailwind","Framer Motion","Recharts","Zod"]},{"name":"Comunidad Colmillo de Acero","image":"","url":"https://colmillo.netlify.app/","description":"Guild community portal with recruitment system, raid scheduler, polls, AI-powered blog (Groq), event calendar, and custom JWT admin panel.","highlights":["Astro","TypeScript","Supabase","Tailwind","Alpine.js","Discord","Twitch","YouTube"]},{"name":"Comunidad Raid Dominion Tools","image":"rdtCommunity.avif","url":"https://raid-dominion.netlify.app/","description":"Complementary web portal for WoW community with Discord integration, Twitch streaming, YouTube content, and guild management tools.","highlights":["Web Portal","Discord","Twitch","YouTube"]},{"name":"Addon Raid Dominion Tools","image":"rdtAddon.png","url":"https://github.com/IAM-DEV88/RaidDominion","description":"LUA addon for World of Warcraft 3.3.5a enhancing gameplay with advanced UI customizations, web portal integration, and routine automation.","highlights":["LUA"]},{"name":"Gestor de Estudiantes","image":"studentMng.png","url":"https://iam-dev88.github.io/student-manager/","description":"Complete CRUD system for student management with PHP + JSON, responsive UI, search and filters, ideal for academic administration.","highlights":["PHP","JavaScript","HTML","CSS","JSON","CRUD"]},{"name":"Administrador de Tienda","image":"webShopAdmin.png","url":"https://github.com/IAM-DEV88/AdminTiendaWeb","description":"Full-stack web system (PHP + MySQL) for inventory control, invoicing, accounting records and user management with persistent sessions and admin panel.","highlights":["PHP","MySQL","JavaScript","HTML","CSS","CRUD"]},{"name":"Agenda Contable","image":"agenda.png","url":"https://github.com/IAM-DEV88/agendareact","description":"Full-stack React + Express + MongoDB application for appointment management and accounting ledger, deployed on Google Cloud with RESTful API.","highlights":["React","Node","Express","MongoDB","Axios","G Cloud","CRUD"]},{"name":"Space Invaders","image":"","url":"https://iamdev-space-invaders.netlify.app","description":"Web version of the classic Space Invaders game built with Canvas API, game loops, collision detection and scoring.","highlights":["JavaScript","HTML","CSS"]}],"work":[{"name":"Freelance / Self-Employed","position":"Fullstack Developer & Software Architect","startDate":"2023-02-01","endDate":null,"highlights":["Built full-stack web applications with React, TypeScript, Astro and Next.js, using Supabase for auth, database, and storage.","Integrated payment gateways (Stripe, PayPal) with webhooks for real-time subscription and plan updates.","Created serverless APIs with Astro + Edge Functions for image processing (Sharp) and automated content generation (Groq).","Managed continuous deployments on Netlify with SSR, environment variables, and SPA redirects.","Implemented role-based authentication systems with Supabase Auth and Row Level Security.","Built modern UIs with Tailwind CSS, Framer Motion, and reusable component libraries."]},{"name":"CLAROS SOLUCIONES","position":"Senior Frontend Developer","startDate":"2019-10-14","endDate":"2023-01-31","highlights":["Led web platform development with UX focus, achieving improvements in load times and usability.","Collaborated with cross-functional teams (UX design, backend, QA) to implement intuitive interfaces using React and Vue.","Implemented reusable component architectures that reduced development time for new features.","Optimized web apps through lazy loading, code splitting, and optimized rendering, improving Core Web Vitals scores.","Established quality standards with TypeScript, ESLint, unit testing, and peer code reviews.","Migrated legacy applications to modern frameworks (React), improving maintainability and performance."]},{"name":"Personal Projects","position":"Founder & Lead Developer","startDate":"2019-07-01","endDate":"2023-01-31","highlights":["Developed full-stack applications with React, Node.js and MongoDB for appointment scheduling and store management.","Built gaming community portals with Discord, Twitch and YouTube integration.","Implemented LUA addons for World of Warcraft with data sync via web API.","Published and maintained open-source projects on GitHub with documentation and deployment guides."]}]};
+
+  window.__CV_EN = CV_EN;
+  let _projects = projects;
+  let _work = null;
+
+  function setLang(lang) {
+    const t = TR[lang];
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+    document.title = t['meta.title'] || document.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', lang === 'en' ? 'Certified Fullstack Developer with a proven track record in solving technology challenges for hotels, educational institutions, and small to medium-sized businesses. Specialized in the design and execution of effective digital strategies.' : 'Desarrollador Fullstack certificado con una trayectoria probada en la resolución de desafíos tecnológicos para hoteles, instituciones educativas y empresas de pequeño a mediano tamaño. Especializado en el diseño y ejecución de estrategias digitales efectivas.');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key]) el.setAttribute('placeholder', t[key]);
+    });
+    if (lang === 'en') {
+      _projects = CV_EN.projects;
+      _work = CV_EN.work;
+    } else {
+      _projects = projects;
+      _work = null;
+    }
+    try { localStorage.setItem('portfolio-lang', lang); } catch {}
+    window.dispatchEvent(new CustomEvent('langchange', { detail: { lang, projects: _projects, work: _work } }));
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem('portfolio-lang');
+    const btn = document.getElementById('lang-toggle');
+    btn?.addEventListener('click', () => {
+      const current = document.documentElement.lang === 'en' ? 'en' : 'es';
+      setLang(current === 'en' ? 'es' : 'en');
+    });
+
     // @ts-ignore
-    const _projects = projects;
     // Desactivar restauración automática del scroll y forzar inicio en el top
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -173,11 +219,13 @@ const { email, phone } = basics;
       if (!project) return;
 
       document.getElementById("modal-project-name").textContent = project.name;
-      document.getElementById("modal-project-img").innerHTML = 
-        `<img src="/gallery/project/${project.image}" alt="${project.name}" class="w-full h-full object-contain md:object-cover transition-all duration-700" />`;
+      const imgHtml = project.image
+        ? `<img src="/gallery/project/${project.image}" alt="${project.name}" class="w-full h-full object-contain md:object-cover transition-all duration-700" />`
+        : `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/5 to-blue-600/5"><span class="text-6xl font-black text-white/10 tracking-tighter">${project.name.split(' ').map(w => w[0]).join('').slice(0, 3)}</span></div>`;
+      document.getElementById("modal-project-img").innerHTML = imgHtml;
       document.getElementById("modal-project-description").textContent = project.description;
       document.getElementById("modal-project-link").innerHTML = 
-        `<a target="_blank" href="${project.url}" class="inline-flex items-center justify-center w-full px-10 py-5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)]">Explorar Proyecto</a>`;
+        `<a target="_blank" href="${project.url}" class="inline-flex items-center justify-center w-full px-10 py-5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)]" data-i18n="link.explore">Explorar Proyecto</a>`;
       
       document.getElementById("modal-project-highlights").innerHTML = 
         project.highlights.map(h => `
@@ -211,6 +259,114 @@ const { email, phone } = basics;
     // Listen for custom event from Projects.astro
     window.addEventListener('open-project-modal', (e) => {
       openModal(e.detail.projectName);
+    });
+
+    function formatDuration(startDate, endDate, t) {
+      const s = new Date(startDate);
+      const e = endDate ? new Date(endDate) : new Date();
+      const md = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth());
+      const y = Math.floor(md / 12);
+      const m = md % 12;
+      let str = "";
+      if (y > 0) str += y === 1 ? `1 ${t['duration.year']}` : `${y} ${t['duration.years']}`;
+      if (m > 0) {
+        str += str ? ` ${t['duration.and']} ` : "";
+        str += m === 1 ? `1 ${t['duration.month']}` : `${m} ${t['duration.months']}`;
+      }
+      return str;
+    }
+
+    function getRole(p) {
+      const d = p.description.toLowerCase();
+      if (d.includes("saas")) return "SaaS";
+      if (d.includes("aprendizaje") || d.includes("idiomas") || d.includes("language") || d.includes("learning")) return "E-Learning";
+      if (d.includes("agenda") || d.includes("citas") || d.includes("turnos") || d.includes("negocios") || d.includes("appointment") || d.includes("scheduling")) return "Agenda";
+      if (d.includes("biodiversidad") || d.includes("catalogación") || d.includes("naturaleza") || d.includes("biodiversity") || d.includes("cataloging")) return "Ciencia";
+      if (d.includes("dashboard") || d.includes("empresarial") || d.includes("enterprise") || d.includes("multi-tenant") || d.includes("auditoría") || d.includes("inventory") || d.includes("invoicing") || d.includes("management")) return "Dashboard";
+      if (d.includes("addon") || d.includes("lua") || d.includes("wow")) return "Addon";
+      if (d.includes("comunidad") || d.includes("portal") || d.includes("community") || d.includes("guild")) return "Portal";
+      if (d.includes("juego") || d.includes("invaders") || d.includes("canvas") || d.includes("classic") || d.includes("game")) return "Juego";
+      if (d.includes("full-stack") || d.includes("api rest") || d.includes("restful") || d.includes("rest api")) return "Full-Stack";
+      if (d.includes("sistema") || d.includes("inventarios") || d.includes("facturación") || d.includes("gestión") || d.includes("administración") || d.includes("crud")) return "Dashboard";
+      return "Web";
+    }
+    function roleClass(role) {
+      const m = {SaaS:'bg-amber-600/20 text-amber-300 border-amber-500/30','E-Learning':'bg-emerald-600/20 text-emerald-300 border-emerald-500/30',Agenda:'bg-indigo-600/20 text-indigo-300 border-indigo-500/30',Ciencia:'bg-teal-600/20 text-teal-300 border-teal-500/30',Dashboard:'bg-violet-600/20 text-violet-300 border-violet-500/30','Full-Stack':'bg-violet-600/20 text-violet-300 border-violet-500/30',Addon:'bg-orange-600/20 text-orange-300 border-orange-500/30',Portal:'bg-sky-600/20 text-sky-300 border-sky-500/30',Juego:'bg-rose-600/20 text-rose-300 border-rose-500/30'};
+      return m[role]||'bg-slate-600/20 text-slate-300 border-slate-500/30';
+    }
+    function techColor(t) {
+      const fe=["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"],be=["Node","Express","PHP","Sharp","LUA","Python","BullMQ"],db=["Supabase","MongoDB","MySQL","JSON","PostgreSQL"],inf=["Netlify","Vercel","G Cloud","Docker","Redis"],pay=["Stripe","PayPal"],svc=["Discord","Twitch","YouTube","Resend"];
+      if(fe.includes(t)) return 'text-sky-300 bg-sky-500/15 border-sky-500/25';
+      if(be.includes(t)) return 'text-emerald-300 bg-emerald-500/15 border-emerald-500/25';
+      if(db.includes(t)) return 'text-violet-300 bg-violet-500/15 border-violet-500/25';
+      if(inf.includes(t)) return 'text-amber-300 bg-amber-500/15 border-amber-500/25';
+      if(pay.includes(t)) return 'text-cyan-300 bg-cyan-500/15 border-cyan-500/25';
+      if(svc.includes(t)) return 'text-rose-300 bg-rose-500/15 border-rose-500/25';
+      return 'text-slate-400 bg-slate-700/50 border-slate-600/50';
+    }
+
+    window.addEventListener('langchange', (e) => {
+      const lang = e.detail.lang;
+      const t = TR[lang];
+      const projData = e.detail.projects;
+      const workData = e.detail.work;
+
+      const grid = document.getElementById('project-grid');
+      if (grid && projData) {
+        grid.innerHTML = projData.map(p => {
+          const url = (p.url||'').trim();
+          const role = getRole(p);
+          const deployed = url.includes('.netlify.app')||url.includes('.vercel.app')||url.includes('.github.io');
+          const gh = url.includes('github.com')?url:'';
+          return `<div class="project-card group relative bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-500 transition-all duration-300 flex flex-col gap-3" data-project-name="${p.name}">
+
+            <div class="relative flex items-start justify-between gap-3"><div class="min-w-0 flex-1"><h3 class="text-base font-bold text-white group-hover:text-white transition-colors">${p.name}</h3>
+            <span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border ${roleClass(role)}">${role}</span></div>
+            <div class="flex gap-1.5 shrink-0 mt-1">${deployed?'<a href="'+url+'" target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-cyan-300 hover:bg-slate-600 hover:border-cyan-500 transition-all" title="Live site"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>':''}${gh?'<a href="'+gh+'" target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" title="Source code"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>':''}</div></div>
+            <p class="relative text-sm text-slate-300 leading-relaxed line-clamp-3">${p.description}</p>
+            <div class="relative flex flex-wrap gap-1.5 mt-auto pt-1">${p.highlights.map(h => `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md border ${techColor(h)}">${h}</span>`).join('')}</div></div>`;
+        }).join('');
+        grid.querySelectorAll(".project-card").forEach(el => {
+          el.addEventListener("mousemove", (e) => { const r=el.getBoundingClientRect(); el.style.setProperty("--mouse-x",e.clientX-r.left+"px"); el.style.setProperty("--mouse-y",e.clientY-r.top+"px"); });
+        });
+      }
+
+      const list = document.getElementById('experience-list');
+      if (list && workData) {
+        list.innerHTML = workData.map(w => {
+          const dur = formatDuration(w.startDate, w.endDate, t);
+          return `<article class="exp-card group relative bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-500 transition-all duration-300 flex flex-col gap-3">
+            <div class="flex items-start justify-between gap-4"><div class="min-w-0 flex-1"><h3 class="text-base font-bold text-white group-hover:text-white transition-colors">${w.name}</h3><p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-0.5">${w.position}</p></div>
+            <div class="flex flex-col items-end shrink-0"><span class="text-[11px] font-bold text-cyan-400 whitespace-nowrap">${dur}</span><span class="text-[10px] text-slate-500 font-medium whitespace-nowrap">${w.startDate} — <span class="exp-end">${w.endDate||t['duration.present']}</span></span></div></div>
+            <ul class="flex flex-col gap-2 mt-1">${w.highlights.map(h => `<li class="flex gap-2.5 text-sm text-slate-300 leading-relaxed"><span class="text-cyan-500/60 mt-1.5 shrink-0"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></span><span>${h}</span></li>`).join('')}</ul></article>`;
+        }).join('');
+      } else if (list && !workData) {
+        location.reload();
+      }
+    });
+
+    if (saved === 'en') { setLang('en'); }
+
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+    function setTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#f8fafc' : '#0f192b');
+      sunIcon?.classList.toggle('hidden', t === 'dark');
+      moonIcon?.classList.toggle('hidden', t === 'light');
+      try { localStorage.setItem('portfolio-theme', t); } catch {}
+    }
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light' || (savedTheme !== 'dark' && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+    themeBtn?.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      setTheme(cur === 'dark' ? 'light' : 'dark');
     });
 
     closeModalBtn.addEventListener("click", closeModal);
