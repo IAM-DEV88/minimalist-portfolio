@@ -1,27 +1,13 @@
 ---
 import { projects } from "@cv";
 import Section from "../Section.astro";
-
-function getRole(p: { description: string }): string {
-  const d = p.description.toLowerCase();
-  if (d.includes("saas")) return "SaaS";
-  if (d.includes("aprendizaje") || d.includes("idiomas") || d.includes("language") || d.includes("learning")) return "E-Learning";
-  if (d.includes("agenda") || d.includes("citas") || d.includes("turnos") || d.includes("negocios") || d.includes("appointment") || d.includes("scheduling")) return "Agenda";
-  if (d.includes("biodiversidad") || d.includes("catalogación") || d.includes("naturaleza") || d.includes("biodiversity") || d.includes("cataloging")) return "Ciencia";
-  if (d.includes("dashboard") || d.includes("empresarial") || d.includes("enterprise") || d.includes("multi-tenant") || d.includes("auditoría") || d.includes("inventory") || d.includes("invoicing") || d.includes("management")) return "Dashboard";
-  if (d.includes("addon") || d.includes("lua") || d.includes("wow")) return "Addon";
-  if (d.includes("comunidad") || d.includes("portal") || d.includes("community") || d.includes("guild")) return "Portal";
-  if (d.includes("juego") || d.includes("invaders") || d.includes("canvas") || d.includes("classic") || d.includes("game")) return "Juego";
-  if (d.includes("full-stack") || d.includes("api rest") || d.includes("restful") || d.includes("rest api")) return "Full-Stack";
-  if (d.includes("sistema") || d.includes("inventarios") || d.includes("facturación") || d.includes("gestión") || d.includes("administración") || d.includes("crud")) return "Dashboard";
-  return "Web";
-}
+import { getRole, roleClass, techColor } from "@/lib/shared.js";
 ---
 
 <Section title="Proyectos" id="section2" i18n="section.projects">
   <div class="flex flex-col w-full gap-4">
   <div class="flex items-center gap-3 w-full no-print">
-    <span id="project-counter" class="shrink-0 text-[10px] font-bold text-slate-500 bg-slate-800/50 px-2.5 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap">{projects.length} proyectos</span>
+    <span id="project-counter" class="shrink-0 text-[10px] font-bold text-slate-500 bg-slate-800/50 px-2.5 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap" data-i18n="search.counter" data-total={projects.length}>{projects.length} proyectos</span>
     <div class="relative flex-1">
       <input id="search-input" list="projectNames" placeholder="Buscar proyecto..."
         class="w-full bg-slate-800/80 border border-slate-700 text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500 transition-all placeholder:text-slate-500 font-medium"
@@ -48,46 +34,20 @@ function getRole(p: { description: string }): string {
           data-project-name={p.name}
           data-techs={p.highlights.join(",")}
         >
-
-
           <div class="relative flex items-start justify-between gap-3">
             <div class="min-w-0 flex-1">
               <h3 class="text-base font-bold text-white group-hover:text-white transition-colors">{p.name}</h3>
-              <span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md
-                {role === 'SaaS' ? 'bg-amber-600/20 text-amber-300 border border-amber-500/30' :
-                 role === 'E-Learning' ? 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/30' :
-                 role === 'Agenda' ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30' :
-                 role === 'Ciencia' ? 'bg-teal-600/20 text-teal-300 border border-teal-500/30' :
-                 role === 'Dashboard' || role === 'Full-Stack' ? 'bg-violet-600/20 text-violet-300 border border-violet-500/30' :
-                 role === 'Addon' ? 'bg-orange-600/20 text-orange-300 border border-orange-500/30' :
-                 role === 'Portal' ? 'bg-sky-600/20 text-sky-300 border border-sky-500/30' :
-                 role === 'Juego' ? 'bg-rose-600/20 text-rose-300 border border-rose-500/30' :
-                 'bg-slate-600/20 text-slate-300 border border-slate-500/30'}"
-              >{role}</span>
+              <span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border {roleClass(role)}">{role}</span>
             </div>
             <div class="flex gap-1.5 shrink-0 mt-1">
-              {deployed && <a href={url} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-cyan-300 hover:bg-slate-600 hover:border-cyan-500 transition-all" title="Sitio en vivo"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>}
-              {gh && <a href={gh} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" title="Código fuente"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>}
+              {deployed && <a href={url} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-cyan-300 hover:bg-slate-600 hover:border-cyan-500 transition-all" data-i18n-title="link.live" title="Sitio en vivo"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>}
+              {gh && <a href={gh} target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" data-i18n-title="link.source" title="Código fuente"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>}
             </div>
           </div>
-
           <p class="relative text-sm text-slate-300 leading-relaxed line-clamp-3">{p.description}</p>
-
           <div class="relative flex flex-wrap gap-1.5 mt-auto pt-1">
             {p.highlights.map(h => {
-              const fe = ["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"];
-              const be = ["Node","Express","PHP","Sharp","LUA","Python","BullMQ"];
-              const d = ["Supabase","MongoDB","MySQL","JSON","PostgreSQL"];
-              const inf = ["Netlify","Vercel","G Cloud","Docker","Redis"];
-              const pay = ["Stripe","PayPal"];
-              const svc = ["Discord","Twitch","YouTube","Resend"];
-              const cls = fe.includes(h) ? "text-sky-300 bg-sky-500/15 border-sky-500/25" :
-                         be.includes(h) ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25" :
-                         d.includes(h) ? "text-violet-300 bg-violet-500/15 border-violet-500/25" :
-                         inf.includes(h) ? "text-amber-300 bg-amber-500/15 border-amber-500/25" :
-                         pay.includes(h) ? "text-cyan-300 bg-cyan-500/15 border-cyan-500/25" :
-                         svc.includes(h) ? "text-rose-300 bg-rose-500/15 border-rose-500/25" :
-                         "text-slate-400 bg-slate-700/50 border-slate-600/50";
+              const cls = techColor(h);
               return <span class={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${cls}`}>{h}</span>
             })}
           </div>
@@ -104,33 +64,17 @@ function getRole(p: { description: string }): string {
 </Section>
 
 <style>
-  .project-card {
-    animation: cardIn 0.4s ease both;
-  }
-  @keyframes cardIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .project-card { animation: cardIn 0.4s ease both; }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
   @media print {
     #project-grid { display: block !important; }
-    #project-grid .project-card {
-      break-inside: avoid;
-      page-break-inside: avoid;
-      background: none !important;
-      border: 1px solid #ddd !important;
-      padding: 1rem !important;
-      margin-bottom: 1rem !important;
-    }
+    #project-grid .project-card { break-inside: avoid; page-break-inside: avoid; background: none !important; border: 1px solid #ddd !important; padding: 1rem !important; margin-bottom: 1rem !important; }
     #project-grid .project-card h3 { color: #000 !important; }
     #project-grid .project-card p { color: #333 !important; }
     #project-grid .project-link { display: none !important; }
     #project-grid .relative.flex-wrap { display: flex !important; }
-    #project-grid .project-card span:not([class*="bg-white"]) {
-      color: #555 !important;
-      background: #f5f5f5 !important;
-      border-color: #ddd !important;
-    }
+    #project-grid .project-card span:not([class*="bg-white"]) { color: #555 !important; background: #f5f5f5 !important; border-color: #ddd !important; }
   }
 </style>
 
@@ -138,83 +82,52 @@ function getRole(p: { description: string }): string {
 (function() {
 var DATA = projects;
 try { if (localStorage.getItem('portfolio-lang') === 'en' && window.__CV_EN) DATA = window.__CV_EN.projects; } catch(e) {}
+var _renderTimer = null;
+
+var LH = window.__LH;
+var getRole = LH ? LH.getRole : function(){return"Web"};
+var roleClass = LH ? LH.roleClass : function(){return""};
+var techColor = LH ? LH.techColor : function(){return""};
 
 function init() {
-  const grid = document.getElementById("project-grid");
-  const inp = document.getElementById("search-input");
-  const empty = document.getElementById("empty-state");
-  const clear = document.getElementById("clear-search");
-  const flt = document.getElementById("quick-filters");
-  const cnt = document.getElementById("project-counter");
-
+  var grid = document.getElementById("project-grid");
+  var inp = document.getElementById("search-input");
+  var empty = document.getElementById("empty-state");
+  var clear = document.getElementById("clear-search");
+  var flt = document.getElementById("quick-filters");
+  var cnt = document.getElementById("project-counter");
   if (!grid || !inp) return;
-
-  let q = "", act = new Set();
+  var q = "", act = new Set();
 
   function techs() {
-    const s = new Set();
-    for (const p of DATA) for (const h of p.highlights) s.add(h);
+    var s = new Set();
+    for (var i = 0; i < DATA.length; i++) for (var j = 0; j < DATA[i].highlights.length; j++) s.add(DATA[i].highlights[j]);
     return [...s].sort();
   }
 
   function match(p) {
     if (q) {
-      const lq = q.toLowerCase();
-      if (!p.name.toLowerCase().includes(lq) &&
-          !p.description.toLowerCase().includes(lq) &&
-          !p.highlights.some(h => h.toLowerCase().includes(lq))) return false;
+      var lq = q.toLowerCase();
+      if (!p.name.toLowerCase().includes(lq) && !p.description.toLowerCase().includes(lq) && !p.highlights.some(function(h){return h.toLowerCase().includes(lq)})) return false;
     }
-    if (act.size > 0) for (const t of act) if (!p.highlights.includes(t)) return false;
+    if (act.size > 0) for (var _t of act) if (!p.highlights.includes(_t)) return false;
     return true;
   }
 
-  function col(t) {
-    const fe = ["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"];
-    const be = ["Node","Express","PHP","Sharp","LUA","Python","BullMQ"];
-    const d = ["Supabase","MongoDB","MySQL","JSON","PostgreSQL"];
-    const inf = ["Netlify","Vercel","G Cloud","Docker","Redis"];
-    const pay = ["Stripe","PayPal"];
-    const svc = ["Discord","Twitch","YouTube","Resend"];
-    if (fe.includes(t)) return 'text-sky-300 bg-sky-500/15 border-sky-500/25';
-    if (be.includes(t)) return 'text-emerald-300 bg-emerald-500/15 border-emerald-500/25';
-    if (d.includes(t)) return 'text-violet-300 bg-violet-500/15 border-violet-500/25';
-    if (inf.includes(t)) return 'text-amber-300 bg-amber-500/15 border-amber-500/25';
-    if (pay.includes(t)) return 'text-cyan-300 bg-cyan-500/15 border-cyan-500/25';
-    if (svc.includes(t)) return 'text-rose-300 bg-rose-500/15 border-rose-500/25';
-    return 'text-slate-400 bg-slate-700/50 border-slate-600/50';
-  }
-
-  function roleClass(r) {
-    const m = {SaaS:'bg-amber-600/20 text-amber-300 border-amber-500/30','E-Learning':'bg-emerald-600/20 text-emerald-300 border-emerald-500/30',Agenda:'bg-indigo-600/20 text-indigo-300 border-indigo-500/30',Ciencia:'bg-teal-600/20 text-teal-300 border-teal-500/30',Dashboard:'bg-violet-600/20 text-violet-300 border-violet-500/30','Full-Stack':'bg-violet-600/20 text-violet-300 border-violet-500/30',Addon:'bg-orange-600/20 text-orange-300 border-orange-500/30',Portal:'bg-sky-600/20 text-sky-300 border-sky-500/30',Juego:'bg-rose-600/20 text-rose-300 border-rose-500/30'};
-    return m[r]||'bg-slate-600/20 text-slate-300 border-slate-500/30';
-  }
-
-  function getRole(p) {
-    const d = p.description.toLowerCase();
-    if (d.includes("saas")) return "SaaS";
-    if (d.includes("aprendizaje") || d.includes("idiomas") || d.includes("language") || d.includes("learning")) return "E-Learning";
-    if (d.includes("agenda") || d.includes("citas") || d.includes("turnos") || d.includes("negocios") || d.includes("appointment") || d.includes("scheduling")) return "Agenda";
-    if (d.includes("biodiversidad") || d.includes("catalogación") || d.includes("naturaleza") || d.includes("biodiversity") || d.includes("cataloging")) return "Ciencia";
-    if (d.includes("dashboard") || d.includes("empresarial") || d.includes("enterprise") || d.includes("multi-tenant") || d.includes("auditoría") || d.includes("inventory") || d.includes("invoicing") || d.includes("management")) return "Dashboard";
-    if (d.includes("addon") || d.includes("lua") || d.includes("wow")) return "Addon";
-    if (d.includes("comunidad") || d.includes("portal") || d.includes("community") || d.includes("guild")) return "Portal";
-    if (d.includes("juego") || d.includes("invaders") || d.includes("canvas") || d.includes("classic") || d.includes("game")) return "Juego";
-    if (d.includes("full-stack") || d.includes("api rest") || d.includes("restful") || d.includes("rest api")) return "Full-Stack";
-    if (d.includes("sistema") || d.includes("inventarios") || d.includes("facturación") || d.includes("gestión") || d.includes("administración") || d.includes("crud")) return "Dashboard";
-    return "Web";
-  }
-
   function render() {
-    const filtered = DATA.filter(match);
+    var filtered = DATA.filter(match);
     if (empty) empty.classList.toggle("hidden", filtered.length > 0);
-    if (cnt) cnt.textContent = filtered.length + " de " + DATA.length + " proyectos";
+    if (cnt) {
+      var lang = document.documentElement.lang;
+      var t = (window.__TR || {})[lang] || {};
+      cnt.textContent = filtered.length + " " + (t['search.of'] || 'de') + " " + DATA.length + " " + (t['search.projects'] || 'proyectos');
+    }
     if (clear) clear.classList.toggle("hidden", !q && act.size === 0);
-
-    let html = "";
-    for (const p of filtered) {
-      const url = (p.url||"").trim(), role = getRole(p);
-      const deployed = url.includes(".netlify.app")||url.includes(".vercel.app")||url.includes(".github.io");
-      const gh = url.includes("github.com")?url:"";
+    var html = "";
+    for (var i = 0; i < filtered.length; i++) {
+      var p = filtered[i], url = (p.url||"").trim(), role = getRole(p);
+      var deployed = url.includes(".netlify.app")||url.includes(".vercel.app")||url.includes(".github.io");
+      var gh = url.includes("github.com")?url:"";
       html += '<div class="project-card group relative bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-500 transition-all duration-300 flex flex-col gap-3" data-project-name="'+p.name+'">';
       html += '<div class="relative flex items-start justify-between gap-3"><div class="min-w-0 flex-1"><h3 class="text-base font-bold text-white group-hover:text-white transition-colors">'+p.name+'</h3>';
       html += '<span class="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border '+roleClass(role)+'">'+role+'</span></div>';
@@ -223,33 +136,44 @@ function init() {
       if (gh) html += '<a href="'+gh+'" target="_blank" class="project-link p-2 rounded-xl bg-slate-700/80 border border-slate-600 text-slate-400 hover:text-white hover:bg-slate-600 transition-all" title="Source code"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>';
       html += '</div></div><p class="relative text-sm text-slate-300 leading-relaxed line-clamp-3">'+p.description+'</p>';
       html += '<div class="relative flex flex-wrap gap-1.5 mt-auto pt-1">';
-      for (const h of p.highlights) html += '<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md border '+col(h)+'">'+h+'</span>';
+      for (var j = 0; j < p.highlights.length; j++) html += '<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md border '+techColor(p.highlights[j])+'">'+p.highlights[j]+'</span>';
       html += '</div></div>';
     }
     grid.innerHTML = html;
-    for (const el of grid.querySelectorAll(".project-card")) {
-      el.addEventListener("mousemove", (e) => { const r=el.getBoundingClientRect(); el.style.setProperty("--mouse-x",e.clientX-r.left+"px"); el.style.setProperty("--mouse-y",e.clientY-r.top+"px"); });
-    }
   }
 
-  // Build tech filter buttons
   if (flt) {
-    for (const t of techs()) {
-      const btn = document.createElement("button");
-      btn.className = "tech-filter text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 transition-all bg-slate-800/50";
-      btn.textContent = t;
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("active"); btn.classList.toggle("bg-cyan-600/20"); btn.classList.toggle("border-cyan-500/40"); btn.classList.toggle("text-cyan-300");
-        if (act.has(t)) act.delete(t); else act.add(t);
-        render();
-      });
-      flt.appendChild(btn);
+    var tags = techs();
+    for (var i = 0; i < tags.length; i++) {
+      (function(t) {
+        var btn = document.createElement("button");
+        btn.className = "tech-filter text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 transition-all bg-slate-800/50";
+        btn.textContent = t;
+        btn.addEventListener("click", function() {
+          btn.classList.toggle("active"); btn.classList.toggle("bg-cyan-600/20"); btn.classList.toggle("border-cyan-500/40"); btn.classList.toggle("text-cyan-300");
+          if (act.has(t)) act.delete(t); else act.add(t);
+          render();
+        });
+        flt.appendChild(btn);
+      })(tags[i]);
     }
   }
 
-  inp.addEventListener("input", () => { q = inp.value.trim(); render(); });
-  if (clear) clear.addEventListener("click", () => { inp.value=""; q=""; for(const b of flt?.querySelectorAll(".tech-filter")||[]){b.classList.remove("active","bg-cyan-600/20","border-cyan-500/40","text-cyan-300")} act.clear(); render(); inp.focus(); });
-  inp.addEventListener("keydown", (e) => { if (e.key==="Escape") { inp.value=""; q=""; render(); inp.blur(); } });
+  inp.addEventListener("input", function() { q = inp.value.trim(); render(); });
+  if (clear) clear.addEventListener("click", function() { inp.value=""; q=""; var bs=flt?.querySelectorAll(".tech-filter")||[]; for(var i=0;i<bs.length;i++){var b=bs[i];b.classList.remove("active","bg-cyan-600/20","border-cyan-500/40","text-cyan-300")} act.clear(); render(); inp.focus(); });
+  inp.addEventListener("keydown", function(e) { if (e.key==="Escape") { inp.value=""; q=""; render(); inp.blur(); } });
+
+  window.addEventListener('langchange', function() {
+    var lang = document.documentElement.lang;
+    if (lang === 'en' && window.__CV_EN) {
+      DATA = window.__CV_EN.projects;
+    } else {
+      DATA = projects;
+    }
+    if (_renderTimer) clearTimeout(_renderTimer);
+    _renderTimer = setTimeout(render, 50);
+  });
+
   render();
 }
 

@@ -105,7 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
       updateNavIndicator();
     };
 
-    window.addEventListener("scroll", handleScroll);
+    var _scrollRaf = null;
+    window.addEventListener("scroll", function() {
+      if (_scrollRaf) return;
+      _scrollRaf = requestAnimationFrame(function() {
+        _scrollRaf = null;
+        handleScroll();
+      });
+    });
     window.addEventListener("resize", updateNavIndicator);
     // Ejecutar una vez al inicio para establecer estado correcto
     handleScroll();

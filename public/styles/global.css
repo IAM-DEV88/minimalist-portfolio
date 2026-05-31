@@ -24,6 +24,14 @@
   --border-color: rgba(255, 255, 255, 0.05);
   --border-hover: rgba(255, 255, 255, 0.1);
   --border-card: rgba(51, 65, 85, 0.8);
+
+  --logo-glow: 0 0 25px rgba(6, 182, 212, 0.25);
+  --logo-glow-hover: 0 0 50px rgba(6, 182, 212, 0.45);
+  --btn-glow: 0 0 15px rgba(6, 182, 212, 0.15);
+  --btn-glow-hover: 0 0 25px rgba(6, 182, 212, 0.3);
+  --cursor-radar-color: rgba(6, 182, 212, 0.08);
+  --grid-line-color: rgba(6, 182, 212, 0.15);
+  --grid-line-active: rgba(6, 182, 212, 0.35);
 }
 
 [data-theme="light"] {
@@ -51,6 +59,14 @@
   --border-color: rgba(0, 0, 0, 0.12);
   --border-hover: rgba(0, 0, 0, 0.2);
   --border-card: rgba(0, 0, 0, 0.1);
+
+  --logo-glow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --logo-glow-hover: 0 8px 30px rgba(8, 145, 178, 0.2);
+  --btn-glow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --btn-glow-hover: 0 4px 20px rgba(8, 145, 178, 0.2);
+  --cursor-radar-color: rgba(8, 145, 178, 0.06);
+  --grid-line-color: rgba(0, 0, 0, 0.06);
+  --grid-line-active: rgba(8, 145, 178, 0.2);
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,18 +81,35 @@
     --bg-body: #f8fafc;
     --bg-card: rgba(255, 255, 255, 0.85);
     --bg-card-hover: rgba(255, 255, 255, 1);
-    --bg-surface: rgba(0, 0, 0, 0.03);
-    --bg-surface-hover: rgba(0, 0, 0, 0.06);
+    --bg-surface: rgba(0, 0, 0, 0.06);
+    --bg-surface-hover: rgba(0, 0, 0, 0.12);
     --bg-elevated: rgba(255, 255, 255, 0.95);
     --bg-modal: #ffffff;
     --text-primary: #0f172a;
     --text-secondary: #334155;
     --text-tertiary: #64748b;
     --text-muted: #94a3b8;
-    --border-color: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(0, 0, 0, 0.12);
+    --border-color: rgba(0, 0, 0, 0.12);
+    --border-hover: rgba(0, 0, 0, 0.2);
     --border-card: rgba(0, 0, 0, 0.1);
+
+    --logo-glow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --logo-glow-hover: 0 8px 30px rgba(8, 145, 178, 0.2);
+    --btn-glow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --btn-glow-hover: 0 4px 20px rgba(8, 145, 178, 0.2);
+    --cursor-radar-color: rgba(8, 145, 178, 0.06);
+    --grid-line-color: rgba(0, 0, 0, 0.06);
+    --grid-line-active: rgba(8, 145, 178, 0.2);
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }
 
 html {
@@ -99,25 +132,12 @@ html {
   transform: translateY(0);
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.nav-btn {
+  box-shadow: var(--btn-glow);
+  transition: box-shadow 0.3s, color 0.3s, border-color 0.3s, background 0.3s;
 }
-
-.animate-fade-in {
-  animation: fadeInScale 0.6s ease-out forwards;
-}
-
-.radial-glow {
-  background: radial-gradient(circle at center, var(--accent-color) 0%, transparent 70%);
-  opacity: 0.15;
-  filter: blur(80px);
+.nav-btn:hover {
+  box-shadow: var(--btn-glow-hover);
 }
 
 /* ===== LIGHT MODE OVERRIDES ===== */
@@ -135,8 +155,6 @@ html {
 [data-theme="light"] .hover\:text-cyan-300:hover { color: var(--accent-color) !important; }
 [data-theme="light"] .hover\:text-white:hover { color: var(--text-primary) !important; }
 [data-theme="light"] .hover\:border-cyan-500:hover { border-color: var(--accent-color) !important; }
-
-[data-theme="light"] .border-slate-600 { border-color: var(--border-card) !important; }
 
 [data-theme="light"] .bg-black\/40,
 [data-theme="light"] .bg-black\/95 { background: var(--bg-elevated) !important; }
@@ -190,6 +208,7 @@ html {
 [data-theme="light"] footer { background: rgba(248, 250, 252, 0.85) !important; border-color: var(--border-color) !important; }
 [data-theme="light"] #menu-mobile { background: rgba(248, 250, 252, 0.97) !important; }
 
+[data-theme="light"] .nav-btn,
 [data-theme="light"] [data-i18n="lang.btn"],
 [data-theme="light"] #theme-toggle { background: var(--bg-card) !important; border-color: var(--border-card) !important; color: var(--text-tertiary) !important; }
 
@@ -274,28 +293,6 @@ html {
 
 [data-theme="light"] .p-3.bg-white.rounded-xl { background: #e2e8f0 !important; }
 
-
-
-.mask {
-  display: inline-block;
-  position: relative;
-}
-
-.mask:after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0) 0%,
-    var(--theme-color) 65%
-  );
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 #menu-mobile {
   max-height: 0;
   overflow: hidden;
@@ -307,6 +304,10 @@ html {
   max-height: 300px; /* Ajusta este valor según la altura máxima que necesites */
   opacity: 1;
 }
+
+#project-modal.active { opacity: 1; }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 10px; }
 
 @media print {
   :root {
@@ -335,16 +336,13 @@ html {
   #project-modal,
   #back-to-top,
   navbar,
-  .radial-glow,
   .word-rain-banner,
   #scroll-progress,
   #cursor-radar,
   #grid-pulse,
   #bg-container,
   #section-navigation,
-  #pagination-controls,
   #search-input,
-  .filter-checkbox,
   datalist,
   button,
   a[class*="project-link"],
@@ -408,12 +406,6 @@ html {
     width: 100% !important;
   }
 
-  /* Asegurar que los proyectos se vean todos */
-  #project-list-items {
-    display: block !important;
-    opacity: 1 !important;
-  }
-
   .group {
     background: none !important;
     border: 1px solid #eee !important;
@@ -430,23 +422,6 @@ html {
     color: #333 !important;
   }
 
-  /* Forzar que los elementos ocultos por JS se vean en print */
-  #project-list-items > li {
-    display: block !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
 
-html[data-theme="light"] .text-primary {
-  color: #334155 !important;
-}
-html[data-theme="light"] svg.text-primary {
-  color: #334155 !important;
-  stroke: #334155 !important;
-}
-html[data-theme="light"] svg.text-primary path[fill="#FFFFFF"],
-html[data-theme="light"] svg.text-primary path[fill="#FFF"],
-html[data-theme="light"] svg.text-primary path[fill="#fff"] {
-  fill: #334155 !important;
-}
+

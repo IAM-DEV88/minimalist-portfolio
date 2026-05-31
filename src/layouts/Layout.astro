@@ -55,13 +55,33 @@ const { summary, name } = basics;
       "description": summary,
       "sameAs": basics.profiles.map(p => p.url)
     })} />
+
+    <!-- FODM prevention: apply theme before first paint -->
+    <script is:inline>
+    (function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||(t!=='dark'&&matchMedia('(prefers-color-scheme:light)').matches))document.documentElement.setAttribute('data-theme','light')}catch(e){}})();
+    </script>
   </head>
   <body>
+    <script is:inline>
+    window.__LH = {
+      FE:["React","Astro","Next.js","Vite","HTML","CSS","JavaScript","Tailwind","Redux","Framer Motion","Leaflet","Alpine.js","Axios","Zod"],
+      BE:["Node","Express","PHP","Sharp","LUA","Python","BullMQ"],
+      DB:["Supabase","MongoDB","MySQL","JSON","PostgreSQL"],
+      INF:["Netlify","Vercel","G Cloud","Docker","Redis"],
+      PAY:["Stripe","PayPal"],
+      SVC:["Discord","Twitch","YouTube","Resend"],
+      getRole:function(p){var d=p.description.toLowerCase();if(d.includes("saas"))return"SaaS";if(d.includes("aprendizaje")||d.includes("idiomas")||d.includes("language")||d.includes("learning"))return"E-Learning";if(d.includes("agenda")||d.includes("citas")||d.includes("turnos")||d.includes("negocios")||d.includes("appointment")||d.includes("scheduling"))return"Agenda";if(d.includes("biodiversidad")||d.includes("catalogación")||d.includes("naturaleza")||d.includes("biodiversity")||d.includes("cataloging"))return"Ciencia";if(d.includes("dashboard")||d.includes("empresarial")||d.includes("enterprise")||d.includes("multi-tenant")||d.includes("auditoría")||d.includes("inventory")||d.includes("invoicing")||d.includes("management"))return"Dashboard";if(d.includes("addon")||d.includes("lua")||d.includes("wow"))return"Addon";if(d.includes("comunidad")||d.includes("portal")||d.includes("community")||d.includes("guild"))return"Portal";if(d.includes("juego")||d.includes("invaders")||d.includes("canvas")||d.includes("classic")||d.includes("game"))return"Juego";if(d.includes("full-stack")||d.includes("api rest")||d.includes("restful")||d.includes("rest api"))return"Full-Stack";if(d.includes("sistema")||d.includes("inventarios")||d.includes("facturación")||d.includes("gestión")||d.includes("administración")||d.includes("crud"))return"Dashboard";return"Web"},
+      roleClass:function(r){return{SaaS:'bg-amber-600/20 text-amber-300 border-amber-500/30','E-Learning':'bg-emerald-600/20 text-emerald-300 border-emerald-500/30',Agenda:'bg-indigo-600/20 text-indigo-300 border-indigo-500/30',Ciencia:'bg-teal-600/20 text-teal-300 border-teal-500/30',Dashboard:'bg-violet-600/20 text-violet-300 border-violet-500/30','Full-Stack':'bg-violet-600/20 text-violet-300 border-violet-500/30',Addon:'bg-orange-600/20 text-orange-300 border-orange-500/30',Portal:'bg-sky-600/20 text-sky-300 border-sky-500/30',Juego:'bg-rose-600/20 text-rose-300 border-rose-500/30'}[r]||'bg-slate-600/20 text-slate-300 border-slate-500/30'},
+      techColor:function(t){var _=window.__LH;if(_.FE.includes(t))return'text-sky-300 bg-sky-500/15 border-sky-500/25';if(_.BE.includes(t))return'text-emerald-300 bg-emerald-500/15 border-emerald-500/25';if(_.DB.includes(t))return'text-violet-300 bg-violet-500/15 border-violet-500/25';if(_.INF.includes(t))return'text-amber-300 bg-amber-500/15 border-amber-500/25';if(_.PAY.includes(t))return'text-cyan-300 bg-cyan-500/15 border-cyan-500/25';if(_.SVC.includes(t))return'text-rose-300 bg-rose-500/15 border-rose-500/25';return'text-slate-400 bg-slate-700/50 border-slate-600/50'},
+      formatDuration:function(s,e,t){if(!t){t=e;e=s}var sd=new Date(s),ed=e?new Date(e):new Date(),md=(ed.getFullYear()-sd.getFullYear())*12+(ed.getMonth()-sd.getMonth()),y=Math.floor(md/12),m=md%12,str="";if(y>0)str+=y===1?"1 "+(t['duration.year']||'año'):y+" "+(t['duration.years']||'años');if(m>0){str+=str?" "+(t['duration.and']||'y')+" ":"";str+=m===1?"1 "+(t['duration.month']||'mes'):m+" "+(t['duration.months']||'meses')}return str}
+    };
+    </script>
     <slot />
     <div id="section-navigation" class="fixed bottom-8 right-8 z-[100] flex flex-col gap-3 no-print opacity-0 translate-y-4 pointer-events-none transition-all duration-700">
       <button
         id="scroll-up"
         class="p-4 bg-cyan-600/40 hover:bg-cyan-600 text-white border border-white/20 rounded-2xl backdrop-blur-xl shadow-[0_0_30px_rgba(6,182,212,0.4)] group transition-all duration-300 hover:scale-110 active:scale-90 hover:shadow-cyan-500/60"
+        data-i18n-aria-label="aria.scrollUp"
         aria-label="Subir sección"
       >
         <svg
@@ -81,6 +101,7 @@ const { summary, name } = basics;
       <button
         id="scroll-down"
         class="p-4 bg-cyan-600/40 hover:bg-cyan-600 text-white border border-white/20 rounded-2xl backdrop-blur-xl shadow-[0_0_30px_rgba(6,182,212,0.4)] group transition-all duration-300 hover:scale-110 active:scale-90 hover:shadow-cyan-500/60"
+        data-i18n-aria-label="aria.scrollDown"
         aria-label="Bajar sección"
       >
         <svg
