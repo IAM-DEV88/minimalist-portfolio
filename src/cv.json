@@ -104,6 +104,45 @@
       ]
     },
     {
+      "name": "LingoCraft",
+      "url": "https://github.com/IAM-DEV88/lexigo",
+      "description": "Plataforma de aprendizaje de idiomas multi-tenant con gamificación, lecciones interactivas y sistema de roles.",
+      "highlights": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Tailwind",
+        "PayPal"
+      ]
+    },
+    {
+      "name": "BioGalería",
+      "url": "",
+      "description": "Plataforma comunitaria de catalogación de biodiversidad con identificación colaborativa, gamificación y mapas interactivos.",
+      "highlights": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Tailwind",
+        "Leaflet",
+        "Stripe"
+      ]
+    },
+    {
+      "name": "Grupo GM",
+      "url": "https://github.com/IAM-DEV88/grupogm",
+      "description": "Sistema de gestión empresarial multi-tenant con panel de control, RRHH, contratos y auditoría.",
+      "highlights": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind",
+        "Framer Motion",
+        "Recharts"
+      ]
+    },
+    {
       "name": "Addon Raid Dominion Tools",
       "image": "rdtAddon.png",
       "url": "https://github.com/IAM-DEV88/RaidDominion",
