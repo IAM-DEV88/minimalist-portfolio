@@ -13,14 +13,9 @@
     },
     "profiles": [
       {
-        "network": "Youtube",
-        "username": "JAGUER",
-        "url": "https://www.youtube.com/@IAM-GAMECODE"
-      },
-      {
         "network": "GitHub",
-        "username": "JAGUER-DEV",
-        "url": "https://github.com/IAM-JAGUER/"
+        "username": "IAM-jaguer",
+        "url": "https://github.com/IAM-jaguer/"
       },
       {
         "network": "LinkedIn",
@@ -121,34 +116,6 @@
       ]
     },
     {
-      "name": "BioGalería",
-      "url": "",
-      "description": "Red social de biodiversidad con catalogación colaborativa, mapas interactivos (Leaflet), identificación por comunidad, gamificación (niveles, logros), suscripciones Stripe y dashboard por roles (explorer/naturalist/moderator).",
-      "highlights": [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Supabase",
-        "Tailwind",
-        "Leaflet",
-        "Stripe",
-        "Framer Motion"
-      ]
-    },
-    {
-      "name": "Grupo GM",
-      "url": "https://grupogm.netlify.app/",
-      "description": "Dashboard empresarial multi-tenant con autenticación por empresa, gestión de empleados, contratos, auditoría, módulo Ecotech para monitoreo de pinos, y gráficos interactivos con Recharts.",
-      "highlights": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind",
-        "Framer Motion",
-        "Recharts",
-        "Zod"
-      ]
-    },
-    {
       "name": "Comunidad Colmillo de Acero",
       "image": "",
       "url": "https://colmillo.netlify.app/",
@@ -165,9 +132,36 @@
       ]
     },
     {
+      "name": "Defensa de la Ciudadela",
+      "url": "https://colmillo.netlify.app/juegos/defensa",
+      "description": "Juego tower defense 2D en HTML5 Canvas con motor propio de renderizado por sprites, oleadas de enemigos con habilidades especiales, torres mejorables con sistema de veterancia, economía con inflación dinámica, dificultad adaptativa por tensión, niebla de guerra y atajos de teclado reasignables. Participación con partidas diarias persistidas por IP en Supabase.",
+      "highlights": [
+        "Astro",
+        "TypeScript",
+        "JavaScript",
+        "Canvas API",
+        "Tailwind",
+        "Supabase"
+      ]
+    },
+    {
+      "name": "Ruleta de la Fortuna",
+      "url": "https://colmillo.netlify.app/ruleta",
+      "description": "Juego de tragamonedas con símbolos ponderados y pozo acumulado, giros diarios con reinicio en zona horaria Europe/Madrid, persistencia por IP en Supabase, canje de códigos, compra de tiradas con PayPal y tickets de premio generados en canvas con notificación por webhooks de Discord y WhatsApp.",
+      "highlights": [
+        "Astro",
+        "TypeScript",
+        "JavaScript",
+        "Supabase",
+        "Tailwind",
+        "PayPal",
+        "Netlify"
+      ]
+    },
+    {
       "name": "Agenda Contable",
       "image": "agenda.png",
-      "url": "https://github.com/IAM-DEV88/agendareact",
+      "url": "https://github.com/IAM-jaguer/agendareact",
       "description": "Aplicación full-stack con React + Express + MongoDB para gestión de turnos y libro mayor contable, desplegada en Google Cloud con API RESTful y autenticación.",
       "highlights": [
         "React",
@@ -182,7 +176,7 @@
     {
       "name": "Administrador de Tienda",
       "image": "webShopAdmin.png",
-      "url": "https://github.com/IAM-DEV88/AdminTiendaWeb",
+      "url": "https://github.com/IAM-jaguer/AdminTiendaWeb",
       "description": "Sistema web full-stack (PHP + MySQL) para control de inventarios, facturación, registro contable y gestión de usuarios, con sesiones persistentes y panel administrativo.",
       "highlights": [
         "PHP",
@@ -196,7 +190,7 @@
     {
       "name": "Gestor de Estudiantes",
       "image": "studentMng.png",
-      "url": "https://iam-dev88.github.io/student-manager/",
+      "url": "https://iam-jaguer.github.io/student-manager/",
       "description": "Sistema CRUD completo para administración de estudiantes con PHP + JSON, interfaz responsiva, búsqueda y filtros, ideal para gestion académica de profesores.",
       "highlights": [
         "PHP",
@@ -222,20 +216,10 @@
     {
       "name": "Addon Raid Dominion Tools",
       "image": "rdtAddon.png",
-      "url": "https://github.com/IAM-DEV88/RaidDominion",
+      "url": "https://github.com/IAM-jaguer/RaidDominion",
       "description": "Addon en LUA para World of Warcraft 3.3.5a que mejora la experiencia de juego con personalizaciones avanzadas de UI, integración con el portal web y automatización de rutinas.",
       "highlights": [
         "LUA"
-      ]
-    },
-    {
-      "name": "Space Invaders",
-      "url": "https://iamdev-space-invaders.netlify.app",
-      "description": "Versión web del clásico Space Invaders con canvas API, bucles de juego, detección de colisiones y puntuación, implementado vanilla sin librerías.",
-      "highlights": [
-        "JavaScript",
-        "HTML",
-        "CSS"
       ]
     }
   ],
@@ -296,9 +280,6 @@
     },
     {
       "name": "Twitch"
-    },
-    {
-      "name": "Youtube"
     }
   ]
 }
