@@ -281,5 +281,271 @@
     {
       "name": "Twitch"
     }
+  ],
+  "certificates": [
+    {
+      "name": "Curso de Backend con Node.js: Autenticación con Passport.js y JWT",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2489-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-backend-nodejs-autenticacion-passportjs-jwt-3425c859-2f69-49a5-849a-792049d24.png",
+      "id": 2489
+    },
+    {
+      "name": "Curso de Backend con Node.js: Base de Datos con PostgreSQL",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2507-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/backend-node-82a9a4bf-7ce4-4437-86f6-c39dcce17d15.png",
+      "id": 2507
+    },
+    {
+      "name": "Curso de Backend con Node.js: API REST con Express.js",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2485-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-backend-nodejs-apirest-expressjs-3fc7bca3-8dcb-459c-9638-12c92d502f5f.png",
+      "id": 2485
+    },
+    {
+      "name": "Curso de Fundamentos de Bases de Datos 2019",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/1566-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-fundamentos-de-bases-de-datos-cc5eff2a-a7e0-4110-af5d-a47b628611da.png",
+      "id": 1566
+    },
+    {
+      "name": "Curso de Introducción al Desarrollo Backend",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/4656-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-interm-word-1d85df0c-f77d-44e8-aedd-dd8b4458b642.png",
+      "id": 4656
+    },
+    {
+      "name": "Curso Profesional de Next.js",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2707-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas-profesional-nextjs_badge-c9a806c6-e240-45da-81da-c206b0611e84.png",
+      "id": 2707
+    },
+    {
+      "name": "Prueba Técnica: E-commerce Profesional con React.js",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/7397-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/image-94985c6e-d631-4f24-a315-ce777d771ada.png",
+      "id": 7397
+    },
+    {
+      "name": "Curso de React.js con Vite.js y TailwindCSS",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/7396-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-curso-react-vite-8cd23e27-eebb-4dcc-aeb7-cc83924080eb.png",
+      "id": 7396
+    },
+    {
+      "name": "Curso de ECMAScript: Historia y Versiones de JavaScript",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3504-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-escmascript-historia-92707485-a3f2-4946-91f0-fb0291f5887d.png",
+      "id": 3504
+    },
+    {
+      "name": "Curso de Asincronismo con JavaScript 2022",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3175-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-asincro-js-9f17b092-47d0-4c8a-a59d-67714aa18db3.png",
+      "id": 3175
+    },
+    {
+      "name": "Curso de Fundamentos de Node.js",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/1759-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-fundamentos-nodejs-8fd9c0f4-562a-48e9-a85a-3a7db0fa384b.png",
+      "id": 1759
+    },
+    {
+      "name": "Curso de NPM: Gestión de Paquetes y Dependencias en JavaScript",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3578-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-npm-js-c48fb4c0-a4d3-4773-b3ca-e9f25c543d0e.png",
+      "id": 3578
+    },
+    {
+      "name": "Curso de React.js",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/7395-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas-landing-introduccion-react-js_badge-5cb7b891-69d3-4de4-bdab-1641b4c30312.png",
+      "id": 7395
+    },
+    {
+      "name": "Curso Práctico de JavaScript",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3271-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/practico-javascript_badge-fb533fa5-73c8-4f75-9d81-0294d9013ab5.png",
+      "id": 3271
+    },
+    {
+      "name": "Curso Básico de JavaScript",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/1814-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-basicojs-e2ead888-428e-4f55-962c-8894aeaeacda.png",
+      "id": 1814
+    },
+    {
+      "name": "Curso de Frontend Developer",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2467-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-curso-frontend-developer-825407d1-49b1-4c9b-90c4-eee793720ede.png",
+      "id": 2467
+    },
+    {
+      "name": "Curso Práctico de Frontend Developer",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2477-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-curso-practico-frontend-developer-d28c2eb0-cd3e-4951-bb96-5f1bcab2add5.png",
+      "id": 2477
+    },
+    {
+      "name": "Curso Profesional de Git y GitHub",
+      "date": "2023-10-15",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/1557-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-github-0b729570-934d-47d8-ba6b-610d7f15e0ec.png",
+      "id": 1557
+    },
+    {
+      "name": "Curso para Conseguir Trabajo como Frontend Developer",
+      "date": "2023-10-16",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2641-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/conseguir-trabajo-frontend-developer-badge-f3b33ca1-ab2a-4bdd-9ef4-3b50934321af.png",
+      "id": 2641
+    },
+    {
+      "name": "Fundamentos de Ingeniería de Software",
+      "date": "2024-05-22",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/1098-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-ing-software-2017-18f503fd-36bd-42d8-b1a1-492865659687.png",
+      "id": 1098
+    },
+    {
+      "name": "Curso de Introducción a la Web: Historia y Funcionamiento de Internet",
+      "date": "2023-10-25",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/7924-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-intro-web-historia-12d10866-cec5-41bb-9ade-ced04aa1060f.png",
+      "id": 7924
+    },
+    {
+      "name": "Curso Gratis de Programación Básica 2022",
+      "date": "2023-10-23",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3208-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-piezas-programacion-basica-ede320eb-b1a9-4f1c-8b61-dd0502bbe4d3.png",
+      "id": 3208
+    },
+    {
+      "name": "Curso de Pensamiento Lógico: Lenguajes de Programación",
+      "date": "2023-10-23",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3223-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas_pensamiento-lenguajes-programacion_badge-442dbfe2-2251-4cb8-9529-4317851a751.png",
+      "id": 3223
+    },
+    {
+      "name": "Curso de Pensamiento Lógico: Manejo de Datos, Estructuras y Funciones",
+      "date": "2023-10-23",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3222-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas_pensamiento-logico-funciones-estructuras-control_badge-a4598ee5-2018-4168-a9.png",
+      "id": 3222
+    },
+    {
+      "name": "Curso de Pensamiento Lógico: Algoritmos y Diagramas de Flujo",
+      "date": "2023-10-23",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/3221-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas_pensamiento-logico-algoritmos-diagramas-flujo-recovered_badge-df69dcf3-9d9e-.png",
+      "id": 3221
+    },
+    {
+      "name": "Curso de Introducción a la Nube con Azure",
+      "date": "2024-05-25",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2200-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-introduccion-nube-azure-05c6de71-609b-4b00-971c-56a8d88915d2.png",
+      "id": 2200
+    },
+    {
+      "name": "Curso Básico de Computadores e Informática",
+      "date": "2023-10-23",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2793-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas-computacion-basica_badge-930099c0-50d7-45ae-8043-802170eb5d55.png",
+      "id": 2793
+    },
+    {
+      "name": "Curso de Introducción a la Terminal y Línea de Comandos",
+      "date": "2023-10-14",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2292-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-terminal-5c5518b5-43d0-4387-b39e-3d85db446c5f.png",
+      "id": 2292
+    },
+    {
+      "name": "Curso de Configuración de Entorno de Desarrollo en Windows",
+      "date": "2023-10-13",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/6900-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas-prework-desarrollo-entornos-windows_badge-45dec17f-fe5f-47fb-b2c5-f36635b054.png",
+      "id": 6900
+    },
+    {
+      "name": "Curso de Configuración de Entorno de Desarrollo en macOS",
+      "date": "2023-10-19",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2214-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-prework-configuracion-entorno-mac-6199e54d-551f-4abf-8587-44484337702e.png",
+      "id": 2214
+    },
+    {
+      "name": "Curso de  Configuración de Entorno de Desarrollo en Linux",
+      "date": "2023-10-19",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2383-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/badge-prework-linux-b035273b-6f78-43c1-8bea-a3a2b7359cc7.png",
+      "id": 2383
+    },
+    {
+      "name": "Curso de Creación de Temas para WordPress",
+      "date": "2024-05-25",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/2536-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/021b9i2artboard-9-01f77b93-195a-4216-a692-7efb220cc359.png",
+      "id": 2536
+    },
+    {
+      "name": "Curso de Creación de Páginas Web con Wordpress y No-code",
+      "date": "2024-05-25",
+      "issuer": "Platzi",
+      "url": "https://platzi.com/p/IAM-DEV88/curso/4194-course/diploma/detalle/",
+      "badge": "https://static.platzi.com/media/achievements/piezas-creacion-paginas-web_badge-0cd3d090-b8a0-48ff-b2f9-5deabfdb51bb.png",
+      "id": 4194
+    }
   ]
 }
