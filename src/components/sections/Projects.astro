@@ -6,7 +6,7 @@ import { getRole, roleClass, roleLabel, techColor } from "@/lib/shared.js";
 
 <Section title="Proyectos" id="section2" i18n="section.projects">
   <div class="flex flex-col w-full gap-4">
-  <div class="flex items-center gap-3 w-full no-print">
+  <div class="flex flex-col md:flex-row items-center gap-3 w-full no-print">
     <span id="project-counter" class="shrink-0 text-[10px] font-bold text-slate-500 bg-slate-800/50 px-2.5 py-1.5 rounded-lg border border-slate-700 whitespace-nowrap" data-i18n="search.counter" data-total={projects.length}>{projects.length} proyectos</span>
     <div class="relative flex-1">
       <input id="search-input" list="projectNames" placeholder="Buscar proyecto..."
@@ -16,14 +16,14 @@ import { getRole, roleClass, roleLabel, techColor } from "@/lib/shared.js";
       <svg class="absolute inset-y-0 right-3 my-auto w-4 h-4 text-slate-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
     <button id="clear-search" class="shrink-0 text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-500 hover:text-white hover:border-slate-500 bg-slate-800/50 hidden" data-i18n="search.clear">Limpiar</button>
-  </div>
-  <div class="no-print">
     <button id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-collapse"
       class="flex items-center gap-2 text-[11px] font-semibold text-slate-400 hover:text-cyan-300 px-3 py-1.5 rounded-lg border border-slate-700 hover:border-cyan-500/50 bg-slate-800/50 transition-colors"
       data-i18n="filters.toggle">
       <svg id="filter-chevron" class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
       Filtros por tecnología
     </button>
+  </div>
+  <div class="no-print">
     <div id="filter-collapse" class="overflow-hidden transition-[max-height,opacity] duration-300 ease-out" style="max-height:0; opacity:0" aria-hidden="true">
       <div class="flex flex-wrap gap-1.5 pt-2" id="quick-filters"></div>
     </div>
