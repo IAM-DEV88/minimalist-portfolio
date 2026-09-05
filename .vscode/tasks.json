@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Zeus",
+      "type": "shell",
+      "command": "wsl",
+      "args": ["bash", "-lc", "export MP_AGENT=build && cd /mnt/d/_DEV/minimalist-portfolio && /home/jaguer/.opencode/bin/opencode"],
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 },
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always",
+        "focus": false,
+        "group": "mp-editor"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Live preview",
+      "type": "shell",
+      "command": "wsl",
+      "args": ["bash", "-lc", "cd /mnt/d/_DEV/minimalist-portfolio && npm run dev"],
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 },
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "silent",
+        "focus": false,
+        "group": "mp-preview"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

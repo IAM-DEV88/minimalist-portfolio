@@ -68,21 +68,40 @@
   ],
   "projects": [
     {
-      "name": "Silueta Pro",
+      "name": "AgendaYa",
       "image": "",
-      "url": "https://siluetapro.netlify.app/",
-      "description": "Server-side image processing SaaS for background removal and edge polishing. Features PayPal subscriptions, Free/Premium plans with resolution limits, and Sharp-based processing pipeline.",
+      "url": "https://agendaya.netlify.app/",
+      "description": "Multi-role appointment scheduling SaaS with business registration, services, hours, bookings, reviews, and real-time chat. Business owner dashboard with availability management and notifications.",
       "highlights": [
-        "Astro",
+        "React",
         "TypeScript",
-        "Node",
-        "Sharp",
+        "Vite",
+        "Redux",
         "Supabase",
-        "Stripe",
-        "PayPal",
         "Tailwind",
-        "Redis",
-        "BullMQ"
+        "Netlify",
+        "PayPal"
+      ]
+    },
+    {
+      "name": "Comunidad Raid Dominion",
+      "image": "rdtCommunity.avif",
+      "url": "https://raid-dominion.netlify.app/",
+      "description": "Complementary web portal for WoW community with Discord integration, Twitch streaming, YouTube content, and guild management tools.",
+      "highlights": [
+        "Web Portal",
+        "Discord",
+        "Twitch",
+        "YouTube"
+      ]
+    },
+    {
+      "name": "Addon Raid Dominion",
+      "image": "rdtAddon.png",
+      "url": "https://github.com/IAM-jaguer/RaidDominion",
+      "description": "LUA addon for World of Warcraft 3.3.5a enhancing gameplay with advanced UI customizations, web portal integration, and routine automation.",
+      "highlights": [
+        "LUA"
       ]
     },
     {
@@ -100,35 +119,21 @@
       ]
     },
     {
-      "name": "AgendaYa",
+      "name": "Silueta Pro",
       "image": "",
-      "url": "https://agendaya.netlify.app/",
-      "description": "Multi-role appointment scheduling SaaS with business registration, services, hours, bookings, reviews, and real-time chat. Business owner dashboard with availability management and notifications.",
-      "highlights": [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Redux",
-        "Supabase",
-        "Tailwind",
-        "Netlify",
-        "PayPal"
-      ]
-    },
-    {
-      "name": "Comunidad Colmillo de Acero",
-      "image": "",
-      "url": "https://colmillo.netlify.app/",
-      "description": "Guild community portal with recruitment system, raid scheduler, polls, AI-powered blog (Groq), event calendar, and custom JWT admin panel.",
+      "url": "https://siluetapro.netlify.app/",
+      "description": "Server-side image processing SaaS for background removal and edge polishing. Features PayPal subscriptions, Free/Premium plans with resolution limits, and Sharp-based processing pipeline.",
       "highlights": [
         "Astro",
         "TypeScript",
+        "Node",
+        "Sharp",
         "Supabase",
+        "Stripe",
+        "PayPal",
         "Tailwind",
-        "Alpine.js",
-        "Discord",
-        "Twitch",
-        "YouTube"
+        "Redis",
+        "BullMQ"
       ]
     },
     {
@@ -156,6 +161,22 @@
         "Tailwind",
         "PayPal",
         "Netlify"
+      ]
+    },
+    {
+      "name": "Comunidad Colmillo de Acero",
+      "image": "",
+      "url": "https://colmillo.netlify.app/",
+      "description": "Guild community portal with recruitment system, raid scheduler, polls, AI-powered blog (Groq), event calendar, and custom JWT admin panel.",
+      "highlights": [
+        "Astro",
+        "TypeScript",
+        "Supabase",
+        "Tailwind",
+        "Alpine.js",
+        "Discord",
+        "Twitch",
+        "YouTube"
       ]
     },
     {
@@ -199,27 +220,6 @@
         "CSS",
         "JSON",
         "CRUD"
-      ]
-    },
-    {
-      "name": "Comunidad Raid Dominion Tools",
-      "image": "rdtCommunity.avif",
-      "url": "https://raid-dominion.netlify.app/",
-      "description": "Complementary web portal for WoW community with Discord integration, Twitch streaming, YouTube content, and guild management tools.",
-      "highlights": [
-        "Web Portal",
-        "Discord",
-        "Twitch",
-        "YouTube"
-      ]
-    },
-    {
-      "name": "Addon Raid Dominion Tools",
-      "image": "rdtAddon.png",
-      "url": "https://github.com/IAM-jaguer/RaidDominion",
-      "description": "LUA addon for World of Warcraft 3.3.5a enhancing gameplay with advanced UI customizations, web portal integration, and routine automation.",
-      "highlights": [
-        "LUA"
       ]
     }
   ],
